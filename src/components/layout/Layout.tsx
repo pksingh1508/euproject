@@ -2,8 +2,9 @@
 
 import { ReactNode } from "react";
 import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import clsx from "clsx";
+import Footer from "./Footer";
+import CompanyData from "../home/CompanyData";
 
 interface LayoutProps {
   children: ReactNode;
@@ -21,7 +22,8 @@ export function Layout({ children, className }: LayoutProps) {
       </a>
       <Navbar />
       <main className={clsx(className)}>{children}</main>
-      {/* <Footer /> */}
+      <CompanyData />
+      <Footer />
     </div>
   );
 }

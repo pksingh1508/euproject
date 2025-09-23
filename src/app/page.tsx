@@ -120,6 +120,10 @@ export default function Home() {
         bullet6="Trusted expertise in international recruitment and workforce integration"
         bullet7=""
       />
+
+      {/* TODO: Recent Blogs */}
+      {/* TODO: NewsAndFAQs */}
+      {/* TODO: Testimonials */}
     </div>
   );
 }

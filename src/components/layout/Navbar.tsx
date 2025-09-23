@@ -129,20 +129,15 @@ export function Navbar() {
                 <Button
                   asChild
                   variant="outline"
-                  className={`bg-[#1877f2] text-gray-50 hover:border-1 hover:border-gray-300 inline-flex hover:bg-[var(--hover-bg)] hover:text-gray-50 border-[var(--hover-bg)] ${fontMontserrat.className}`}
+                  className={`bg-[#1877f2] text-gray-50 hover:border-1 hover:border-gray-300 inline-flex hover:bg-[var(--hover-bg)] hover:text-gray-50 border-[var(--hover-bg)] ${
+                    fontMontserrat.className
+                  } ${isActive("/contact") ? "bg-white text-black" : ""}`}
                   style={{
                     ["--hover-bg" as any]: colors.yellow.dark,
                     ["--active-bg" as any]: colors.yellow.DEFAULT,
                   }}
                 >
-                  <Link
-                    href={`/contact`}
-                    className={`${
-                      isActive("/contact") ? "bg-white text-black" : ""
-                    }`}
-                  >
-                    Contact Us
-                  </Link>
+                  <Link href={`/contact`}>Contact Us</Link>
                 </Button>
               </div>
             </div>
@@ -176,7 +171,6 @@ export function Navbar() {
               {/* Links - show from xl and up, next to logo */}
               <div className="hidden xl:flex items-center ml-8 gap-2">
                 {NAVBAR_LINKS.map((item) => {
-                  const key = item.href.replace(/^\//, "");
                   return (
                     <motion.div key={item.href} whileHover={{ y: -2 }}>
                       <Link
@@ -184,8 +178,8 @@ export function Navbar() {
                         className={`text-gray-700 transition-colors rounded-md px-2 py-2 hover:bg-[var(--hover-bg)] hover:text-gray-50 hover:shadow-lg ${
                           fontInter.className
                         } font-medium ${
-                          isActive(item.href)
-                            ? "bg-[var(--active-bg)] text-gray-50 shadow-lg"
+                          isActive(`/${item.href}`)
+                            ? "bg-[var(--active-bg)] text-white shadow-lg"
                             : ""
                         }`}
                         style={{
@@ -247,7 +241,7 @@ export function Navbar() {
             exit={{ height: 0, opacity: 0 }}
             className="xl:hidden border-t bg-white"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
+            <div className="container mx-auto py-4 flex flex-col gap-3">
               {NAVBAR_LINKS.map((item) => (
                 <Link
                   key={item.href}
@@ -255,8 +249,8 @@ export function Navbar() {
                   className={`text-gray-700 rounded-md px-3 py-2 hover:bg-[var(--hover-bg)] hover:text-gray-50 ${
                     fontInter.className
                   } font-medium ${
-                    isActive(item.href)
-                      ? "bg-[var(--active-bg)] text-gray-50"
+                    isActive(`/${item.href}`)
+                      ? "bg-[var(--active-bg)] text-white"
                       : ""
                   }`}
                   style={{

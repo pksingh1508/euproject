@@ -46,7 +46,7 @@ export function CustomHero({
   };
 
   return (
-    <section className="py-0 md:py-4 xl:py-20 bg-gray-50">
+    <section className="py-16 xl:py-20 bg-gray-50">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <div
           className={cn(
@@ -99,8 +99,8 @@ export function CustomHero({
                     onClick={button.onClick || handleButtonClick}
                     className={cn(
                       "h-8 sm:h-10 text-sm sm:text-base font-medium transition-all duration-200",
-                      "border-yellow-400 text-yellow-500 hover:bg-yellow-400 hover:text-black",
-                      "focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 cursor-pointer",
+                      "border-blue-400 text-blue-500 hover:bg-blue-400 hover:text-white",
+                      "focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 cursor-pointer",
                       fontInter.className
                     )}
                   >
