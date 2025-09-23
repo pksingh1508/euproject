@@ -52,7 +52,7 @@ export function StepWorkBulletPoint({
                 alt={imageAlt}
                 width={500}
                 height={400}
-                className="w-full h-[580px] object-cover rounded-md shadow-lg"
+                className="w-full h-[650px] object-cover rounded-md shadow-lg"
                 priority
               />
             </div>

@@ -2,6 +2,7 @@
 import { FlipCard } from "@/components/common/FlipCard";
 import { StepWork } from "@/components/common/StepWork";
 import { DESTINATION_DATA } from "@/constants/data";
+import { fontMontserrat } from "@/fonts";
 import Image from "next/image";
 import React from "react";
 
@@ -21,14 +22,19 @@ export default function page() {
       <div className="bg-white p-2 md:p-10">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-center text-2xl md:text-3xl font-bold font-poppins text-gray-900">
-            Work Progress
+            Work{" "}
+            <span
+              className={`text-[#1877f2] font-bold ${fontMontserrat.className}`}
+            >
+              Process
+            </span>
           </h1>
           <Image
             src="/assets/work/work-process.jpg"
             alt="Work Progress"
-            width={1000}
-            height={500}
-            className="w-full h-full object-cover rounded-md shadow-lg"
+            width={800}
+            height={450}
+            className="w-[90%] h-[90%] object-cover rounded-md p-1 md:p-5 mx-auto"
             priority
           />
         </div>

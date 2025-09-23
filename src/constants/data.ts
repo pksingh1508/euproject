@@ -2,8 +2,6 @@
 export const NAVBAR_LINKS = [
   { label: "Home", href: "" },
   { label: "Work", href: "work" },
-  { label: "Migrate", href: "migrate" },
-  { label: "Invest", href: "invest" },
   { label: "Register Company", href: "register-company" },
   { label: "Our Serwis", href: "our-serwis" }, // keeping spelling as given
   { label: "Become Partner", href: "become-partner" },
@@ -15,140 +13,160 @@ export const DESTINATION_DATA = [
   {
     url: "/assets/country/albaniaya.png",
     name: "Albania",
-    title: "Discover Albania",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/albania",
   },
   {
     url: "/assets/country/armenia.png",
     name: "Armenia",
-    title: "Discover Armenia",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/armenia",
   },
   {
     url: "/assets/country/bulgeria.png",
     name: "Bulgaria",
-    title: "Discover Bulgaria",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/bulgaria",
   },
   {
     url: "/assets/country/croatia.png",
     name: "Croatia",
-    title: "Discover Croatia",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/croatia",
   },
   {
     url: "/assets/country/czech-republic.png",
     name: "Czech Republic",
-    title: "Discover Czech Republic",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/czech-republic",
   },
   {
     url: "/assets/country/germany.png",
     name: "Germany",
-    title: "Discover Germany",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/germany",
   },
   {
     url: "/assets/country/hungary.png",
     name: "Hungary",
-    title: "Discover Hungary",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/hungary",
   },
   {
     url: "/assets/country/itally.png",
     name: "Italy",
-    title: "Discover Italy",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/italy",
   },
   {
     url: "/assets/country/kosovo.png",
     name: "Kosovo",
-    title: "Discover Kosovo",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/kosovo",
   },
   {
     url: "/assets/country/latvia.png",
     name: "Latvia",
-    title: "Discover Latvia",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/latvia",
   },
   {
     url: "/assets/country/lithuania.png",
     name: "Lithuania",
-    title: "Discover Lithuania",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/lithuania",
   },
   {
     url: "/assets/country/montegro.png",
     name: "Montenegro",
-    title: "Discover Montenegro",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/montenegro",
   },
   {
     url: "/assets/country/n-masidonia.png",
     name: "North Macedonia",
-    title: "Discover North Macedonia",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/north-macedonia",
   },
   {
     url: "/assets/country/netherlands.png",
     name: "Netherlands",
-    title: "Discover Netherlands",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/netherlands",
   },
   {
     url: "/assets/country/poland.png",
     name: "Poland",
-    title: "Discover Poland",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/poland",
   },
   {
     url: "/assets/country/romania.png",
     name: "Romania",
-    title: "Discover Romania",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/romania",
   },
   {
     url: "/assets/country/serbia.png",
     name: "Serbia",
-    title: "Discover Serbia",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/serbia",
   },
   {
     url: "/assets/country/slovakia.png",
     name: "Slovakia",
-    title: "Discover Slovakia",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/slovakia",
   },
   {
     url: "/assets/country/slovenia.png",
     name: "Slovenia",
-    title: "Discover Slovenia",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/slovenia",
   },
   {
     url: "/assets/country/uk.png",
     name: "United Kingdom",
-    title: "Discover United Kingdom",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
     btnUrl: "/united-kingdom",
   },

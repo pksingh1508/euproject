@@ -4,7 +4,6 @@ import { ReactNode } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import clsx from "clsx";
 import Footer from "./Footer";
-import CompanyData from "../home/CompanyData";
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,7 +21,6 @@ export function Layout({ children, className }: LayoutProps) {
       </a>
       <Navbar />
       <main className={clsx(className)}>{children}</main>
-      <CompanyData />
       <Footer />
     </div>
   );

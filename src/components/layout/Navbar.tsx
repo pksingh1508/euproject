@@ -50,23 +50,23 @@ export function Navbar() {
       {/* Top bar - hide when scrolling */}
       <div
         className={`transition-all duration-300 overflow-hidden ${
-          isScrolled ? "max-h-0 opacity-0" : "max-h-[200px] opacity-100"
+          isScrolled ? "max-h-0 opacity-0" : "max-h-[170px] opacity-100"
         }`}
       >
         <div className="container mx-auto px-4 text-sm bg-[#1877f2] max-w-7xl">
-          <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between py-2">
+          <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between">
             {/* Phone numbers - stack on small screens */}
-            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 text-gray-50">
+            <div className="flex flex-row md:items-center gap-1 pt-1 text-gray-50">
               <a
                 href="tel:+48222095497"
-                className={`inline-flex items-center gap-2 hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 py-2.5 ${fontRoboto.className}`}
+                className={`inline-flex text-[12px] md:text-base items-center gap-2 hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] ${fontRoboto.className}`}
                 style={{ ["--hover-bg" as any]: colors.yellow.dark }}
               >
                 <Phone className="md:h-4 md:w-4 h-3 w-3" /> +48 888 620 222
               </a>
               <a
                 href="tel:+48726635666"
-                className={`inline-flex items-center gap-2 hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 py-2.5 ${fontRoboto.className}`}
+                className={`inline-flex text-[12px] md:text-base items-center gap-2 hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 ${fontRoboto.className}`}
                 style={{ ["--hover-bg" as any]: colors.yellow.dark }}
               >
                 <Phone className="md:h-4 md:w-4 h-3 w-3" /> +48 886 886 816
@@ -113,7 +113,7 @@ export function Navbar() {
                   <Linkedin className="h-4 w-4" />
                 </a>
               </div>
-              <div className="flex gap-2 mt-2 md:mt-0">
+              <div className="flex gap-2 mt-[3px] md:mt-0">
                 <Button
                   asChild
                   variant="outline"
@@ -147,7 +147,7 @@ export function Navbar() {
 
       {/* Bottom bar - fixed when scrolling */}
       <div
-        className={`border-t border-b sticky top-0 transition-all duration-300 ${
+        className={`border-b sticky top-0 transition-all duration-300 ${
           isScrolled ? "shadow-lg backdrop-blur-sm bg-white/95" : "bg-white"
         }`}
       >
@@ -163,7 +163,7 @@ export function Navbar() {
                     alt="EU Prime Serwis"
                     width={150}
                     height={50}
-                    className="h-24 w-52"
+                    className="h-20 w-48 p-1"
                   />
                 </motion.div>
               </Link>

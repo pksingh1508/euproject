@@ -6,21 +6,21 @@ import Image from "next/image";
 
 const bannerData = [
   {
-    image: "/assets/banner/albania-page-banner.jpg",
+    image: "/assets/banner/home-bg.jpg",
     title: "Best Recruitment Agency",
     subtitle: "For you better future",
     description:
       "We provides always our best services for our clients and always try to achieve our client's trust and satisfaction.",
   },
   {
-    image: "/assets/banner/armenia-page-banner.jpg",
+    image: "/assets/banner/home-bg1.jpg",
     title: "EU Prime Serwis",
     subtitle: "Looking to start your career in Poland",
     description:
       "Connect with our Work Abroad Specialists to find your dream job in Poland.",
   },
   {
-    image: "/assets/banner/bulgaria-page-banner.jpg",
+    image: "/assets/banner/home-bg2.jpg",
     title: "Feed Your Knowledge",
     subtitle: "Unlock Endless Career Possibilities in Europe",
     description: "Connect with our Work Abroad Experts today.",
@@ -111,7 +111,7 @@ export function TopBanner() {
           <div key={index} className="w-full flex-shrink-0 relative h-full">
             {/* Background Image */}
             <div className="absolute inset-0 w-full h-full">
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-700/80 z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-700/80 opacity-70 z-10"></div>
               <div className="absolute inset-0  z-10"></div>
 
               <Image
