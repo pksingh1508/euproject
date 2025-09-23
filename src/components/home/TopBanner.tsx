@@ -40,7 +40,7 @@ export function TopBanner() {
     bannerData[0],
   ];
 
-  // Auto-advance carousel every 3 seconds
+  // Auto-advance carousel every 4 seconds
   useEffect(() => {
     if (!isHovered) {
       const timer = setInterval(() => {
@@ -48,7 +48,7 @@ export function TopBanner() {
       }, 4000);
       return () => clearInterval(timer);
     }
-  }, [isHovered]);
+  }, [isHovered, currentSlide]); // Added currentSlide dependency
 
   // Handle transition end for seamless loop
   useEffect(() => {
@@ -73,7 +73,9 @@ export function TopBanner() {
   useEffect(() => {
     if (!transitionEnabled) {
       const id = requestAnimationFrame(() => {
-        setTransitionEnabled(true);
+        requestAnimationFrame(() => {
+          setTransitionEnabled(true);
+        });
       });
       return () => cancelAnimationFrame(id);
     }
@@ -89,6 +91,38 @@ export function TopBanner() {
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index + 1); // shift by 1 because of extra clone at start
+  };
+
+  // Helper function to check if a slide should be visible/animated
+  const isSlideActive = (index: number) => {
+    // The actual slide index in the original data
+    let actualIndex = index;
+
+    // Map current position to actual data index
+    let currentActualIndex = currentSlide;
+
+    // Handle edge cases for cloned slides
+    if (currentSlide === 0) {
+      currentActualIndex = bannerData.length;
+    } else if (currentSlide === bannerData.length + 1) {
+      currentActualIndex = 1;
+    }
+
+    // For the cloned slides at edges
+    if (index === 0) {
+      actualIndex = bannerData.length;
+    } else if (index === extendedSlides.length - 1) {
+      actualIndex = 1;
+    }
+
+    return actualIndex === currentActualIndex;
+  };
+
+  // Helper to get the real slide index for indicators
+  const getRealSlideIndex = () => {
+    if (currentSlide === 0) return bannerData.length - 1;
+    if (currentSlide === bannerData.length + 1) return 0;
+    return currentSlide - 1;
   };
 
   return (
@@ -108,7 +142,10 @@ export function TopBanner() {
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
         {extendedSlides.map((banner, index) => (
-          <div key={index} className="w-full flex-shrink-0 relative h-full">
+          <div
+            key={`slide-${index}`}
+            className="w-full flex-shrink-0 relative h-full"
+          >
             {/* Background Image */}
             <div className="absolute inset-0 w-full h-full">
               <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-700/80 opacity-70 z-10"></div>
@@ -120,6 +157,7 @@ export function TopBanner() {
                 width={1920}
                 height={1080}
                 className="w-full h-full object-cover"
+                priority={index <= 2} // Prioritize loading first few slides
               />
             </div>
 
@@ -128,7 +166,7 @@ export function TopBanner() {
               <div className="w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl">
                 <div
                   className={`transform transition-all duration-700 delay-200 ${
-                    index === currentSlide
+                    isSlideActive(index)
                       ? "translate-y-0 opacity-100"
                       : "translate-y-8 opacity-0"
                   }`}
@@ -165,6 +203,7 @@ export function TopBanner() {
             ? "opacity-100 translate-x-0"
             : "opacity-0 -translate-x-2 sm:-translate-x-4"
         }`}
+        aria-label="Previous slide"
       >
         <ChevronLeft size={18} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
       </button>
@@ -176,6 +215,7 @@ export function TopBanner() {
             ? "opacity-100 translate-x-0"
             : "opacity-0 translate-x-2 sm:translate-x-4"
         }`}
+        aria-label="Next slide"
       >
         <ChevronRight size={18} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
       </button>
@@ -184,13 +224,14 @@ export function TopBanner() {
       <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 z-30 flex space-x-2 bg-black/20 backdrop-blur-sm rounded-full px-3 py-2">
         {bannerData.map((_, index) => (
           <button
-            key={index}
+            key={`indicator-${index}`}
             onClick={() => goToSlide(index)}
             className={`w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
-              index + 1 === currentSlide
+              index === getRealSlideIndex()
                 ? "bg-white scale-125"
                 : "bg-white/50 hover:bg-white/75"
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
