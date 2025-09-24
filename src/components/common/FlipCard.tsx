@@ -1,3 +1,4 @@
+import { fontMontserrat, fontPoppins } from "@/fonts";
 import React from "react";
 
 interface FlipCardProps {
@@ -13,7 +14,7 @@ export const FlipCard: React.FC<FlipCardProps> = ({
   countryName,
   title,
   btnName,
-  btnUrl,
+  btnUrl
 }) => {
   const handleButtonClick = () => {
     window.open(btnUrl);
@@ -31,22 +32,28 @@ export const FlipCard: React.FC<FlipCardProps> = ({
               className="w-24 h-16 object-cover rounded"
             />
           </div>
-          <h2 className="text-2xl font-bold text-gray-500 text-center tracking-wide">
+          <h2
+            className={`text-2xl font-bold text-gray-500 text-center tracking-wide ${fontMontserrat.className}`}
+          >
             {countryName}
           </h2>
         </div>
 
         {/* Back Side */}
         <div className="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl shadow-xl flex flex-col justify-center p-8 border border-slate-200">
-          <h2 className="text-2xl font-bold text-slate-800 mb-4 text-center">
+          <h2
+            className={`text-2xl font-bold text-slate-800 mb-4 text-center ${fontMontserrat.className}`}
+          >
             {countryName}
           </h2>
-          <p className="text-slate-600 text-center mb-8 leading-relaxed">
+          <p
+            className={`text-slate-600 text-center mb-8 leading-relaxed ${fontPoppins.className}`}
+          >
             {title}
           </p>
           <button
             onClick={handleButtonClick}
-            className="bg-[#1877f2] hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 cursor-pointer"
+            className={`bg-[#1877f2] hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 cursor-pointer ${fontPoppins.className}`}
           >
             {btnName}
           </button>

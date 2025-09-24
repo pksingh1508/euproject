@@ -3,30 +3,31 @@ import RotatingCircle from "@/components/common/RotatingCircle";
 import { StepWork } from "@/components/common/StepWork";
 import { StepWorkBulletPoint } from "@/components/common/StepWorkBulletPoint";
 import { TopBanner } from "@/components/home/TopBanner";
+import WhyUs from "@/components/home/WhyUs";
 
 export default function Home() {
   const workButtons = [
     { text: "Poland" },
     { text: "Lithuania" },
     { text: "Germany" },
-    { text: "Croatia" },
+    { text: "Croatia" }
   ];
   const migrateButtons = [
     { text: "Poland" },
     { text: "Slovakia" },
     { text: "Germany" },
-    { text: "Czech Republic" },
+    { text: "Czech Republic" }
   ];
   const investButtons = [
     { text: "Stock" },
     { text: "Crypto" },
-    { text: "Real State" },
+    { text: "Real State" }
   ];
   const registerCompanyButtons = [
     { text: "Liability Company" },
     { text: "Join-Stack Company" },
     { text: "European Company" },
-    { text: "Sole Proprietorship" },
+    { text: "Sole Proprietorship" }
   ];
   return (
     <div>
@@ -42,6 +43,7 @@ export default function Home() {
         paragraph4=""
       />
       {/* why eu price serwis component */}
+      <WhyUs />
       <RotatingCircle />
       {/* Work Section */}
       <CustomHero

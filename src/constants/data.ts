@@ -6,7 +6,7 @@ export const NAVBAR_LINKS = [
   { label: "Our Serwis", href: "our-serwis" }, // keeping spelling as given
   { label: "Become Partner", href: "become-partner" },
   { label: "For Employer", href: "employer" },
-  { label: "Contact Us", href: "contact" },
+  { label: "Contact Us", href: "contact" }
 ] as const;
 
 export const DESTINATION_DATA = [
@@ -16,7 +16,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/albania",
+    btnUrl: "/albania"
   },
   {
     url: "/assets/country/armenia.png",
@@ -24,7 +24,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/armenia",
+    btnUrl: "/armenia"
   },
   {
     url: "/assets/country/bulgeria.png",
@@ -32,7 +32,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/bulgaria",
+    btnUrl: "/bulgaria"
   },
   {
     url: "/assets/country/croatia.png",
@@ -40,7 +40,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/croatia",
+    btnUrl: "/croatia"
   },
   {
     url: "/assets/country/czech-republic.png",
@@ -48,7 +48,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/czech-republic",
+    btnUrl: "/czech-republic"
   },
   {
     url: "/assets/country/germany.png",
@@ -56,7 +56,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/germany",
+    btnUrl: "/germany"
   },
   {
     url: "/assets/country/hungary.png",
@@ -64,7 +64,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/hungary",
+    btnUrl: "/hungary"
   },
   {
     url: "/assets/country/itally.png",
@@ -72,7 +72,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/italy",
+    btnUrl: "/italy"
   },
   {
     url: "/assets/country/kosovo.png",
@@ -80,7 +80,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/kosovo",
+    btnUrl: "/kosovo"
   },
   {
     url: "/assets/country/latvia.png",
@@ -88,7 +88,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/latvia",
+    btnUrl: "/latvia"
   },
   {
     url: "/assets/country/lithuania.png",
@@ -96,7 +96,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/lithuania",
+    btnUrl: "/lithuania"
   },
   {
     url: "/assets/country/montegro.png",
@@ -104,7 +104,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/montenegro",
+    btnUrl: "/montenegro"
   },
   {
     url: "/assets/country/n-masidonia.png",
@@ -112,7 +112,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/north-macedonia",
+    btnUrl: "/north-macedonia"
   },
   {
     url: "/assets/country/netherlands.png",
@@ -120,7 +120,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/netherlands",
+    btnUrl: "/netherlands"
   },
   {
     url: "/assets/country/poland.png",
@@ -128,7 +128,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/poland",
+    btnUrl: "/poland"
   },
   {
     url: "/assets/country/romania.png",
@@ -136,7 +136,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/romania",
+    btnUrl: "/romania"
   },
   {
     url: "/assets/country/serbia.png",
@@ -144,7 +144,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/serbia",
+    btnUrl: "/serbia"
   },
   {
     url: "/assets/country/slovakia.png",
@@ -152,7 +152,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/slovakia",
+    btnUrl: "/slovakia"
   },
   {
     url: "/assets/country/slovenia.png",
@@ -160,7 +160,7 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/slovenia",
+    btnUrl: "/slovenia"
   },
   {
     url: "/assets/country/uk.png",
@@ -168,8 +168,43 @@ export const DESTINATION_DATA = [
     title:
       "For comprehensive information, please click 'Read More' to access additional details.",
     btnName: "Read More",
-    btnUrl: "/united-kingdom",
+    btnUrl: "/united-kingdom"
+  }
+];
+
+export const COMPANY_DATA = [
+  {
+    url: "/assets/country/albaniaya.png",
+    name: "Limited Liability Company",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
+    btnName: "Read More",
+    btnUrl: "/limited-liability-company"
   },
+  {
+    url: "/assets/country/armenia.png",
+    name: "Joint-Stock Company",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
+    btnName: "Read More",
+    btnUrl: "/joint-stock-company"
+  },
+  {
+    url: "/assets/country/bulgeria.png",
+    name: "European Company",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
+    btnName: "Read More",
+    btnUrl: "/european-company"
+  },
+  {
+    url: "/assets/country/croatia.png",
+    name: "Sole Proprietorship",
+    title:
+      "For comprehensive information, please click 'Read More' to access additional details.",
+    btnName: "Read More",
+    btnUrl: "/sole-proprietorship"
+  }
 ];
 
 // src/constants/countries.ts
@@ -193,35 +228,35 @@ export const COUNTRIES = [
   { label: "Portugal", value: "portugal" },
   { label: "Turkey", value: "turkey" },
   { label: "Singapore", value: "singapore" },
-  { label: "United Arab Emirates", value: "uae" },
+  { label: "United Arab Emirates", value: "uae" }
 ] as const;
 
 export const FAQS = [
   {
     question: "What services do you provide?",
     answer:
-      "We offer services such as study abroad guidance, work opportunities, investment advice, migration support, mentorship, and job-seeker assistance.",
+      "We offer services such as study abroad guidance, work opportunities, investment advice, migration support, mentorship, and job-seeker assistance."
   },
   {
     question: "Which countries do you work with?",
     answer:
-      "We work with multiple countries including the USA, UK, Canada, Australia, and various European and Asian nations depending on the service requirements.",
+      "We work with multiple countries including the USA, UK, Canada, Australia, and various European and Asian nations depending on the service requirements."
   },
   {
     question: "How long does the process take?",
     answer:
-      "The duration varies depending on the type of service. On average, processes can take anywhere from a few weeks to several months.",
+      "The duration varies depending on the type of service. On average, processes can take anywhere from a few weeks to several months."
   },
   {
     question: "Do you provide visa assistance?",
     answer:
-      "Yes, we assist with visa applications, documentation, and interview preparation to ensure a smooth process.",
+      "Yes, we assist with visa applications, documentation, and interview preparation to ensure a smooth process."
   },
   {
     question: "What are your fees?",
     answer:
-      "Our fees depend on the type of service you choose. We provide transparent pricing upfront with no hidden charges.",
-  },
+      "Our fees depend on the type of service you choose. We provide transparent pricing upfront with no hidden charges."
+  }
 ] as const;
 
 export const Testimonials = [
@@ -231,7 +266,7 @@ export const Testimonials = [
     image:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
     review:
-      "Amazing support throughout my study abroad journey. They made the process seamless and stress-free.",
+      "Amazing support throughout my study abroad journey. They made the process seamless and stress-free."
   },
   {
     name: "Michael Chen",
@@ -239,7 +274,7 @@ export const Testimonials = [
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
     review:
-      "Professional guidance for my international investments. Highly recommend their expertise.",
+      "Professional guidance for my international investments. Highly recommend their expertise."
   },
   {
     name: "Priya Patel",
@@ -247,7 +282,7 @@ export const Testimonials = [
     image:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
     review:
-      "They helped my entire family migrate smoothly. Excellent service and support.",
+      "They helped my entire family migrate smoothly. Excellent service and support."
   },
   {
     name: "David Wilson",
@@ -255,7 +290,7 @@ export const Testimonials = [
     image:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
     review:
-      "Found my dream job abroad thanks to their comprehensive career guidance and support.",
+      "Found my dream job abroad thanks to their comprehensive career guidance and support."
   },
   {
     name: "Emma Thompson",
@@ -263,7 +298,7 @@ export const Testimonials = [
     image:
       "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
     review:
-      "CountryNation helped me establish my business overseas. Their investment guidance was invaluable.",
+      "CountryNation helped me establish my business overseas. Their investment guidance was invaluable."
   },
   {
     name: "Ahmed Hassan",
@@ -271,7 +306,7 @@ export const Testimonials = [
     image:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
     review:
-      "Exceptional support for my PhD application. They made studying in Europe possible for me.",
+      "Exceptional support for my PhD application. They made studying in Europe possible for me."
   },
   {
     name: "Maria Rodriguez",
@@ -279,7 +314,7 @@ export const Testimonials = [
     image:
       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
     review:
-      "Seamless visa process for my medical career abroad. Professional and efficient service.",
+      "Seamless visa process for my medical career abroad. Professional and efficient service."
   },
   {
     name: "James Kim",
@@ -287,6 +322,6 @@ export const Testimonials = [
     image:
       "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face",
     review:
-      "Their startup visa guidance helped me launch my tech company in Canada. Highly recommended!",
-  },
+      "Their startup visa guidance helped me launch my tech company in Canada. Highly recommended!"
+  }
 ] as const;

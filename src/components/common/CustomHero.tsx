@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { fontInter } from "@/fonts";
+import { fontInter, fontMontserrat } from "@/fonts";
 import { RippleButton } from "@/components/ui/ripple-button";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
@@ -37,7 +37,7 @@ export function CustomHero({
   buttons,
   isReversed = false,
   imageSrc,
-  imageAlt = "Hero image",
+  imageAlt = "Hero image"
 }: CustomHeroProps) {
   const router = useRouter();
 
@@ -46,7 +46,7 @@ export function CustomHero({
   };
 
   return (
-    <section className="py-16 xl:py-20 bg-gray-50">
+    <section className="py-16 xl:py-20 bg-white">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <div
           className={cn(
@@ -63,7 +63,10 @@ export function CustomHero({
           >
             {/* Heading */}
             <h1
-              className={cn("text-2xl font-bold text-gray-800 leading-tight")}
+              className={cn(
+                "text-2xl font-bold text-gray-800 leading-tight",
+                fontMontserrat.className
+              )}
             >
               {heading}
             </h1>
@@ -91,8 +94,8 @@ export function CustomHero({
 
             {/* Buttons Grid */}
             <div className="pt-2">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-                {buttons.slice(0, 10).map((button, index) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                {buttons.slice(0, 20).map((button, index) => (
                   <RippleButton
                     key={index}
                     variant={button.variant || "outline"}

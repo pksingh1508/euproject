@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { fontMontserrat, fontOpenSans, fontPoppins } from "@/fonts";
 
 interface StepWorkProps {
   image: string;
@@ -22,10 +23,10 @@ export function StepWork({
   paragraph2,
   paragraph3,
   paragraph4,
-  isReversed = false,
+  isReversed = false
 }: StepWorkProps) {
   return (
-    <div className="w-full">
+    <div className="w-full bg-white">
       <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:py-16 py-8">
         <div
           className={`grid lg:grid-cols-2 gap-12 lg:gap-16 ${
@@ -54,18 +55,36 @@ export function StepWork({
           <div
             className={`space-y-6 ${isReversed ? "lg:order-1" : "lg:order-2"}`}
           >
-            <h2 className="text-3xl font-bold font-poppins text-gray-900">
+            <h2
+              className={`text-3xl font-bold font-poppins text-gray-900 ${fontOpenSans.className}`}
+            >
               {heading}
             </h2>
 
             <div className="space-y-2">
-              <p className="font-inter text-gray-600">{paragraph1}</p>
+              <p
+                className={`font-inter text-gray-600 ${fontPoppins.className}`}
+              >
+                {paragraph1}
+              </p>
 
-              <p className="font-inter text-gray-600">{paragraph2}</p>
+              <p
+                className={`font-inter text-gray-600 ${fontPoppins.className}`}
+              >
+                {paragraph2}
+              </p>
 
-              <p className="font-inter text-gray-600">{paragraph3}</p>
+              <p
+                className={`font-inter text-gray-600 ${fontPoppins.className}`}
+              >
+                {paragraph3}
+              </p>
 
-              <p className="font-inter text-gray-600">{paragraph4}</p>
+              <p
+                className={`font-inter text-gray-600 ${fontPoppins.className}`}
+              >
+                {paragraph4}
+              </p>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 "use client";
 import { FlipCard } from "@/components/common/FlipCard";
+import RotatingCircle from "@/components/common/RotatingCircle";
 import { StepWork } from "@/components/common/StepWork";
 import { DESTINATION_DATA } from "@/constants/data";
 import { fontMontserrat } from "@/fonts";
@@ -39,6 +40,8 @@ export default function page() {
           />
         </div>
       </div>
+
+      <RotatingCircle />
 
       {/* flip card components */}
       <div className="bg-white p-7 md:p-10">
