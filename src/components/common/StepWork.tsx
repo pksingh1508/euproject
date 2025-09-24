@@ -45,7 +45,7 @@ export function StepWork({
                 alt={imageAlt}
                 width={500}
                 height={400}
-                className="w-full h-[650px] object-cover rounded-md shadow-lg"
+                className="w-full h-[650px] xl:h-[750px] object-cover rounded-md shadow-lg"
                 priority
               />
             </div>
