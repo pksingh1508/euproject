@@ -33,7 +33,7 @@ export function StepWorkBulletPoint({
   isReversed = false
 }: StepWorkBulletPointProps) {
   return (
-    <div className="w-full">
+    <div className="w-full bg-white">
       <div className="container mx-auto max-w-7xl px-4 lg:py-16 py-8">
         <div
           className={`grid lg:grid-cols-2 gap-12 lg:gap-16  ${

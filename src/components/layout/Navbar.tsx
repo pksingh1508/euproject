@@ -11,7 +11,7 @@ import {
   Facebook,
   Twitter,
   Instagram,
-  Linkedin,
+  Linkedin
 } from "lucide-react";
 import { colors } from "@/constants/color";
 import { motion, AnimatePresence } from "framer-motion";
@@ -49,7 +49,7 @@ export function Navbar() {
     >
       {/* Top bar - hide when scrolling */}
       <div
-        className={`transition-all duration-300 overflow-hidden ${
+        className={`transition-all duration-300 overflow-hidden bg-[#1877f2] ${
           isScrolled ? "max-h-0 opacity-0" : "max-h-[170px] opacity-100"
         }`}
       >
@@ -116,25 +116,25 @@ export function Navbar() {
               <div className="flex gap-2 mt-[3px] md:mt-0">
                 <Button
                   asChild
-                  variant="outline"
+                  variant="secondary"
                   className={`bg-[#1877f2] text-gray-50 hover:border-1 hover:border-gray-300 inline-flex hover:bg-[var(--hover-bg)] hover:text-gray-50 border-[var(--hover-bg)] ${
                     fontMontserrat.className
                   } ${isActive("/book") ? "bg-white text-black" : ""}`}
                   style={{
-                    ["--hover-bg" as any]: colors.yellow.DEFAULT,
+                    ["--hover-bg" as any]: colors.yellow.DEFAULT
                   }}
                 >
                   <Link href={`/book`}>Book Appointment</Link>
                 </Button>
                 <Button
                   asChild
-                  variant="outline"
+                  variant="secondary"
                   className={`bg-[#1877f2] text-gray-50 hover:border-1 hover:border-gray-300 inline-flex hover:bg-[var(--hover-bg)] hover:text-gray-50 border-[var(--hover-bg)] ${
                     fontMontserrat.className
                   } ${isActive("/contact") ? "bg-white text-black" : ""}`}
                   style={{
                     ["--hover-bg" as any]: colors.yellow.dark,
-                    ["--active-bg" as any]: colors.yellow.DEFAULT,
+                    ["--active-bg" as any]: colors.yellow.DEFAULT
                   }}
                 >
                   <Link href={`/contact`}>Contact Us</Link>
@@ -184,7 +184,7 @@ export function Navbar() {
                         }`}
                         style={{
                           ["--hover-bg" as any]: colors.yellow.dark,
-                          ["--active-bg" as any]: colors.yellow.DEFAULT,
+                          ["--active-bg" as any]: colors.yellow.DEFAULT
                         }}
                       >
                         {item.label}
@@ -255,7 +255,7 @@ export function Navbar() {
                   }`}
                   style={{
                     ["--hover-bg" as any]: colors.yellow.DEFAULT,
-                    ["--active-bg" as any]: colors.yellow.DEFAULT,
+                    ["--active-bg" as any]: colors.yellow.DEFAULT
                   }}
                   onClick={() => setIsOpen(false)}
                 >

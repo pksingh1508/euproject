@@ -101,7 +101,7 @@ export function CustomHero({
                     variant={button.variant || "outline"}
                     onClick={button.onClick || handleButtonClick}
                     className={cn(
-                      "h-8 sm:h-10 text-sm sm:text-base font-medium transition-all duration-200",
+                      "h-10 text-sm sm:text-base font-medium transition-all duration-200",
                       "border-blue-400 text-blue-500 hover:bg-blue-400 hover:text-white",
                       "focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 cursor-pointer",
                       fontInter.className

@@ -1,4 +1,6 @@
 import EmployerSection from "@/components/common/EmployerSection";
+import { MyForm } from "@/components/common/MyForm";
+import RotatingCircle from "@/components/common/RotatingCircle";
 import React from "react";
 
 export default function page() {
@@ -19,6 +21,15 @@ export default function page() {
   return (
     <div>
       <EmployerSection heading="For Employer" items={employerItems} />
+      <RotatingCircle />
+      <div className="flex items-center justify-center py-7 my-10 px-2">
+        <div className="bg-white rounded-2xl shadow-2xl p-3 lg:p-6 order-1 lg:order-2 border-5 border-blue-500">
+          <div className="mb-8">
+            <p className="text-gray-600 font-inter text-center">For Employer</p>
+          </div>
+          <MyForm />
+        </div>
+      </div>
     </div>
   );
 }

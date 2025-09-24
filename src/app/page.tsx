@@ -2,6 +2,7 @@ import { CustomHero } from "@/components/common/CustomHero";
 import RotatingCircle from "@/components/common/RotatingCircle";
 import { StepWork } from "@/components/common/StepWork";
 import { StepWorkBulletPoint } from "@/components/common/StepWorkBulletPoint";
+import { RecentBlog } from "@/components/home/RecentBlog";
 import { TopBanner } from "@/components/home/TopBanner";
 import WhyUs from "@/components/home/WhyUs";
 
@@ -123,7 +124,9 @@ export default function Home() {
         bullet7=""
       />
 
+      <RotatingCircle />
       {/* TODO: Recent Blogs */}
+      <RecentBlog />
       {/* TODO: NewsAndFAQs */}
       {/* TODO: Testimonials */}
     </div>
