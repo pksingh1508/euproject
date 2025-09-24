@@ -117,13 +117,7 @@ export function ContactContainer() {
     <section className="w-full bg-white py-10">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Header */}
-        <motion.div
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
+        <motion.div className="text-center mb-10">
           <h1
             className={`text-4xl lg:text-5xl font-bold font-playfair text-gray-700 mb-2 tracking-tight ${fontPoppins.className}`}
           >
@@ -136,9 +130,9 @@ export function ContactContainer() {
             Sign up for a free expert consultation
           </p>
         </motion.div>
-        <div className="container mx-auto max-w-7xl px-4">
+        <div className="container mx-auto max-w-7xl px-1 md:px-4">
           {/* Main Container with 3-column grid layout */}
-          <div className="relative bg-gray-50 border border-gray-200 rounded-2xl p-2 sm:p-8 lg:p-12">
+          <div className="relative bg-gray-50 border border-gray-200 rounded-2xl p-1s sm:p-8 lg:p-12">
             {/* Large Screen Layout - 3 Columns Grid */}
             <motion.div
               className="hidden lg:grid lg:grid-cols-[250px_1fr_250px] gap-12 items-start"
@@ -266,16 +260,10 @@ export function ContactContainer() {
             </motion.div>
 
             {/* Mobile/Tablet Layout - Vertical Stack */}
-            <motion.div
-              className="lg:hidden space-y-8"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-            >
+            <motion.div className="lg:hidden space-y-8">
               {/* 1. Contact Form First */}
               <motion.div
-                className="bg-white dark:bg-gray-700 rounded-2xl shadow-[0_10px_30px_rgba(251,191,36,0.2)] border border-yellow-200/20 dark:border-yellow-600/10 p-6"
+                className="bg-white rounded-2xl border border-blue-200/20 p-6"
                 variants={itemVariants}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
@@ -284,14 +272,14 @@ export function ContactContainer() {
 
               {/* 2. Contact Information */}
               <motion.div className="space-y-6" variants={itemVariants}>
-                <div className="space-y-4">
+                <div className="space-y-4 flex items-center justify-center flex-col">
                   <motion.h2
-                    className={`text-2xl md:text-3xl font-bold font-playfair text-gray-900 dark:text-white ${fontPoppins.className}`}
+                    className={`text-2xl md:text-3xl font-bold font-playfair text-gray-900 items-center ${fontPoppins.className}`}
                     variants={itemVariants}
                   >
                     Reach our Expert Team
                   </motion.h2>
-                  <div className="w-16 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full"></div>
+                  <div className="w-16 h-2 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full items-center"></div>
                 </div>
 
                 {/* Contact Items */}
@@ -299,7 +287,7 @@ export function ContactContainer() {
                   {contactItems.map((item, index) => (
                     <motion.div
                       key={item.title}
-                      className="group flex items-start gap-4 p-4 rounded-xl hover:bg-white/50 dark:hover:bg-gray-700/50 transition-all duration-300"
+                      className="group flex items-start gap-4 p-4 rounded-xl hover:bg-white/50 transition-all duration-300"
                       variants={itemVariants}
                       whileHover={{ x: 5 }}
                     >
@@ -314,7 +302,7 @@ export function ContactContainer() {
 
                       <div className="flex-1 min-w-0">
                         <h3
-                          className={`text-lg font-semibold font-poppins text-gray-900 dark:text-white mb-2 ${fontPoppins.className}`}
+                          className={`text-lg font-semibold font-poppins text-gray-900 mb-2 ${fontPoppins.className}`}
                         >
                           {item.title}
                         </h3>
@@ -322,12 +310,12 @@ export function ContactContainer() {
                           {item.content.map((line, lineIndex) => (
                             <p
                               key={lineIndex}
-                              className="text-gray-600 dark:text-gray-300 font-inter break-words"
+                              className="text-gray-600 font-inter break-words"
                             >
                               {item.link ? (
                                 <a
                                   href={item.link}
-                                  className={`hover:text-yellow-600 transition-colors duration-200 hover:underline ${fontPoppins.className}`}
+                                  className={`hover:text-blue-600 transition-colors duration-200 hover:underline ${fontPoppins.className}`}
                                 >
                                   {line}
                                 </a>
@@ -344,24 +332,27 @@ export function ContactContainer() {
               </motion.div>
 
               {/* 3. Social Media Links */}
-              <motion.div className="space-y-4" variants={itemVariants}>
+              <motion.div
+                className="space-y-4 flex flex-col items-center justify-center"
+                variants={itemVariants}
+              >
                 <motion.h3
-                  className={`text-xl font-bold font-playfair text-gray-900 dark:text-white ${fontPoppins.className}`}
+                  className={`text-xl font-bold font-playfair text-gray-900 ${fontPoppins.className}`}
                   variants={itemVariants}
                 >
                   Follow Us
                 </motion.h3>
-                <div className="w-12 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full"></div>
+                <div className="w-12 h-2 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full"></div>
 
                 <motion.div
-                  className="flex flex-wrap gap-4"
+                  className="flex flex-wrap gap-4 px-3 py-4"
                   variants={itemVariants}
                 >
                   {socialLinks.map((social, index) => (
                     <motion.a
                       key={index}
                       href={social.href}
-                      className={`flex items-center gap-2 p-3 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 ${social.color} transition-all duration-300 hover:shadow-lg`}
+                      className={`flex items-center gap-2 p-3 rounded-xl bg-gray-100 text-gray-600 ${social.color} transition-all duration-300 hover:shadow-lg`}
                       variants={iconVariants}
                       initial="rest"
                       whileHover="hover"

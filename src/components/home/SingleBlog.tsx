@@ -47,7 +47,7 @@ export function SingleBlog({ blog }: SingleBlogProps) {
         {/* Title */}
         <Link href={`/blog`}>
           <h3
-            className={`text-lg font-semibold text-gray-800 leading-tight hover:text-yellow-600 cursor-pointer transition-colors mb-3 line-clamp-2 ${fontPoppins.className}`}
+            className={`text-lg font-semibold text-gray-800 leading-tight hover:text-blue-600 cursor-pointer transition-colors mb-3 line-clamp-2 ${fontPoppins.className}`}
           >
             {title}
           </h3>

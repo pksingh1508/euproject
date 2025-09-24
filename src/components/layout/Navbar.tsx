@@ -126,19 +126,6 @@ export function Navbar() {
                 >
                   <Link href={`/book`}>Book Appointment</Link>
                 </Button>
-                <Button
-                  asChild
-                  variant="secondary"
-                  className={`bg-[#1877f2] text-gray-50 hover:border-1 hover:border-gray-300 inline-flex hover:bg-[var(--hover-bg)] hover:text-gray-50 border-[var(--hover-bg)] ${
-                    fontMontserrat.className
-                  } ${isActive("/contact") ? "bg-white text-black" : ""}`}
-                  style={{
-                    ["--hover-bg" as any]: colors.yellow.dark,
-                    ["--active-bg" as any]: colors.yellow.DEFAULT
-                  }}
-                >
-                  <Link href={`/contact`}>Contact Us</Link>
-                </Button>
               </div>
             </div>
           </div>
@@ -163,7 +150,7 @@ export function Navbar() {
                     alt="EU Prime Serwis"
                     width={150}
                     height={50}
-                    className="h-20 w-48 p-1"
+                    className="h-20 w-44 p-1"
                   />
                 </motion.div>
               </Link>

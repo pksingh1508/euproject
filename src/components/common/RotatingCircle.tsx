@@ -3,7 +3,7 @@ import React from "react";
 const RotatingCircle = () => {
   return (
     <div className="flex items-center justify-center bg-white">
-      <div className="relative flex items-center w-full max-w-7xl">
+      <div className="relative flex items-center w-full">
         {/* Blue line spanning full width */}
         <div className="absolute w-full h-[2px] bg-blue-500 z-0"></div>
 

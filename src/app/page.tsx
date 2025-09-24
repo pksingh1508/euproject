@@ -3,6 +3,7 @@ import RotatingCircle from "@/components/common/RotatingCircle";
 import { StepWork } from "@/components/common/StepWork";
 import { StepWorkBulletPoint } from "@/components/common/StepWorkBulletPoint";
 import { RecentBlog } from "@/components/home/RecentBlog";
+import { Testimonials } from "@/components/home/Testimonials";
 import { TopBanner } from "@/components/home/TopBanner";
 import WhyUs from "@/components/home/WhyUs";
 import { NewsSection } from "@/components/Immigration_FAQ/NewsSection";
@@ -132,6 +133,8 @@ export default function Home() {
       <RotatingCircle />
       <NewsSection />
       {/* TODO: Testimonials */}
+      <RotatingCircle />
+      <Testimonials />
     </div>
   );
 }

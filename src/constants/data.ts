@@ -428,7 +428,7 @@ export const Testimonials = [
     image:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
     review:
-      "They helped my entire family migrate smoothly. Excellent service and support."
+      "They helped my entire family migrate smoothly. Excellent service and support. Thanks to EU Prime Serwis"
   },
   {
     name: "David Wilson",
