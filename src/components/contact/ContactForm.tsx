@@ -16,6 +16,7 @@ import countryData from "@/constants/countrycode.json";
 import { Button } from "../ui/button";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { fontPoppins } from "@/fonts";
 
 interface CountryCode {
   country: string;
@@ -175,7 +176,7 @@ export function ContactForm() {
 
         <FormField label="Phone Number" required>
           <div className="font-inter">
-            <div className="flex gap-2 flex-col md:flex-row">
+            <div className="flex gap-2 flex-col">
               <Select
                 value={selectedCountry.iso}
                 onValueChange={(value) => {
@@ -183,7 +184,7 @@ export function ContactForm() {
                   if (country) setSelectedCountry(country);
                 }}
               >
-                <SelectTrigger className="w-32">
+                <SelectTrigger className="w-full">
                   <SelectValue>
                     <div className="flex items-center gap-2">
                       <Flag
@@ -191,11 +192,13 @@ export function ContactForm() {
                         svg
                         style={{ width: "16px", height: "12px" }}
                       />
-                      <span className="text-sm">{selectedCountry.code}</span>
+                      <span className={`text-sm ${fontPoppins.className}`}>
+                        {selectedCountry.code}
+                      </span>
                     </div>
                   </SelectValue>
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="border-2 border-blue-400">
                   {countryData.map((country) => (
                     <SelectItem key={country.iso} value={country.iso}>
                       <div className="flex items-center gap-2">
@@ -204,8 +207,12 @@ export function ContactForm() {
                           svg
                           style={{ width: "16px", height: "12px" }}
                         />
-                        <span className="text-sm">{country.code}</span>
-                        <span className="text-xs text-muted-foreground truncate">
+                        <span className={`text-sm ${fontPoppins.className}`}>
+                          {country.code}
+                        </span>
+                        <span
+                          className={`text-xs text-muted-foreground truncate ${fontPoppins.className}`}
+                        >
                           {country.country.split("(")[0].trim()}
                         </span>
                       </div>
@@ -234,10 +241,25 @@ export function ContactForm() {
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select Your Role" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="jobseeker">Job Seeker</SelectItem>
-                <SelectItem value="BecomePartner">Become Partner</SelectItem>
-                <SelectItem value="employer">Employer</SelectItem>
+              <SelectContent className="border-2 border-blue-400">
+                <SelectItem
+                  className={`${fontPoppins.className}`}
+                  value="jobseeker"
+                >
+                  Job Seeker
+                </SelectItem>
+                <SelectItem
+                  className={`${fontPoppins.className}`}
+                  value="BecomePartner"
+                >
+                  Become Partner
+                </SelectItem>
+                <SelectItem
+                  className={`${fontPoppins.className}`}
+                  value="employer"
+                >
+                  Employer
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -260,7 +282,7 @@ export function ContactForm() {
               placeholder="Message"
               value={formData.message}
               onChange={(e) => handleInputChange("message", e.target.value)}
-              className="w-full min-h-[120px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 resize-vertical font-inter"
+              className={`w-full min-h-[120px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 resize-vertical font-inter ${fontPoppins.className}`}
               required
             />
           </div>
@@ -277,12 +299,12 @@ export function ContactForm() {
           />
           <label
             htmlFor="acceptTerms"
-            className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"
+            className={`text-sm text-gray-600 dark:text-gray-300 leading-relaxed ${fontPoppins.className}`}
           >
             I accept the{" "}
             <a
               href={`/terms-and-conditions`}
-              className="text-yellow-600 hover:text-yellow-700 underline font-medium"
+              className={`text-yellow-600 hover:text-yellow-700 underline font-medium ${fontPoppins.className}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -294,7 +316,7 @@ export function ContactForm() {
         <Button
           type="submit"
           disabled={loading}
-          className="w-full border-2 border-blue-400 text-blue-400 text-[17px] font-montserrat font-semibold cursor-pointer  hover:bg-blue-400 hover:text-white hover:border-blue-400 disabled:opacity-50 disabled:cursor-not-allowed"
+          className={`w-full border-2 border-blue-400 text-blue-400 text-[17px] font-montserrat font-semibold cursor-pointer  hover:bg-blue-400 hover:text-white hover:border-blue-400 disabled:opacity-50 disabled:cursor-not-allowed ${fontPoppins.className}`}
           variant="brandOutline"
         >
           {loading ? "Loading" : "Submit"}

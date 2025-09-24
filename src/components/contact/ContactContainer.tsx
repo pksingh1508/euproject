@@ -13,6 +13,7 @@ import {
   Instagram
 } from "lucide-react";
 import { ContactForm } from "./ContactForm";
+import { fontPoppins } from "@/fonts";
 
 export function ContactContainer() {
   const containerVariants: Variants = {
@@ -123,11 +124,15 @@ export function ContactContainer() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h1 className="text-4xl lg:text-5xl font-bold font-playfair text-gray-700 mb-2 tracking-tight">
+          <h1
+            className={`text-4xl lg:text-5xl font-bold font-playfair text-gray-700 mb-2 tracking-tight ${fontPoppins.className}`}
+          >
             Contact Us
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto mb-6"></div>
-          <p className="text-lg font-inter text-gray-600 max-w-2xl mx-auto">
+          <p
+            className={`text-lg font-inter text-gray-600 max-w-2xl mx-auto ${fontPoppins.className}`}
+          >
             Sign up for a free expert consultation
           </p>
         </motion.div>
@@ -146,7 +151,7 @@ export function ContactContainer() {
               <motion.div className="space-y-6" variants={itemVariants}>
                 <div className="space-y-4">
                   <motion.h3
-                    className="text-lg font-bold font-playfair text-gray-900"
+                    className={`text-lg font-bold font-playfair text-gray-900 ${fontPoppins.className}`}
                     variants={itemVariants}
                   >
                     Follow Us
@@ -162,7 +167,7 @@ export function ContactContainer() {
                     <motion.a
                       key={index}
                       href={social.href}
-                      className={`flex items-center gap-2 p-3 rounded-lg bg-white text-blue-500 ${social.color} transition-all duration-300 hover:shadow-md group`}
+                      className={`flex items-center gap-2 p-3 rounded-lg bg-white text-blue-500 ${social.color} transition-all duration-300 hover:shadow-md group ${fontPoppins.className}`}
                       variants={iconVariants}
                       initial="rest"
                       target="_blank"
@@ -202,7 +207,7 @@ export function ContactContainer() {
               <motion.div className="space-y-6" variants={itemVariants}>
                 <div className="space-y-4">
                   <motion.h2
-                    className="text-2xl font-bold font-playfair text-gray-900"
+                    className={`text-2xl font-bold font-playfair text-gray-900 ${fontPoppins.className}`}
                     variants={itemVariants}
                   >
                     Reach our Expert Team
@@ -229,7 +234,9 @@ export function ContactContainer() {
                       </motion.div>
 
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-sm font-semibold font-poppins text-gray-900 mb-1">
+                        <h3
+                          className={`text-sm font-semibold font-poppins text-gray-900 mb-1 ${fontPoppins.className}`}
+                        >
                           {item.title}
                         </h3>
                         <div className="space-y-0.5">
@@ -241,7 +248,7 @@ export function ContactContainer() {
                               {item.link ? (
                                 <a
                                   href={item.link}
-                                  className="hover:text-yellow-600 transition-colors duration-200 hover:underline"
+                                  className={`hover:text-yellow-600 transition-colors duration-200 hover:underline ${fontPoppins.className}`}
                                 >
                                   {line}
                                 </a>
@@ -279,7 +286,7 @@ export function ContactContainer() {
               <motion.div className="space-y-6" variants={itemVariants}>
                 <div className="space-y-4">
                   <motion.h2
-                    className="text-2xl md:text-3xl font-bold font-playfair text-gray-900 dark:text-white"
+                    className={`text-2xl md:text-3xl font-bold font-playfair text-gray-900 dark:text-white ${fontPoppins.className}`}
                     variants={itemVariants}
                   >
                     Reach our Expert Team
@@ -306,7 +313,9 @@ export function ContactContainer() {
                       </motion.div>
 
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-semibold font-poppins text-gray-900 dark:text-white mb-2">
+                        <h3
+                          className={`text-lg font-semibold font-poppins text-gray-900 dark:text-white mb-2 ${fontPoppins.className}`}
+                        >
                           {item.title}
                         </h3>
                         <div className="space-y-1">
@@ -318,7 +327,7 @@ export function ContactContainer() {
                               {item.link ? (
                                 <a
                                   href={item.link}
-                                  className="hover:text-yellow-600 transition-colors duration-200 hover:underline"
+                                  className={`hover:text-yellow-600 transition-colors duration-200 hover:underline ${fontPoppins.className}`}
                                 >
                                   {line}
                                 </a>
@@ -337,7 +346,7 @@ export function ContactContainer() {
               {/* 3. Social Media Links */}
               <motion.div className="space-y-4" variants={itemVariants}>
                 <motion.h3
-                  className="text-xl font-bold font-playfair text-gray-900 dark:text-white"
+                  className={`text-xl font-bold font-playfair text-gray-900 dark:text-white ${fontPoppins.className}`}
                   variants={itemVariants}
                 >
                   Follow Us
@@ -359,7 +368,9 @@ export function ContactContainer() {
                       whileTap={{ scale: 0.95 }}
                     >
                       <social.icon className="w-5 h-5" />
-                      <span className="font-medium text-sm">
+                      <span
+                        className={`font-medium text-sm ${fontPoppins.className}`}
+                      >
                         {social.icon === Facebook
                           ? "Facebook"
                           : social.icon === Twitter

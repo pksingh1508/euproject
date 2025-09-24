@@ -11,6 +11,7 @@ import {
   CarouselContent,
   CarouselItem
 } from "@/components/ui/carousel";
+import { fontPoppins } from "@/fonts";
 
 export function RecentBlog() {
   const router = useRouter();
@@ -27,8 +28,12 @@ export function RecentBlog() {
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Recent Blogs</h2>
+          <div className="text-center mb-12 mt-4">
+            <h2
+              className={`text-3xl font-bold text-gray-700 ${fontPoppins.className}`}
+            >
+              Recent Blogs
+            </h2>
             <div className="h-2 bg-blue-500 rounded w-24 mx-auto"></div>
           </div>
 
@@ -63,9 +68,6 @@ export function RecentBlog() {
 
           {BLOGS_DATA.length > 0 && (
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{
                 duration: 0.6,
                 delay: 0.4,
@@ -77,7 +79,7 @@ export function RecentBlog() {
                 variant="brandOutline"
                 size="lg"
                 onClick={() => router.push(`/blog`)}
-                className="h-12 text-base font-semibold  border-3 text-blue-500 border-[#1877f2] hover:bg-blue-400 hover:text-white hover:border-blue-400 cursor-pointer"
+                className={`h-12 text-base font-semibold  border-2 text-blue-500 border-[#1877f2] hover:bg-blue-400 hover:text-white hover:border-blue-400 cursor-pointer ${fontPoppins.className}`}
               >
                 Read More Blogs
               </RippleButton>

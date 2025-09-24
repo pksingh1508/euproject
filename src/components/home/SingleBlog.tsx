@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { fontPoppins } from "@/fonts";
 
 interface BlogItem {
   imageUrl: string;
@@ -45,14 +46,20 @@ export function SingleBlog({ blog }: SingleBlogProps) {
       <div className="p-2">
         {/* Title */}
         <Link href={`/blog`}>
-          <h3 className="text-lg font-semibold text-gray-800 leading-tight hover:text-yellow-600 cursor-pointer transition-colors mb-3 line-clamp-2">
+          <h3
+            className={`text-lg font-semibold text-gray-800 leading-tight hover:text-yellow-600 cursor-pointer transition-colors mb-3 line-clamp-2 ${fontPoppins.className}`}
+          >
             {title}
           </h3>
         </Link>
         <div className="p-2">
-          <p className="text-gray-600 line-clamp-2">{short_desc}</p>
+          <p className={`text-gray-600 line-clamp-2 ${fontPoppins.className}`}>
+            {short_desc}
+          </p>
           <Link href={`/blog`}>
-            <span className="text-blue-500 cursor-pointer hover:underline ml-1">
+            <span
+              className={`text-blue-500 cursor-pointer hover:underline ml-1 ${fontPoppins.className}`}
+            >
               [Read More...]
             </span>
           </Link>
@@ -74,7 +81,7 @@ export function SingleBlog({ blog }: SingleBlogProps) {
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <span>{updatedAt}</span>
+            <span className={`${fontPoppins.className}`}>{updatedAt}</span>
           </div>
 
           <div className="flex items-center space-x-1">
@@ -85,7 +92,7 @@ export function SingleBlog({ blog }: SingleBlogProps) {
             >
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
-            <span>{likes_count}</span>
+            <span className={`${fontPoppins.className}`}>{likes_count}</span>
           </div>
         </div>
       </div>

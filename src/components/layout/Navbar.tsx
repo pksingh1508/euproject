@@ -241,7 +241,7 @@ export function Navbar() {
             exit={{ height: 0, opacity: 0 }}
             className="xl:hidden border-t bg-white"
           >
-            <div className="container mx-auto py-4 flex flex-col gap-3">
+            <div className="container mx-auto py-4 px-4 flex flex-col gap-3">
               {NAVBAR_LINKS.map((item) => (
                 <Link
                   key={item.href}

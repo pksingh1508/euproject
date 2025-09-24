@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { fontPoppins } from "@/fonts";
 
 interface StepWorkBulletPointProps {
   image: string;
@@ -62,11 +63,15 @@ export function StepWorkBulletPoint({
           <div
             className={`space-y-6 ${isReversed ? "lg:order-1" : "lg:order-2"}`}
           >
-            <h2 className="text-3xl font-bold font-poppins text-gray-900">
+            <h2
+              className={`text-3xl font-bold font-poppins text-gray-900 ${fontPoppins.className}`}
+            >
               {heading}
             </h2>
             {paragraph && (
-              <p className="font-inter text-gray-600 leading-relaxed">
+              <p
+                className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
+              >
                 {paragraph}
               </p>
             )}
@@ -74,7 +79,9 @@ export function StepWorkBulletPoint({
               {bullet1 && (
                 <div className="flex items-start">
                   <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p className="font-inter text-gray-600 leading-relaxed">
+                  <p
+                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
+                  >
                     {bullet1}
                   </p>
                 </div>
@@ -83,7 +90,9 @@ export function StepWorkBulletPoint({
               {bullet2 && (
                 <div className="flex items-start">
                   <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p className="font-inter text-gray-600 leading-relaxed">
+                  <p
+                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
+                  >
                     {bullet2}
                   </p>
                 </div>
@@ -92,7 +101,9 @@ export function StepWorkBulletPoint({
               {bullet3 && (
                 <div className="flex items-start">
                   <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p className="font-inter text-gray-600 leading-relaxed">
+                  <p
+                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
+                  >
                     {bullet3}
                   </p>
                 </div>
@@ -101,7 +112,9 @@ export function StepWorkBulletPoint({
               {bullet4 && (
                 <div className="flex items-start">
                   <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p className="font-inter text-gray-600 leading-relaxed">
+                  <p
+                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
+                  >
                     {bullet4}
                   </p>
                 </div>
@@ -110,7 +123,9 @@ export function StepWorkBulletPoint({
               {bullet5 && (
                 <div className="flex items-start">
                   <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p className="font-inter text-gray-600 leading-relaxed">
+                  <p
+                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
+                  >
                     {bullet5}
                   </p>
                 </div>
@@ -119,7 +134,9 @@ export function StepWorkBulletPoint({
               {bullet6 && (
                 <div className="flex items-start">
                   <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p className="font-inter text-gray-600 leading-relaxed">
+                  <p
+                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
+                  >
                     {bullet6}
                   </p>
                 </div>
@@ -128,7 +145,9 @@ export function StepWorkBulletPoint({
               {bullet7 && (
                 <div className="flex items-start">
                   <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p className="font-inter text-gray-600 leading-relaxed">
+                  <p
+                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
+                  >
                     {bullet7}
                   </p>
                 </div>

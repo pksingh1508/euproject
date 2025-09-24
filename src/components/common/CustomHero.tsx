@@ -98,7 +98,7 @@ export function CustomHero({
                 {buttons.slice(0, 20).map((button, index) => (
                   <RippleButton
                     key={index}
-                    variant={button.variant || "outline"}
+                    variant={button.variant || "brandOutline"}
                     onClick={button.onClick || handleButtonClick}
                     className={cn(
                       "h-10 text-sm sm:text-base font-medium transition-all duration-200",

@@ -3,7 +3,7 @@ import { FlipCard } from "@/components/common/FlipCard";
 import RotatingCircle from "@/components/common/RotatingCircle";
 import { StepWork } from "@/components/common/StepWork";
 import { COMPANY_DATA } from "@/constants/data";
-import { fontMontserrat } from "@/fonts";
+import { fontMontserrat, fontPoppins } from "@/fonts";
 import Image from "next/image";
 import React from "react";
 
@@ -22,7 +22,9 @@ export default function page() {
       {/* work progress image */}
       <div className="bg-white p-2 md:p-10">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-center text-2xl md:text-3xl font-bold font-poppins text-gray-900">
+          <h1
+            className={`text-center text-2xl md:text-3xl font-bold font-poppins text-gray-900 ${fontPoppins.className}`}
+          >
             Step to Open{" "}
             <span
               className={`text-[#1877f2] font-bold ${fontMontserrat.className}`}
@@ -47,7 +49,9 @@ export default function page() {
       <div className="bg-white p-7 md:p-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center flex flex-col gap-3 p-2 md:p-4">
-            <h1 className="text-2xl md:text-3xl font-bold font-poppins text-gray-900">
+            <h1
+              className={`text-2xl md:text-3xl font-bold font-poppins text-gray-900 ${fontPoppins.className}`}
+            >
               Types of Company
             </h1>
             <div className="w-24 h-2 bg-[#1877f2] mx-auto rounded-full"></div>

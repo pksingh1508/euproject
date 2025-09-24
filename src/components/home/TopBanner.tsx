@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { fontPoppins } from "@/fonts";
 
 const bannerData = [
   {
@@ -10,21 +11,21 @@ const bannerData = [
     title: "Best Recruitment Agency",
     subtitle: "For you better future",
     description:
-      "We provides always our best services for our clients and always try to achieve our client's trust and satisfaction.",
+      "We provides always our best services for our clients and always try to achieve our client's trust and satisfaction."
   },
   {
     image: "/assets/banner/home-bg1.jpg",
     title: "EU Prime Serwis",
     subtitle: "Looking to start your career in Poland",
     description:
-      "Connect with our Work Abroad Specialists to find your dream job in Poland.",
+      "Connect with our Work Abroad Specialists to find your dream job in Poland."
   },
   {
     image: "/assets/banner/home-bg2.jpg",
     title: "Feed Your Knowledge",
     subtitle: "Unlock Endless Career Possibilities in Europe",
-    description: "Connect with our Work Abroad Experts today.",
-  },
+    description: "Connect with our Work Abroad Experts today."
+  }
 ];
 
 export function TopBanner() {
@@ -37,7 +38,7 @@ export function TopBanner() {
   const extendedSlides = [
     bannerData[bannerData.length - 1],
     ...bannerData,
-    bannerData[0],
+    bannerData[0]
   ];
 
   // Auto-advance carousel every 4 seconds
@@ -171,19 +172,25 @@ export function TopBanner() {
                       : "translate-y-8 opacity-0"
                   }`}
                 >
-                  <h3 className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl uppercase tracking-wider mb-2 sm:mb-3 font-medium text-gray-200">
+                  <h3
+                    className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl uppercase tracking-wider mb-2 sm:mb-3 font-medium text-gray-200 ${fontPoppins.className}`}
+                  >
                     {banner.subtitle}
                   </h3>
-                  <h1 className="text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-200 bg-clip-text text-transparent leading-tight">
+                  <h1
+                    className={`text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-200 bg-clip-text text-transparent leading-tight ${fontPoppins.className}`}
+                  >
                     {banner.title}
                   </h1>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 md:mb-8 text-gray-100 leading-relaxed max-w-[280px] sm:max-w-sm md:max-w-lg lg:max-w-2xl mx-auto">
+                  <p
+                    className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 md:mb-8 text-gray-100 leading-relaxed max-w-[280px] sm:max-w-sm md:max-w-lg lg:max-w-2xl mx-auto ${fontPoppins.className}`}
+                  >
                     {banner.description}
                   </p>
                   <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center items-center max-w-sm sm:max-w-md mx-auto">
                     <button
                       onClick={() => (window.location.href = "/contact")}
-                      className="w-full xs:w-auto bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-black font-semibold px-4 py-2 sm:py-2.5 lg:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-xs sm:text-sm lg:text-base shadow-lg"
+                      className={`w-fit xs:w-auto bg-gradient-to-r from-blue-300 to-blue-400 hover:from-blue-500 hover:to-blue-600 text-gray-200 font-semibold px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-xs sm:text-sm lg:text-base shadow-lg ${fontPoppins.className}`}
                     >
                       Know More
                     </button>

@@ -5,6 +5,7 @@ import { StepWorkBulletPoint } from "@/components/common/StepWorkBulletPoint";
 import { RecentBlog } from "@/components/home/RecentBlog";
 import { TopBanner } from "@/components/home/TopBanner";
 import WhyUs from "@/components/home/WhyUs";
+import { NewsSection } from "@/components/Immigration_FAQ/NewsSection";
 
 export default function Home() {
   const workButtons = [
@@ -128,6 +129,8 @@ export default function Home() {
       {/* TODO: Recent Blogs */}
       <RecentBlog />
       {/* TODO: NewsAndFAQs */}
+      <RotatingCircle />
+      <NewsSection />
       {/* TODO: Testimonials */}
     </div>
   );

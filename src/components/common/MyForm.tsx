@@ -16,6 +16,7 @@ import countryData from "@/constants/countrycode.json";
 import { Button } from "../ui/button";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { fontInter, fontPoppins } from "@/fonts";
 
 interface CountryCode {
   country: string;
@@ -185,11 +186,13 @@ export function MyForm() {
                         svg
                         style={{ width: "16px", height: "12px" }}
                       />
-                      <span className="text-sm">{selectedCountry.code}</span>
+                      <span className={`text-sm ${fontPoppins.className}`}>
+                        {selectedCountry.code}
+                      </span>
                     </div>
                   </SelectValue>
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="border-2 border-blue-400">
                   {countryData.map((country) => (
                     <SelectItem key={country.iso} value={country.iso}>
                       <div className="flex items-center gap-2">
@@ -198,8 +201,12 @@ export function MyForm() {
                           svg
                           style={{ width: "16px", height: "12px" }}
                         />
-                        <span className="text-sm">{country.code}</span>
-                        <span className="text-xs text-muted-foreground truncate">
+                        <span className={`text-sm ${fontPoppins.className}`}>
+                          {country.code}
+                        </span>
+                        <span
+                          className={`text-xs text-muted-foreground truncate ${fontPoppins.className}`}
+                        >
                           {country.country.split("(")[0].trim()}
                         </span>
                       </div>
@@ -213,7 +220,7 @@ export function MyForm() {
                 placeholder="9856xxxxxx"
                 value={formData.phone}
                 onChange={(e) => handleInputChange("phone", e.target.value)}
-                className="flex-1 font-inter p-2"
+                className={`flex-1 font-inter p-2 ${fontPoppins.className}`}
                 required
               />
             </div>
@@ -226,13 +233,28 @@ export function MyForm() {
               value={formData.userType}
               onValueChange={(value) => handleInputChange("userType", value)}
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger className={`w-full ${fontInter.className}`}>
                 <SelectValue placeholder="Select Your Role" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="jobseeker">Job Seeker</SelectItem>
-                <SelectItem value="become-partner">Become Partner</SelectItem>
-                <SelectItem value="employer">Employer</SelectItem>
+              <SelectContent className="border-2 border-blue-400">
+                <SelectItem
+                  className={`${fontPoppins.className}`}
+                  value="jobseeker"
+                >
+                  Job Seeker
+                </SelectItem>
+                <SelectItem
+                  className={`${fontPoppins.className}`}
+                  value="Become-partner"
+                >
+                  Become Partner
+                </SelectItem>
+                <SelectItem
+                  className={`${fontPoppins.className}`}
+                  value="employer"
+                >
+                  Employer
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -249,7 +271,7 @@ export function MyForm() {
           />
           <label
             htmlFor="acceptTerms"
-            className="text-sm text-gray-600 leading-relaxed"
+            className={`text-sm text-gray-600 leading-relaxed ${fontInter.className}`}
           >
             I accept the{" "}
             <a
