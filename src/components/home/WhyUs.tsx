@@ -56,7 +56,7 @@ const WhyUs: React.FC = () => {
           {/* Right Side */}
           <div className="flex justify-center">
             <Image
-              src="/assets/home/why-choose-bg.jpg" // replace with your image path
+              src="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/why-choose-bg.webp"
               alt="Why Us"
               width={500}
               height={400}
