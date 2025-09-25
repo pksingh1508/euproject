@@ -7,7 +7,9 @@ import {
   MapPin,
   Phone,
   Mail,
+  MessageCircleMore
 } from "lucide-react";
+import { fontMontserrat, fontPoppins } from "@/fonts";
 
 interface FooterLink {
   label: string;
@@ -28,33 +30,33 @@ const Footer: React.FC = () => {
         { label: "Our Servis", href: "/our-serwis" },
         { label: "Become Partner", href: "/become-partner" },
         { label: "For Employer", href: "/employer" },
-        { label: "Contat Us", href: "/contact" },
-      ],
+        { label: "Contat Us", href: "/contact" }
+      ]
     },
     {
       title: "Testimonials",
       links: [
         { label: "Blog", href: "/blog" },
-        { label: "Immigration News", href: "/news" },
-        { label: "Success Stories", href: "/success" },
+        { label: "Immigration News", href: "/immigration-news" },
+        { label: "Success Stories", href: "/success-story" },
         { label: "Book Appointment", href: "/book" },
-        { label: "About Us", href: "/about" },
-      ],
-    },
+        { label: "About Us", href: "/about" }
+      ]
+    }
   ];
 
   const socialLinks = [
     { icon: Facebook, href: "#", color: "bg-blue-600 hover:bg-blue-700" },
     { icon: Instagram, href: "#", color: "bg-pink-500 hover:bg-pink-600" },
     { icon: Twitter, href: "#", color: "bg-blue-400 hover:bg-blue-500" },
-    { icon: Linkedin, href: "#", color: "bg-blue-700 hover:bg-blue-800" },
+    { icon: Linkedin, href: "#", color: "bg-blue-700 hover:bg-blue-800" }
   ];
 
   const bottomLinks = [
     { label: "Refund Policy", href: "/refund" },
     { label: "Terms & Condition", href: "/terms" },
     { label: "Anti Fraud Policy", href: "/anti-fraud" },
-    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Privacy Policy", href: "/privacy" }
   ];
 
   return (
@@ -66,7 +68,9 @@ const Footer: React.FC = () => {
             {/* Company Description */}
             <div className="lg:col-span-1">
               <div className="mb-6">
-                <p className="text-sm leading-relaxed text-gray-200">
+                <p
+                  className={`text-sm leading-relaxed text-gray-200 ${fontPoppins.className}`}
+                >
                   EU Prime Serwis Overseas Career Consultant is a trusted global
                   leader in immigration services, delivering personalized,
                   premium solutions for B2B and B2C worldwide. Registered in
@@ -92,7 +96,9 @@ const Footer: React.FC = () => {
 
             {/* Information Links */}
             <div>
-              <h3 className="text-lg font-semibold mb-6">
+              <h3
+                className={`text-lg font-semibold mb-6 ${fontMontserrat.className}`}
+              >
                 {footerSections[0].title}
               </h3>
               <ul className="space-y-3">
@@ -100,7 +106,7 @@ const Footer: React.FC = () => {
                   <li key={index}>
                     <a
                       href={link.href}
-                      className="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center"
+                      className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center ${fontPoppins.className}`}
                     >
                       <span className="mr-2">›</span>
                       {link.label}
@@ -112,7 +118,9 @@ const Footer: React.FC = () => {
 
             {/* Testimonials Links */}
             <div>
-              <h3 className="text-lg font-semibold mb-6">
+              <h3
+                className={`text-lg font-semibold mb-6 ${fontMontserrat.className}`}
+              >
                 {footerSections[1].title}
               </h3>
               <ul className="space-y-3">
@@ -120,7 +128,7 @@ const Footer: React.FC = () => {
                   <li key={index}>
                     <a
                       href={link.href}
-                      className="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center"
+                      className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center ${fontPoppins.className}`}
                     >
                       <span className="mr-2">›</span>
                       {link.label}
@@ -132,7 +140,11 @@ const Footer: React.FC = () => {
 
             {/* Get in Touch */}
             <div>
-              <h3 className="text-lg font-semibold mb-6">Get in touch</h3>
+              <h3
+                className={`text-lg font-semibold mb-6 ${fontMontserrat.className}`}
+              >
+                Get in touch
+              </h3>
               <div className="space-y-4">
                 <div className="flex items-start">
                   <Phone
@@ -141,25 +153,25 @@ const Footer: React.FC = () => {
                   />
                   <div>
                     <a
-                      href="tel:+48888620222"
-                      className="text-gray-300 hover:text-white transition-colors duration-200 text-sm block"
+                      href="+48222683497"
+                      className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm block ${fontPoppins.className}`}
                     >
-                      +48 888 620 222
+                      +48 22 268 3497
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Phone
+                  <MessageCircleMore
                     size={16}
                     className="text-gray-400 mt-1 mr-3 flex-shrink-0"
                   />
                   <div>
                     <a
-                      href="tel:+48886886816"
-                      className="text-gray-300 hover:text-white transition-colors duration-200 text-sm block"
+                      href="tel:+48222683497"
+                      className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm block ${fontPoppins.className}`}
                     >
-                      +48 886 886 816
+                      +48 22 268 3497
                     </a>
                   </div>
                 </div>
@@ -172,7 +184,7 @@ const Footer: React.FC = () => {
                   <div>
                     <a
                       href="mailto:info@euprimeserwis.pl"
-                      className="text-gray-300 hover:text-white transition-colors duration-200 text-sm block"
+                      className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm block ${fontPoppins.className}`}
                     >
                       info@euprimeserwis.pl
                     </a>
@@ -185,7 +197,9 @@ const Footer: React.FC = () => {
                     className="text-gray-400 mt-1 mr-3 flex-shrink-0"
                   />
                   <div>
-                    <p className="text-gray-300 text-sm">
+                    <p
+                      className={`text-gray-300 text-sm ${fontPoppins.className}`}
+                    >
                       ul. Bolesława Prusa 2, 00-493, Warsaw Poland
                     </p>
                   </div>
@@ -204,7 +218,7 @@ const Footer: React.FC = () => {
                 <a
                   key={index}
                   href={link.href}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
+                  className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm ${fontPoppins.className}`}
                 >
                   {link.label}
                 </a>
@@ -213,7 +227,7 @@ const Footer: React.FC = () => {
 
             {/* Copyright */}
             <div className="text-center lg:text-right">
-              <p className="text-gray-400 text-sm">
+              <p className={`text-gray-400 text-sm ${fontPoppins.className}`}>
                 © 2025 www.euprimeserwis.pl - All Rights Reserved.
               </p>
             </div>

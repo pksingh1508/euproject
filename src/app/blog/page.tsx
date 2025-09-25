@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import { BlogsSection } from "@/components/Blogs/BlogsSection";
 
 export const metadata: Metadata = {
   title: "Blog | EU Prime Serwis",
@@ -16,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function page() {
-  return <div>This is Blog page</div>;
+  return <BlogsSection />;
 }

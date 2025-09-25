@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { NewsItem, StrapiResponse } from "@/lib/dbTypes";
 import { SingleImmigrationNews } from "./SingleImmigrationNews";
+import { fontPoppins } from "@/fonts";
 
 interface PaginationData {
   page: number;
@@ -194,7 +195,7 @@ export function ImmigrationNewsSection() {
           size="sm"
           onClick={() => handlePageChange(pagination.page - 1)}
           disabled={pagination.page <= 1}
-          className="flex items-center gap-2"
+          className={`flex items-center gap-2 ${fontPoppins.className}`}
         >
           <ChevronLeft className="w-4 h-4" />
           Previous
@@ -224,7 +225,7 @@ export function ImmigrationNewsSection() {
           size="sm"
           onClick={() => handlePageChange(pagination.page + 1)}
           disabled={pagination.page >= pagination.pageCount}
-          className="flex items-center gap-2"
+          className={`flex items-center gap-2 ${fontPoppins.className}`}
         >
           Next
           <ChevronRight className="w-4 h-4" />
@@ -239,7 +240,7 @@ export function ImmigrationNewsSection() {
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col items-center justify-center min-h-[400px]">
-              <Loader2 className="w-12 h-12 animate-spin text-amber-500 mb-4" />
+              <Loader2 className="w-12 h-12 animate-spin text-blue-500 mb-4" />
             </div>
           </div>
         </div>
@@ -290,7 +291,9 @@ export function ImmigrationNewsSection() {
               className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-full px-6 py-3 mb-6"
             >
               <Newspaper className="w-5 h-5 text-blue-600" />
-              <span className="text-blue-700 font-semibold text-sm uppercase tracking-wide">
+              <span
+                className={`text-blue-700 font-semibold text-sm uppercase tracking-wide ${fontPoppins.className}`}
+              >
                 Immigration News
               </span>
             </motion.div>
@@ -299,16 +302,16 @@ export function ImmigrationNewsSection() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
+              className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 ${fontPoppins.className}`}
             >
-              Latest Immigration Updated
+              Latest Immigration Updates
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8"
+              className={`text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8 ${fontPoppins.className}`}
             >
               Stay informed with the latest immigration news, policy changes,
               and important updates from around the world
@@ -325,7 +328,9 @@ export function ImmigrationNewsSection() {
                 <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-1">
                   {pagination.total}
                 </div>
-                <div className="text-sm text-gray-500 font-medium">
+                <div
+                  className={`text-sm text-gray-500 font-medium ${fontPoppins.className}`}
+                >
                   Total Articles
                 </div>
               </div>
@@ -334,7 +339,9 @@ export function ImmigrationNewsSection() {
                 <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-1">
                   {pagination.pageCount}
                 </div>
-                <div className="text-sm text-gray-500 font-medium">
+                <div
+                  className={`text-sm text-gray-500 font-medium ${fontPoppins.className}`}
+                >
                   Total Pages
                 </div>
               </div>
@@ -343,7 +350,9 @@ export function ImmigrationNewsSection() {
                 <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-1">
                   {newsCache.size}
                 </div>
-                <div className="text-sm text-gray-500 font-medium">
+                <div
+                  className={`text-sm text-gray-500 font-medium ${fontPoppins.className}`}
+                >
                   Cached Page
                 </div>
               </div>
@@ -370,7 +379,7 @@ export function ImmigrationNewsSection() {
                 onClick={handleRefresh}
                 variant="outline"
                 size="lg"
-                className="flex items-center gap-2"
+                className={`flex items-center gap-2 ${fontPoppins.className}`}
                 disabled={loading}
               >
                 <Calendar className="w-4 h-4" />

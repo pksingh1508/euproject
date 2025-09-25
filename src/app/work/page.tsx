@@ -11,7 +11,7 @@ export default function page() {
   return (
     <div>
       <StepWork
-        image="/assets/work/study-bg.jpg"
+        image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/work/study-bg.webp"
         imageAlt="WorkStudy image"
         heading="Work"
         paragraph1="Europe Provides Job Opportunities For Skilled, Semi-Skilled, And Non-Skilled Workers In IT, Engineering, Healthcare, Finance, Manufacturing, Logistics, Hospitality, Construction, Agriculture, Cleaning, And Warehouse Operations. Many Roles Offer Work Visa Sponsorship And Residency Pathways. Workers Benefit From Labor Rights, Social Security, And Competitive Salaries, Ensuring A Stable Career With Legal Registration, Job Contracts, And Work Permits."
@@ -33,7 +33,7 @@ export default function page() {
             </span>
           </h1>
           <Image
-            src="/assets/work/work-process.jpg"
+            src="https://ik.imagekit.io/eucareerserwis/euprimeserwis/work/work-process.webp"
             alt="Work Progress"
             width={800}
             height={450}

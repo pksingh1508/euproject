@@ -1,5 +1,6 @@
 "use client";
 
+import { fontPoppins } from "@/fonts";
 import { SuccessItem } from "@/lib/dbTypes";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -67,18 +68,22 @@ export function SingleSuccessStory({
         )}
 
         {/* Name below image */}
-        <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">
+        <h3
+          className={`text-xl font-bold text-gray-900 mb-2 text-center ${fontPoppins.className}`}
+        >
           {name}
         </h3>
 
         {/* What they say below name */}
         <div className="text-gray-600 leading-relaxed mb-3">
-          <p className="italic">"{story}"</p>
+          <p className={`italic ${fontPoppins.className}`}>"{story}"</p>
         </div>
 
         {/* Date */}
         {updatedAt && (
-          <div className="text-sm text-gray-500 text-center">
+          <div
+            className={`text-sm text-gray-500 text-center ${fontPoppins.className}`}
+          >
             {formatDate(updatedAt)}
           </div>
         )}
@@ -104,16 +109,22 @@ export function SingleSuccessStory({
         {/* Content on the right */}
         <div className="flex-1 min-w-0">
           {/* Name */}
-          <h3 className="text-xl font-bold text-gray-900 mb-2">{name}</h3>
+          <h3
+            className={`text-xl font-bold text-gray-900 mb-2 ${fontPoppins.className}`}
+          >
+            {name}
+          </h3>
 
           {/* What they say */}
           <div className="text-gray-600 leading-relaxed mb-3">
-            <p className="italic">"{story}"</p>
+            <p className={`italic ${fontPoppins.className}`}>"{story}"</p>
           </div>
 
           {/* Date */}
           {updatedAt && (
-            <div className="text-sm text-gray-500">{formatDate(updatedAt)}</div>
+            <div className={`text-sm text-gray-500 ${fontPoppins.className}`}>
+              {formatDate(updatedAt)}
+            </div>
           )}
         </div>
       </div>

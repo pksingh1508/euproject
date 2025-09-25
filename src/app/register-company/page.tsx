@@ -11,7 +11,7 @@ export default function page() {
   return (
     <div>
       <StepWork
-        image="/assets/register-company/registered-company-bg.jpg"
+        image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/register-compnay/registered-company-bg.webp"
         imageAlt="WorkStudy image"
         heading="Register Company"
         paragraph1="As A Registered Company, We Ensure Transparency, Legality, And Reliability in All Our Operations. We Are Fully Compliant with European Regulations, Providing Trusted and Professional Services Across Industries. Our Registration Guarantees Proper Documentation, Legally Binding Contracts, And Adherence to Labor and Immigration Laws. By Working With Us, Clients and Partners Benefit from Accountability, Ethical Practices, And Comprehensive Support, Ensuring A Seamless Experience from Start To Finish."
@@ -33,7 +33,7 @@ export default function page() {
             </span>
           </h1>
           <Image
-            src="/assets/register-company/steps-to-open-a-company.png"
+            src="https://ik.imagekit.io/eucareerserwis/euprimeserwis/work/steps-to-open-a-company.webp"
             alt="Steps to Open a Company"
             width={800}
             height={450}

@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { SuccessItem, SuccessStoryResponse } from "@/lib/dbTypes";
 import { SingleSuccessStory } from "./SingleSuccessStory";
+import { fontPoppins } from "@/fonts";
 
 interface PaginationData {
   page: number;
@@ -190,7 +191,7 @@ export function AllSuccessStories() {
           size="sm"
           onClick={() => handlePageChange(pagination.page - 1)}
           disabled={pagination.page <= 1}
-          className="flex items-center gap-2"
+          className={`flex items-center gap-2 ${fontPoppins.className}`}
         >
           <ChevronLeft className="w-4 h-4" />
           Previous
@@ -220,7 +221,7 @@ export function AllSuccessStories() {
           size="sm"
           onClick={() => handlePageChange(pagination.page + 1)}
           disabled={pagination.page >= pagination.pageCount}
-          className="flex items-center gap-2"
+          className={`flex items-center gap-2 ${fontPoppins.className}`}
         >
           Next
           <ChevronRight className="w-4 h-4" />
@@ -235,7 +236,7 @@ export function AllSuccessStories() {
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col items-center justify-center min-h-[400px]">
-              <Loader2 className="w-12 h-12 animate-spin text-purple-500 mb-4" />
+              <Loader2 className="w-12 h-12 animate-spin text-blue-500 mb-4" />
             </div>
           </div>
         </div>
@@ -285,8 +286,10 @@ export function AllSuccessStories() {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-full px-6 py-3 mb-6"
             >
-              <Users className="w-5 h-5 text-purple-600" />
-              <span className="text-purple-700 font-semibold text-sm uppercase tracking-wide">
+              <Users className="w-5 h-5 text-blue-500" />
+              <span
+                className={`text-blue-500 font-semibold text-sm uppercase tracking-wide ${fontPoppins.className}`}
+              >
                 Success Stories
               </span>
             </motion.div>
@@ -295,7 +298,7 @@ export function AllSuccessStories() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
+              className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 ${fontPoppins.className}`}
             >
               Our Success Stories
             </motion.h1>
@@ -304,7 +307,7 @@ export function AllSuccessStories() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8"
+              className={`text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8 ${fontPoppins.className}`}
             >
               Read inspiring stories from our clients who achieved their
               immigration goals with our help
@@ -331,7 +334,7 @@ export function AllSuccessStories() {
                 onClick={handleRefresh}
                 variant="outline"
                 size="lg"
-                className="flex items-center gap-2"
+                className={`flex items-center gap-2 ${fontPoppins.className}`}
                 disabled={loading}
               >
                 <Calendar className="w-4 h-4" />
@@ -377,7 +380,7 @@ export function AllSuccessStories() {
           {/* Loading overlay for pagination */}
           {loading && (
             <div className="flex items-center justify-center py-8">
-              <Loader2 className="w-8 h-8 animate-spin text-purple-500" />
+              <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
             </div>
           )}
 

@@ -22,6 +22,7 @@ import {
 import { Button } from "@/components/ui/button";
 import "highlight.js/styles/github.css";
 import { NewsItem } from "@/lib/dbTypes";
+import { fontPoppins } from "@/fonts";
 
 interface SingleNewsPageProps {
   params: Promise<{ slug: string; lang: string }>;
@@ -140,7 +141,6 @@ export default function SingleNewsPage({ params }: SingleNewsPageProps) {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-blue-500 mx-auto mb-4" />
-          <p className="text-gray-600 text-lg">Loading article...</p>
         </div>
       </div>
     );
@@ -207,7 +207,9 @@ export default function SingleNewsPage({ params }: SingleNewsPageProps) {
             {/* Category and Tags */}
             <div className="flex flex-wrap items-center gap-3 mb-4">
               {newsData.category && (
-                <div className="flex items-center gap-1.5 bg-blue-100 text-blue-800 px-3 py-1.5 rounded-full text-sm font-medium">
+                <div
+                  className={`flex items-center gap-1.5 bg-blue-100 text-blue-800 px-3 py-1.5 rounded-full text-sm font-medium ${fontPoppins.className}`}
+                >
                   <FolderOpen className="w-4 h-4" />
                   {newsData.category}
                 </div>
@@ -215,7 +217,7 @@ export default function SingleNewsPage({ params }: SingleNewsPageProps) {
               {tags.map((tag, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-1.5 bg-amber-100 text-amber-800 px-3 py-1.5 rounded-full text-sm font-medium"
+                  className={`flex items-center gap-1.5 bg-amber-100 text-amber-800 px-3 py-1.5 rounded-full text-sm font-medium ${fontPoppins.className}`}
                 >
                   <Tag className="w-3 h-3" />
                   {tag}
@@ -224,7 +226,9 @@ export default function SingleNewsPage({ params }: SingleNewsPageProps) {
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1
+              className={`text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight ${fontPoppins.className}`}
+            >
               {newsData.title}
             </h1>
 
@@ -232,19 +236,25 @@ export default function SingleNewsPage({ params }: SingleNewsPageProps) {
             <div className="flex flex-wrap items-center gap-6 text-gray-600">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
-                <span className="text-sm font-medium">
+                <span
+                  className={`text-sm font-medium ${fontPoppins.className}`}
+                >
                   {formatDate(newsData.updatedAt)}
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Eye className="w-5 h-5" />
-                <span className="text-sm font-medium">
+                <span
+                  className={`text-sm font-medium ${fontPoppins.className}`}
+                >
                   {newsData.views.toLocaleString()} views
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5" />
-                <span className="text-sm font-medium">
+                <span
+                  className={`text-sm font-medium ${fontPoppins.className}`}
+                >
                   {Math.ceil(newsData.contents.split(" ").length / 200)} min
                   read
                 </span>
@@ -260,7 +270,7 @@ export default function SingleNewsPage({ params }: SingleNewsPageProps) {
             className="bg-white rounded-2xl p-8 md:p-12 shadow-xl"
           >
             <div
-              className="prose prose-lg prose-gray max-w-none
+              className={`prose prose-lg prose-gray max-w-none
                          prose-headings:text-gray-900 prose-headings:font-bold
                          prose-h1:text-3xl prose-h1:mb-6 prose-h1:mt-8
                          prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-6
@@ -275,7 +285,7 @@ export default function SingleNewsPage({ params }: SingleNewsPageProps) {
                          prose-blockquote:my-6 prose-blockquote:rounded-r-lg
                          prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
                          prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg
-                         prose-img:rounded-lg prose-img:shadow-lg prose-img:my-6"
+                         prose-img:rounded-lg prose-img:shadow-lg prose-img:my-6 ${fontPoppins.className}`}
             >
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -332,21 +342,26 @@ export default function SingleNewsPage({ params }: SingleNewsPageProps) {
           >
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <span className="text-gray-600 text-sm">
+                <span
+                  className={`text-gray-600 text-sm ${fontPoppins.className}`}
+                >
                   Share this article:
                 </span>
                 <Button
                   onClick={handleShare}
                   variant="outline"
                   size="sm"
-                  className="flex items-center gap-2"
+                  className={`flex items-center gap-2 ${fontPoppins.className}`}
                 >
                   <Share2 className="w-4 h-4" />
                   Share
                 </Button>
               </div>
               <Link href={`/immigration-news`}>
-                <Button variant="ghost" className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  className={`flex items-center gap-2 ${fontPoppins.className}`}
+                >
                   <ArrowLeft className="w-4 h-4" />
                   Back to All News
                 </Button>

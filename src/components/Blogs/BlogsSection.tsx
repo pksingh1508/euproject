@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BlogItem, BlogResponse } from "@/lib/dbTypes";
+import { fontPoppins } from "@/fonts";
 
 interface PaginationData {
   page: number;
@@ -242,7 +243,7 @@ export function BlogsSection() {
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col items-center justify-center min-h-[400px]">
-              <Loader2 className="w-12 h-12 animate-spin text-purple-500 mb-4" />
+              <Loader2 className="w-12 h-12 animate-spin text-blue-500 mb-4" />
             </div>
           </div>
         </div>
@@ -257,7 +258,7 @@ export function BlogsSection() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col items-center justify-center min-h-[400px] text-center">
               <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                <BookOpen className="w-8 h-8 text-red-500" />
+                <BookOpen className="w-8 h-8 text-blue-500" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 Unable to load blog posts
@@ -292,8 +293,10 @@ export function BlogsSection() {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-full px-6 py-3 mb-6"
             >
-              <BookOpen className="w-5 h-5 text-purple-600" />
-              <span className="text-purple-700 font-semibold text-sm uppercase tracking-wide">
+              <BookOpen className="w-5 h-5 text-blue-500" />
+              <span
+                className={`text-blue-500 font-semibold text-sm uppercase tracking-wide ${fontPoppins.className}`}
+              >
                 Blog Posts
               </span>
             </motion.div>
@@ -302,7 +305,7 @@ export function BlogsSection() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
+              className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 ${fontPoppins.className}`}
             >
               Our Latest Blog Posts
             </motion.h1>
@@ -311,7 +314,7 @@ export function BlogsSection() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8"
+              className={`text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8 ${fontPoppins.className}`}
             >
               Discover insights, tips, and stories about immigration, career
               development, and life abroad
@@ -325,28 +328,38 @@ export function BlogsSection() {
               className="flex items-center justify-center gap-8 mb-8"
             >
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-purple-600 mb-1">
+                <div className="text-3xl md:text-4xl font-bold text-blue-500 mb-1">
                   {pagination.total}
                 </div>
-                <div className="text-sm text-gray-500 font-medium">
+                <div
+                  className={`text-sm text-gray-500 font-medium ${fontPoppins.className}`}
+                >
                   Total Posts
                 </div>
               </div>
               <div className="w-px h-12 bg-gray-300" />
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-purple-600 mb-1">
+                <div
+                  className={`text-3xl md:text-4xl font-bold text-blue-500 mb-1 ${fontPoppins.className}`}
+                >
                   {getTotalLikes()}
                 </div>
-                <div className="text-sm text-gray-500 font-medium">
+                <div
+                  className={`text-sm text-gray-500 font-medium ${fontPoppins.className}`}
+                >
                   Total Likes
                 </div>
               </div>
               <div className="w-px h-12 bg-gray-300" />
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-purple-600 mb-1">
+                <div
+                  className={`text-3xl md:text-4xl font-bold text-blue-500 mb-1 ${fontPoppins.className}`}
+                >
                   {blogCache.size}
                 </div>
-                <div className="text-sm text-gray-500 font-medium">
+                <div
+                  className={`text-sm text-gray-500 font-medium ${fontPoppins.className}`}
+                >
                   Cached Page
                 </div>
               </div>
@@ -373,7 +386,7 @@ export function BlogsSection() {
                 onClick={handleRefresh}
                 variant="outline"
                 size="lg"
-                className="flex items-center gap-2"
+                className={`flex items-center gap-2 ${fontPoppins.className}`}
                 disabled={loading}
               >
                 <Calendar className="w-4 h-4" />
@@ -388,12 +401,14 @@ export function BlogsSection() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
                 <BookOpen className="w-8 h-8 text-gray-400" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3
+                className={`text-xl font-semibold text-gray-900 mb-2 ${fontPoppins.className}`}
+              >
                 {searchTerm
                   ? "No blog posts match your search"
                   : "No blog posts available"}
               </h3>
-              <p className="text-gray-600 max-w-md">
+              <p className={`text-gray-600 max-w-md ${fontPoppins.className}`}>
                 {searchTerm
                   ? "Try adjusting your search terms."
                   : "Check back later for new blog posts."}
@@ -419,7 +434,7 @@ export function BlogsSection() {
               {/* Loading overlay for pagination */}
               {loading && (
                 <div className="flex items-center justify-center py-8">
-                  <Loader2 className="w-8 h-8 animate-spin text-purple-500" />
+                  <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
                 </div>
               )}
 

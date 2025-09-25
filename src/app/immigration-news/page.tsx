@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import { ImmigrationNewsSection } from "@/components/ImmigrationNews/ImmigrationNewsSection";
 
 export const metadata: Metadata = {
   title: "Immigration News | EU Prime Serwis",
@@ -16,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function page() {
-  return <div>page</div>;
+  return <ImmigrationNewsSection />;
 }

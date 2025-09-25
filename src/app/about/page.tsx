@@ -1,12 +1,21 @@
 import RotatingCircle from "@/components/common/RotatingCircle";
 import { StepWork } from "@/components/common/StepWork";
+import { fontMontserrat } from "@/fonts";
 import React from "react";
 
 export default function page() {
   return (
-    <div>
+    <div className="mb-10">
+      <div className="flex flex-col items-center pt-10 w-full max-w-7xl mx-auto">
+        <h1
+          className={`text-3xl font-bold ${fontMontserrat.className} items-center`}
+        >
+          About Us
+        </h1>
+        <div className="w-16 h-2 bg-blue-400 rounded-full items-center" />
+      </div>
       <StepWork
-        image="/assets/home/home-aboutus-new.jpg"
+        image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/home-aboutus-new.webp"
         imageAlt="Home Section"
         heading="EU Immigration & Visa expert consultancy"
         paragraph1="EU Prime Serwis is a leading European consultancy specializing in employment visas, career services, and international recruitment. As a trusted B2B and B2C migration advisor, we provide expert guidance to individuals and businesses navigating immigration and workforce solutions. We recruit skilled, semi-skilled, and unskilled workers, ensuring smooth job placements across Europe. Our expertise helps businesses secure top talent while supporting individuals in advancing their careers. The District Court for the Capital City of Warsaw in Poland, 13th Commercial Division of the National Court Register (KRS: 0001133506, NIP: 7011228130), we are a legally recognized and reliable firm, dedicated to delivering efficient, professional, and expert recruitment and immigration services."

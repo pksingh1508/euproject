@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Eye, Calendar, ArrowRight } from "lucide-react";
 import { NewsItem } from "@/lib/dbTypes";
+import { fontPoppins } from "@/fonts";
 
 interface SingleImmigrationNewsProps {
   news: NewsItem;
@@ -67,7 +68,7 @@ export function SingleImmigrationNews({
       viewport={{ once: true, margin: "-50px" }}
       className="w-full group"
     >
-      <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-amber-200">
+      <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-blue-200">
         <div className="flex flex-col md:flex-row">
           {/* Left side - Image */}
           <div className="md:w-80 md:flex-shrink-0">
@@ -103,30 +104,40 @@ export function SingleImmigrationNews({
             <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-4 h-4" />
-                <span>{formatDate(data.updatedAt)}</span>
+                <span className={`text-gray-800 ${fontPoppins.className}`}>
+                  {formatDate(data.updatedAt)}
+                </span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Eye className="w-4 h-4" />
-                <span>{data.views.toLocaleString()} views</span>
+                <span className={`text-gray-800 ${fontPoppins.className}`}>
+                  {data.views.toLocaleString()} views
+                </span>
               </div>
             </div>
 
             {/* Title */}
             <Link href={newsUrl}>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 line-clamp-2 group-hover:text-amber-600 transition-colors duration-200 cursor-pointer">
+              <h3
+                className={`text-xl md:text-2xl font-bold text-gray-900 mb-4 line-clamp-2 group-hover:text-blue-500 transition-colors duration-200 cursor-pointer ${fontPoppins.className}`}
+              >
                 {data.title}
               </h3>
             </Link>
 
             {/* Description */}
-            <p className="text-gray-600 text-base leading-relaxed mb-6 line-clamp-3">
+            <p
+              className={`text-gray-600 text-base leading-relaxed mb-6 line-clamp-3 ${fontPoppins.className}`}
+            >
               {data.short_desc}
             </p>
 
             {/* Read more link */}
             <Link href={newsUrl}>
-              <div className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-semibold text-sm group-hover:gap-3 transition-all duration-200 cursor-pointer">
-                <span>Read Full Article</span>
+              <div className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-600 font-semibold text-sm group-hover:gap-3 transition-all duration-200 cursor-pointer">
+                <span className={`${fontPoppins.className}`}>
+                  Read Full Article
+                </span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </div>
             </Link>

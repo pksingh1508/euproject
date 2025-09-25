@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Heart, Calendar, ArrowRight, BookOpen } from "lucide-react";
 import { BlogItem } from "@/lib/dbTypes";
+import { fontPoppins } from "@/fonts";
 
 interface SingleBlogSectionProps {
   blog: BlogItem;
@@ -70,7 +71,7 @@ export function SingleBlogSection({ blog, index = 0 }: SingleBlogSectionProps) {
       viewport={{ once: true, margin: "-50px" }}
       className="w-full group"
     >
-      <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-purple-200">
+      <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-blue-200">
         <div className="flex flex-col md:flex-row">
           {/* Left side - Image */}
           <div className="md:w-80 md:flex-shrink-0">
@@ -87,7 +88,7 @@ export function SingleBlogSection({ blog, index = 0 }: SingleBlogSectionProps) {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                <div className="w-full h-full bg-gradient-to-br from-blue-400 to-blue-500 flex items-center justify-center">
                   <div className="text-center text-white">
                     <BookOpen className="w-8 h-8 mx-auto mb-2" />
                     <p className="text-sm font-medium">Blog Post</p>
@@ -101,7 +102,9 @@ export function SingleBlogSection({ blog, index = 0 }: SingleBlogSectionProps) {
               {/* Likes badge */}
               <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-md">
                 <Heart className="w-4 h-4 text-red-500 fill-red-500" />
-                <span className="text-sm font-semibold text-gray-900">
+                <span
+                  className={`text-sm font-semibold text-gray-900 ${fontPoppins.className}`}
+                >
                   {data.likes_count}
                 </span>
               </div>
@@ -114,30 +117,40 @@ export function SingleBlogSection({ blog, index = 0 }: SingleBlogSectionProps) {
             <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-4 h-4" />
-                <span>{formatDate(data.updatedAt)}</span>
+                <span className={`${fontPoppins.className}`}>
+                  {formatDate(data.updatedAt)}
+                </span>
               </div>
               <div className="flex items-center gap-1.5">
                 <BookOpen className="w-4 h-4" />
-                <span>{calculateReadingTime(data.short_desc)} min read</span>
+                <span className={`${fontPoppins.className}`}>
+                  {calculateReadingTime(data.short_desc)} min read
+                </span>
               </div>
             </div>
 
             {/* Title */}
             <Link href={blogUrl}>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-purple-600 transition-colors duration-200 cursor-pointer">
+              <h3
+                className={`text-xl md:text-2xl font-bold text-gray-700 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200 cursor-pointer ${fontPoppins.className}`}
+              >
                 {data.title}
               </h3>
             </Link>
 
             {/* Description */}
-            <p className="text-gray-600 text-base leading-relaxed mb-4 line-clamp-3">
+            <p
+              className={`text-gray-600 text-base leading-relaxed mb-4 line-clamp-3 ${fontPoppins.className}`}
+            >
               {data.short_desc}
             </p>
 
             {/* Read more link and likes */}
             <div className="flex items-center justify-between">
               <Link href={blogUrl}>
-                <div className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-semibold text-sm group-hover:gap-3 transition-all duration-200 cursor-pointer">
+                <div
+                  className={`inline-flex items-center gap-2 text-blue-500 hover:text-blue-600 font-semibold text-sm group-hover:gap-3 transition-all duration-200 cursor-pointer ${fontPoppins.className}`}
+                >
                   <span>Read Full Post</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
                 </div>
@@ -146,7 +159,11 @@ export function SingleBlogSection({ blog, index = 0 }: SingleBlogSectionProps) {
               {/* Mobile likes display */}
               <div className="md:hidden flex items-center gap-1.5 text-gray-500">
                 <Heart className="w-4 h-4 text-red-500 fill-red-500" />
-                <span className="text-sm font-medium">{data.likes_count}</span>
+                <span
+                  className={`text-sm font-medium ${fontPoppins.className}`}
+                >
+                  {data.likes_count}
+                </span>
               </div>
             </div>
           </div>

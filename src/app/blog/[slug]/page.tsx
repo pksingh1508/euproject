@@ -23,6 +23,7 @@ import {
 import { Button } from "@/components/ui/button";
 import "highlight.js/styles/github.css";
 import { BlogItem } from "@/lib/dbTypes";
+import { fontPoppins } from "@/fonts";
 
 interface SingleBlogPageProps {
   params: Promise<{ slug: string; lang: string }>;
@@ -142,8 +143,7 @@ export default function SingleBlogPage({ params }: SingleBlogPageProps) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50/30 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-purple-500 mx-auto mb-4" />
-          <p className="text-gray-600 text-lg">Loading blog post...</p>
+          <Loader2 className="w-12 h-12 animate-spin text-blue-500 mx-auto mb-4" />
         </div>
       </div>
     );
@@ -153,7 +153,7 @@ export default function SingleBlogPage({ params }: SingleBlogPageProps) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50/30 flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-4">
-          <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <AlertCircle className="w-16 h-16 text-blue-500 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             Blog Post Not Found
           </h1>
@@ -210,7 +210,9 @@ export default function SingleBlogPage({ params }: SingleBlogPageProps) {
             {/* Category and Tags */}
             <div className="flex flex-wrap items-center gap-3 mb-4">
               {blogData.category && (
-                <div className="flex items-center gap-1.5 bg-purple-100 text-purple-800 px-3 py-1.5 rounded-full text-sm font-medium">
+                <div
+                  className={`flex items-center gap-1.5 bg-purple-100 text-purple-800 px-3 py-1.5 rounded-full text-sm font-medium ${fontPoppins.className}`}
+                >
                   <FolderOpen className="w-4 h-4" />
                   {blogData.category}
                 </div>
@@ -218,7 +220,7 @@ export default function SingleBlogPage({ params }: SingleBlogPageProps) {
               {tags.map((tag, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-1.5 bg-pink-100 text-pink-800 px-3 py-1.5 rounded-full text-sm font-medium"
+                  className={`flex items-center gap-1.5 bg-pink-100 text-pink-800 px-3 py-1.5 rounded-full text-sm font-medium ${fontPoppins.className}`}
                 >
                   <Tag className="w-3 h-3" />
                   {tag}
@@ -227,7 +229,9 @@ export default function SingleBlogPage({ params }: SingleBlogPageProps) {
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1
+              className={`text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight ${fontPoppins.className}`}
+            >
               {blogData.title}
             </h1>
 
@@ -235,25 +239,33 @@ export default function SingleBlogPage({ params }: SingleBlogPageProps) {
             <div className="flex flex-wrap items-center gap-6 text-gray-600">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
-                <span className="text-sm font-medium">
+                <span
+                  className={`text-sm font-medium ${fontPoppins.className}`}
+                >
                   {formatDate(blogData.updatedAt)}
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Heart className="w-5 h-5 text-red-500 fill-red-500" />
-                <span className="text-sm font-medium">
+                <span
+                  className={`text-sm font-medium ${fontPoppins.className}`}
+                >
                   {blogData.likes_count.toLocaleString()} likes
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <MessageCircle className="w-5 h-5" />
-                <span className="text-sm font-medium">
+                <span
+                  className={`text-sm font-medium ${fontPoppins.className}`}
+                >
                   {blogData.comments_count.toLocaleString()} comments
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5" />
-                <span className="text-sm font-medium">
+                <span
+                  className={`text-sm font-medium ${fontPoppins.className}`}
+                >
                   {Math.ceil(blogData.contents.split(" ").length / 200)} min
                   read
                 </span>
@@ -269,7 +281,8 @@ export default function SingleBlogPage({ params }: SingleBlogPageProps) {
             className="bg-white rounded-2xl p-8 md:p-12 shadow-xl"
           >
             <div
-              className="prose prose-lg prose-gray max-w-none
+              className={`prose prose-lg prose-gray max-w-none
+                         ${fontPoppins.className}
                          prose-headings:text-gray-900 prose-headings:font-bold
                          prose-h1:text-3xl prose-h1:mb-6 prose-h1:mt-8
                          prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-6
@@ -284,7 +297,7 @@ export default function SingleBlogPage({ params }: SingleBlogPageProps) {
                          prose-blockquote:my-6 prose-blockquote:rounded-r-lg
                          prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
                          prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg
-                         prose-img:rounded-lg prose-img:shadow-lg prose-img:my-6"
+                         prose-img:rounded-lg prose-img:shadow-lg prose-img:my-6`}
             >
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -346,14 +359,17 @@ export default function SingleBlogPage({ params }: SingleBlogPageProps) {
                   onClick={handleShare}
                   variant="outline"
                   size="sm"
-                  className="flex items-center gap-2"
+                  className={`flex items-center gap-2 ${fontPoppins.className}`}
                 >
                   <Share2 className="w-4 h-4" />
                   Share
                 </Button>
               </div>
               <Link href={`/blog`}>
-                <Button variant="ghost" className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  className={`flex items-center gap-2 ${fontPoppins.className}`}
+                >
                   <ArrowLeft className="w-4 h-4" />
                   Back to All Posts
                 </Button>
