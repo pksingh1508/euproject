@@ -11,7 +11,7 @@ export default function page() {
   return (
     <div>
       <StepWork
-        image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/work/study-bg.webp"
+        image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/study.webp"
         imageAlt="WorkStudy image"
         heading="Work"
         paragraph1="Europe Provides Job Opportunities For Skilled, Semi-Skilled, And Non-Skilled Workers In IT, Engineering, Healthcare, Finance, Manufacturing, Logistics, Hospitality, Construction, Agriculture, Cleaning, And Warehouse Operations. Many Roles Offer Work Visa Sponsorship And Residency Pathways. Workers Benefit From Labor Rights, Social Security, And Competitive Salaries, Ensuring A Stable Career With Legal Registration, Job Contracts, And Work Permits."

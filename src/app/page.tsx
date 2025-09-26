@@ -37,7 +37,7 @@ export default function Home() {
       <TopBanner />
       {/* Home Page */}
       <StepWork
-        image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/home-aboutus-new.webp"
+        image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/home_about.webp"
         imageAlt="Home Section"
         heading="EU Immigration & Visa expert consultancy"
         paragraph1="EU Prime Serwis is a leading European consultancy specializing in employment visas, career services, and international recruitment. As a trusted B2B and B2C migration advisor, we provide expert guidance to individuals and businesses navigating immigration and workforce solutions. We recruit skilled, semi-skilled, and unskilled workers, ensuring smooth job placements across Europe. Our expertise helps businesses secure top talent while supporting individuals in advancing their careers. The District Court for the Capital City of Warsaw in Poland, 13th Commercial Division of the National Court Register (KRS: 0001133506, NIP: 7011228130), we are a legally recognized and reliable firm, dedicated to delivering efficient, professional, and expert recruitment and immigration services."
@@ -54,7 +54,7 @@ export default function Home() {
         paragraph1="Choose your preferred country and take the first step towards your dream job. Start your career today with personalized guidance and opportunities tailored to you."
         paragraph2=""
         buttons={workButtons}
-        imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/study-bg.webp"
+        imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/study.webp"
         imageAlt="Work Section"
         isReversed
       />
@@ -65,7 +65,7 @@ export default function Home() {
         paragraph1="Migrate to Europe and unlock new opportunities with expert immigration guidance. Start your journey today with seamless support and professional assistance."
         paragraph2=""
         buttons={migrateButtons}
-        imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/migrate-bg.webp"
+        imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/migrate.webp"
         imageAlt="Migrate Section"
       />
       <RotatingCircle />

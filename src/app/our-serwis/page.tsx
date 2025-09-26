@@ -129,7 +129,7 @@ export default function page() {
       {/* our core serwis */}
       <CustomHero
         imageAlt="Our core serwis"
-        imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/core-serwis-bg.webp"
+        imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/main-career.webp"
         heading="Our Core Serwis"
         paragraph1="We Provide Visa Assistance, Permit Support, And Job Placement To Simplify Your Journey. Our Services Also Include Document Preparation And Residency Guidance For Seamless Relocation."
         paragraph2=""
