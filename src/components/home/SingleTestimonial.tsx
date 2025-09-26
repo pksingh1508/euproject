@@ -18,6 +18,10 @@ export function SingleTestimonial({
   image,
   review
 }: TestimonialProps) {
+  const truncateText = (text: string, maxLength: number = 30) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength).trim() + " ";
+  };
   return (
     <motion.div
       className="bg-white rounded-lg border-1 border-gray-300 p-6 h-full flex flex-col"

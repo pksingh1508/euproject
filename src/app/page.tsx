@@ -1,4 +1,5 @@
 import { CustomHero } from "@/components/common/CustomHero";
+import { GovernmentLinks } from "@/components/common/GovernmentLinks";
 import RotatingCircle from "@/components/common/RotatingCircle";
 import { StepWork } from "@/components/common/StepWork";
 import { StepWorkBulletPoint } from "@/components/common/StepWorkBulletPoint";
@@ -33,7 +34,7 @@ export default function Home() {
     { text: "Sole Proprietorship" }
   ];
   return (
-    <div>
+    <div className="pb-10">
       <TopBanner />
       {/* Home Page */}
       <StepWork
@@ -129,12 +130,16 @@ export default function Home() {
       <RotatingCircle />
       {/* TODO: Recent Blogs */}
       <RecentBlog />
-      {/* TODO: NewsAndFAQs */}
-      <RotatingCircle />
-      <NewsSection />
-      {/* TODO: Testimonials */}
+      {/* TODO: Testimonial */}
       <RotatingCircle />
       <Testimonials />
+      {/* TODO: News and FAQ section */}
+      <RotatingCircle />
+      <NewsSection />
+      {/* Government links */}
+      <RotatingCircle />
+      <GovernmentLinks />
+      <RotatingCircle />
     </div>
   );
 }

@@ -1,5 +1,7 @@
 "use client";
+import FlagCard from "@/components/common/FlagCard";
 import { FlipCard } from "@/components/common/FlipCard";
+import { MyForm } from "@/components/common/MyForm";
 import RotatingCircle from "@/components/common/RotatingCircle";
 import { StepWork } from "@/components/common/StepWork";
 import { DESTINATION_DATA } from "@/constants/data";
@@ -61,17 +63,26 @@ export default function page() {
               services dedicated to your business success.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {DESTINATION_DATA.map((item, index) => (
-              <FlipCard
-                key={index}
-                flagImageUrl={item.url}
-                countryName={item.name}
-                title={item.title}
-                btnName={item.btnName}
-                btnUrl={item.btnUrl}
-              />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8 py-4 px-2">
+            {/* Left side - flags */}
+            <div className="flex flex-wrap gap-4">
+              {DESTINATION_DATA.map((item, index) => (
+                <FlagCard
+                  key={index}
+                  flagImageUrl={item.url}
+                  countryName={item.name}
+                />
+              ))}
+            </div>
+
+            {/* Right side - sticky form */}
+            <div className="flex items-start justify-center px-2">
+              <div className="sticky top-24 w-full">
+                <div className="bg-white rounded-2xl shadow-2xl p-3 lg:p-6 border-5 border-blue-500">
+                  <MyForm />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
