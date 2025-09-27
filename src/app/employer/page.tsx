@@ -11,11 +11,11 @@ export default function page() {
     },
     {
       id: "2",
-      text: "Employee leasing is conducted in accordance with the legislation governing temporary work. Additionally,"
+      text: "Employee leasing is conducted in accordance with the legislation governing temporary work."
     },
     {
       id: "3",
-      text: "we offer outsourcing of personnel services, allowing the State to delegate certain tasks within the company to us."
+      text: "We offer outsourcing of personnel services, allowing the State to delegate certain tasks within the company to us."
     }
   ];
   return (
@@ -25,7 +25,9 @@ export default function page() {
       <div className="flex items-center justify-center py-7 my-10 px-2">
         <div className="bg-white rounded-2xl shadow-2xl p-3 lg:p-6 order-1 lg:order-2 border-5 border-blue-500">
           <div className="mb-8">
-            <p className="text-gray-600 font-inter text-center">For Employer</p>
+            <p className="text-gray-600 font-inter text-center">
+              Please fill out the form below to become a Employer.
+            </p>
           </div>
           <MyForm />
         </div>

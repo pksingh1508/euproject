@@ -13,10 +13,10 @@ import {
 } from "@/fonts";
 
 const features = [
-  { icon: <Users className="w-8 h-8" />, title: "Expert Recruitment Process" },
-  { icon: <UserCheck className="w-8 h-8" />, title: "Skilled Workforce" },
-  { icon: <Star className="w-8 h-8" />, title: "Fast & Legal Hiring" },
-  { icon: <Building2 className="w-8 h-8" />, title: "Strong Employer Network" }
+  { iconUrl: "/home-icon.png", title: "Expert Recruitment Process" },
+  { iconUrl: "/home-icon1.png", title: "Skilled Workforce" },
+  { iconUrl: "/home-icon2.png", title: "Fast & Legal Hiring" },
+  { iconUrl: "/home-icon3.png", title: "Strong Employer Network" }
 ];
 
 const WhyUs: React.FC = () => {
@@ -41,7 +41,14 @@ const WhyUs: React.FC = () => {
                   className="flex flex-col items-center justify-center border-2 border-[#1877f2] rounded-xl p-8 shadow-sm cursor-pointer transition-all duration-300 transform hover:shadow-lg hover:scale-105 hover:border-blue-600"
                 >
                   <div className="mb-4 text-blue-600 transition-transform duration-300 group-hover:rotate-6">
-                    {item.icon}
+                    <Image
+                      src={item.iconUrl}
+                      alt={item.title}
+                      width={40}
+                      height={40}
+                      unoptimized
+                      className="w-full h-full"
+                    />
                   </div>
                   <p
                     className={`text-center font-medium ${fontPoppins.className}`}
@@ -60,6 +67,7 @@ const WhyUs: React.FC = () => {
               alt="Why Us"
               width={500}
               height={400}
+              priority
               className="w-full h-[650px] rounded-2xl object-cover shadow-md hover:shadow-xl transition duration-500"
             />
           </div>

@@ -26,7 +26,7 @@ export default function page() {
             <p
               className={`text-gray-600 font-inter text-center ${fontInter.className}`}
             >
-              Please fill out the form below to become a partner.
+              Please fill out the form below to become a Partner.
             </p>
           </div>
           <MyForm />
