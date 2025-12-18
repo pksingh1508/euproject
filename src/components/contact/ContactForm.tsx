@@ -101,7 +101,7 @@ export function ContactForm() {
     // try to send data to ZOHO CRM
     try {
       // const res = await axios.post("/api/zoho/submit", {
-      const res = await axios.post("", {
+      const res = await axios.post("/api/contact", {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
