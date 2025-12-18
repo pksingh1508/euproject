@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BlogResponse, StrapiResponse, SuccessStoryResponse } from "./dbTypes";
+const URL = "https://api.eucareerserwis.pl/api/";
 
 export async function fetchPaginatedImmigrationNews(
   token: string,
@@ -9,7 +10,7 @@ export async function fetchPaginatedImmigrationNews(
   collection: string
 ): Promise<StrapiResponse> {
   try {
-    const BASE_URL = `https://determined-unity-de531adc95.strapiapp.com/api/${collection}`;
+    const BASE_URL = `${URL}${collection}`;
 
     const response = await axios.get(BASE_URL, {
       headers: {
@@ -44,7 +45,7 @@ export async function getPaginatedBlog(
   collection: string
 ): Promise<BlogResponse> {
   try {
-    const BASE_URL = `https://determined-unity-de531adc95.strapiapp.com/api/${collection}`;
+    const BASE_URL = `${URL}${collection}`;
 
     const response = await axios.get(BASE_URL, {
       headers: {
@@ -78,7 +79,7 @@ export async function getSingleBlogPost(
   collection: string
 ): Promise<BlogResponse> {
   try {
-    const BASE_URL = `https://determined-unity-de531adc95.strapiapp.com/api/${collection}`;
+    const BASE_URL = `${URL}${collection}`;
 
     const response = await axios.get(BASE_URL, {
       headers: {
@@ -113,7 +114,7 @@ export async function getSingleNews(
   collection: string
 ): Promise<StrapiResponse> {
   try {
-    const BASE_URL = `https://determined-unity-de531adc95.strapiapp.com/api/${collection}`;
+    const BASE_URL = `${URL}${collection}`;
 
     const response = await axios.get(BASE_URL, {
       headers: {
@@ -149,7 +150,7 @@ export async function getAllSuccessStories(
   collection: string
 ): Promise<SuccessStoryResponse> {
   try {
-    const BASE_URL = `https://determined-unity-de531adc95.strapiapp.com/api/${collection}`;
+    const BASE_URL = `${URL}${collection}`;
 
     const response = await axios.get(BASE_URL, {
       headers: {

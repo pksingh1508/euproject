@@ -61,8 +61,8 @@ export function ContactContainer() {
       icon: MapPin,
       title: "Address",
       content: [
-        "Street: Ul Ludwika Idzikowskiego 16, 4th Floor",
-        "ZIP code: 00-710 Warszawa",
+        "Street: ul. Bolesława Prusa 2",
+        "ZIP code: 00-493",
         "City: Warszawa, Country: Poland"
       ],
       color: "from-blue-400 to-blue-500"
@@ -70,16 +70,16 @@ export function ContactContainer() {
     {
       icon: Phone,
       title: "Call Us",
-      content: ["+48 22 268 3497"],
+      content: ["+48888620222"],
       color: "from-blue-400 to-blue-500",
-      link: `tel:+48 22 268 3497`
+      link: `tel:+48888620222`
     },
     {
       icon: MessageCircle,
       title: "WhatsApp",
-      content: ["+487302683497"],
+      content: ["+48 886 886 816"],
       color: "from-blue-400 to-blue-500",
-      link: `tel:+487302683497`
+      link: `tel:+48886886816`
     },
     {
       icon: Mail,

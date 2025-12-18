@@ -23,18 +23,18 @@ interface AntiFraudData {
 
 const antiFraudData: AntiFraudData = {
   antiFraudPolicy: {
-    mainHeading: "EU Career Serwis - Payment and Service Policy",
+    mainHeading: "EU Prime Serwis - Payment and Service Policy",
     heading1: {
-      title: "Making Payments to EU Career Serwis",
+      title: "Making Payments to EU Prime Serwis",
       paragraph1:
-        "All payments must be made directly to EU Career Serwis. Upon payment, clients may request an official receipt. The company always issues receipts for every payment received.",
+        "All payments must be made directly to EU Prime Serwis. Upon payment, clients may request an official receipt. The company always issues receipts for every payment received.",
       paragraph2:
         "All payments are also acknowledged in our central software system. For any queries related to your fees or payment details, you may contact us at info@eucareerserwis.pl"
     },
     heading2: {
       title: "Payments to Employees",
       paragraph1:
-        "Clients are strictly advised not to make any additional payments to EU Career Serwis employees.",
+        "Clients are strictly advised not to make any additional payments to EU Prime Serwis employees.",
       paragraph2:
         "If any staff member offers to prepare your profile, arrange documents, or request money for personal services, please inform management immediately so that corrective measures can be taken.",
       paragraph3: {
@@ -42,13 +42,13 @@ const antiFraudData: AntiFraudData = {
         subPara1:
           "The company will not be liable for any verbal or written agreements you enter into with an employee or their reference.",
         subPara2:
-          "If you have already made such payments, EU Career Serwis cannot be held responsible for the outcome."
+          "If you have already made such payments, EU Prime Serwis cannot be held responsible for the outcome."
       }
     },
     heading3: {
       title: "Vendors Referred by Employees",
       paragraph1:
-        "EU Career Serwis does not authorise staff to recommend vendors.",
+        "EU Prime Serwis does not authorise staff to recommend vendors.",
       paragraph2:
         "Using vendors suggested by an employee is discouraged, as it may expose clients to fraud.",
       paragraph3:
@@ -57,7 +57,7 @@ const antiFraudData: AntiFraudData = {
     heading4: {
       title: "Accuracy of Information and Documentation",
       paragraph1:
-        "EU Career Serwis processes cases solely based on the information provided by clients, assuming it is truthful and accurate.",
+        "EU Prime Serwis processes cases solely based on the information provided by clients, assuming it is truthful and accurate.",
       paragraph2:
         "The company does not prepare documents on behalf of applicants.",
       paragraph3: {
@@ -65,7 +65,7 @@ const antiFraudData: AntiFraudData = {
         subPara1:
           "Submission of false, misleading, or fraudulent documents is strictly prohibited.",
         subPara2:
-          "Cases based on fraudulent data will not be accepted, and EU Career Serwis cannot be held accountable."
+          "Cases based on fraudulent data will not be accepted, and EU Prime Serwis cannot be held accountable."
       }
     },
     heading5: {
@@ -98,7 +98,7 @@ const antiFraudData: AntiFraudData = {
     heading7: {
       title: "Company Position on Honesty",
       paragraph1:
-        "EU Career Serwis management strongly advises clients to provide only truthful and accurate details when completing their profiles.",
+        "EU Prime Serwis management strongly advises clients to provide only truthful and accurate details when completing their profiles.",
       paragraph2:
         "Fraudulent activity or misrepresentation can lead to a long-term ban and legal penalties.",
       paragraph3:
@@ -107,7 +107,7 @@ const antiFraudData: AntiFraudData = {
     heading8: {
       title: "Employment and Education Services",
       paragraph1:
-        "EU Career Serwis is a leading overseas career consulting firm in Poland and one of the largest B2C and B2B immigration consultancies in Europe.",
+        "EU Prime Serwis is a leading overseas career consulting firm in Poland and one of the largest B2C and B2B immigration consultancies in Europe.",
       paragraph2:
         "Company Registration Numbers: REGON: 382604058, NIP: 5252780856, KRS: 0000770916.",
       paragraph3: {
@@ -115,13 +115,13 @@ const antiFraudData: AntiFraudData = {
         subPara1:
           "The company collaborates with international universities, employers, and placement agencies to facilitate opportunities.",
         subPara2:
-          "However, EU Career Serwis does not guarantee employment or university admission, nor does it charge candidates for confirmations."
+          "However, EU Prime Serwis does not guarantee employment or university admission, nor does it charge candidates for confirmations."
       }
     },
     heading9: {
       title: "Guarantees and Limitations",
       paragraph1:
-        "EU Career Serwis cannot guarantee a job offer, university admission, or visa outcome.",
+        "EU Prime Serwis cannot guarantee a job offer, university admission, or visa outcome.",
       paragraph2:
         "Final decisions rest exclusively with immigration authorities, employers, and universities.",
       paragraph3:

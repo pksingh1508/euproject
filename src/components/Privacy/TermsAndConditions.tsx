@@ -28,11 +28,11 @@ interface TermsData {
 
 const termsData: TermsData = {
   termsAndConditions: {
-    mainHeading: "EU Career Serwis – Terms and Conditions",
+    mainHeading: "EU Prime Serwis – Terms and Conditions",
     heading1: {
       title: "Company Overview and Data Protection Commitment",
       paragraph1:
-        "EU Career Serwis (NIP , KRS:  , REGON:  ) is committed to maintaining the highest standards of confidentiality and privacy. We operate in full compliance with European and Polish data protection regulations, including the General Data Protection Regulation (GDPR).",
+        "EU Prime Serwis (NIP , KRS:  , REGON:  ) is committed to maintaining the highest standards of confidentiality and privacy. We operate in full compliance with European and Polish data protection regulations, including the General Data Protection Regulation (GDPR).",
       paragraph2:
         "All reasonable steps are taken to protect client information from unauthorized access, misuse, loss, alteration, or disclosure.",
       paragraph3:
@@ -40,13 +40,13 @@ const termsData: TermsData = {
       paragraph4:
         "Client data will never be disclosed to third parties without explicit consent, unless required by law.",
       paragraph5:
-        "By engaging with EU Career Serwis, clients acknowledge and agree to these terms and our data protection practices.",
+        "By engaging with EU Prime Serwis, clients acknowledge and agree to these terms and our data protection practices.",
       subParagraphs: {}
     },
     heading2: {
       title: "Scope of Services and Client Eligibility",
       paragraph1:
-        "EU Career Serwis provides consultancy and advisory support in immigration, legal, and regulatory processes.",
+        "EU Prime Serwis provides consultancy and advisory support in immigration, legal, and regulatory processes.",
       paragraph2:
         "Services include assistance with document preparation, application guidance, and procedural support.",
       paragraph3:
@@ -54,7 +54,7 @@ const termsData: TermsData = {
       paragraph4:
         "All immigration and regulatory outcomes remain at the sole discretion of competent authorities.",
       paragraph5:
-        "EU Career Serwis does not guarantee successful immigration approvals, employment offers, or related outcomes.",
+        "EU Prime Serwis does not guarantee successful immigration approvals, employment offers, or related outcomes.",
       paragraph6:
         "Services are advisory in nature and are not a substitute for formal legal advice.",
       subParagraphs: {}
@@ -64,7 +64,7 @@ const termsData: TermsData = {
       paragraph1:
         "All service fees must be paid in full before commencement of the consulting process.",
       paragraph2:
-        "EU Career Serwis charges are separate from external costs such as fees charged by:",
+        "EU Prime Serwis charges are separate from external costs such as fees charged by:",
       paragraph3:
         "Clients are solely responsible for covering these third-party fees.",
       subParagraphs: {
@@ -79,7 +79,7 @@ const termsData: TermsData = {
       paragraph1:
         "Refund eligibility applies only to clients who have paid the full service fee without outstanding balances.",
       paragraph2:
-        "Refunds are limited to consulting fees paid to EU Career Serwis and exclude non-refundable taxes or administrative charges.",
+        "Refunds are limited to consulting fees paid to EU Prime Serwis and exclude non-refundable taxes or administrative charges.",
       paragraph3:
         "Refunds may be considered if an application is officially rejected by the relevant authority, provided that:",
       paragraph4:
@@ -94,7 +94,7 @@ const termsData: TermsData = {
     heading5: {
       title: "Force Majeure and Exceptional Circumstances",
       paragraph1:
-        "EU Career Serwis is not responsible for service disruptions caused by events outside its control, including:",
+        "EU Prime Serwis is not responsible for service disruptions caused by events outside its control, including:",
       paragraph2: "Natural disasters",
       paragraph3: "Pandemics",
       paragraph4: "Acts of war or terrorism",
@@ -103,17 +103,17 @@ const termsData: TermsData = {
       paragraph7:
         "In such cases, services will resume once feasible. Refunds are not issued for delays caused by uncontrollable circumstances.",
       paragraph8:
-        "If a procedural issue on the company's part affects a client's case, EU Career Serwis may review the matter in good faith and, at its discretion, provide a partial refund or alternative resolution.",
+        "If a procedural issue on the company's part affects a client's case, EU Prime Serwis may review the matter in good faith and, at its discretion, provide a partial refund or alternative resolution.",
       subParagraphs: {}
     },
     heading6: {
       title: "Third-Party Fees and Charges",
       paragraph1:
-        "Service fees paid to EU Career Serwis are entirely separate from third-party fees (immigration authorities, testing centers, consulates, etc.).",
+        "Service fees paid to EU Prime Serwis are entirely separate from third-party fees (immigration authorities, testing centers, consulates, etc.).",
       paragraph2:
         "These external charges remain the sole responsibility of the client.",
       paragraph3:
-        "EU Career Serwis fees are determined independently to reflect service quality and cannot be contested once registration is completed.",
+        "EU Prime Serwis fees are determined independently to reflect service quality and cannot be contested once registration is completed.",
       paragraph4:
         "Refunds or transfers of services are not permitted if the client voluntarily discontinues services.",
       subParagraphs: {}
@@ -121,7 +121,7 @@ const termsData: TermsData = {
     heading7: {
       title: "Confidentiality and Data Protection Obligations",
       paragraph1:
-        "EU Career Serwis guarantees full compliance with GDPR standards, ensuring client data remains confidential and secure.",
+        "EU Prime Serwis guarantees full compliance with GDPR standards, ensuring client data remains confidential and secure.",
       paragraph2:
         "Clients must provide accurate and complete information relevant to the immigration process.",
       paragraph3:
@@ -136,10 +136,10 @@ const termsData: TermsData = {
     heading8: {
       title: "Limited Liability in Case of Immigration Policy Changes",
       paragraph1:
-        "EU Career Serwis cannot control or predict government policy changes, quota limits, or procedural updates.",
+        "EU Prime Serwis cannot control or predict government policy changes, quota limits, or procedural updates.",
       paragraph2: "Such changes may affect:",
       paragraph3:
-        "Clients accept that EU Career Serwis is not responsible for visa denials or delays resulting from policy or regulatory changes.",
+        "Clients accept that EU Prime Serwis is not responsible for visa denials or delays resulting from policy or regulatory changes.",
       paragraph4: "Refunds will not be issued under these circumstances.",
       subParagraphs: {
         subParagraph1: "Eligibility criteria",
@@ -149,11 +149,11 @@ const termsData: TermsData = {
     },
     heading9: {
       title: "No Guarantee of Outcome or Employment",
-      paragraph1: "EU Career Serwis cannot guarantee:",
+      paragraph1: "EU Prime Serwis cannot guarantee:",
       paragraph2:
         "Final decisions lie exclusively with relevant government authorities, employers, and universities.",
       paragraph3:
-        "Clients acknowledge that no consultant, employee, or partner of EU Career Serwis may lawfully promise guaranteed results.",
+        "Clients acknowledge that no consultant, employee, or partner of EU Prime Serwis may lawfully promise guaranteed results.",
       subParagraphs: {
         subParagraph1: "Immigration approval",
         subParagraph2: "Employment placement",
@@ -166,7 +166,7 @@ const termsData: TermsData = {
         "Clients agree not to initiate chargebacks or cancel payments through their bank or financial institution.",
       paragraph2: "Any attempt to do so will result in:",
       subParagraphs: {
-        subParagraph1: "Permanent blacklisting from EU Career Serwis services.",
+        subParagraph1: "Permanent blacklisting from EU Prime Serwis services.",
         subParagraph2: "Collection proceedings for outstanding balances.",
         subParagraph3: "Recovery of related costs through legal action."
       }
@@ -174,7 +174,7 @@ const termsData: TermsData = {
     heading11: {
       title: "Communication and Timely Updates",
       paragraph1:
-        "Clients are required to promptly update EU Career Serwis regarding:",
+        "Clients are required to promptly update EU Prime Serwis regarding:",
       paragraph2: "Timely communication is essential to avoid:",
       subParagraphs: {
         subParagraph1:
@@ -188,11 +188,11 @@ const termsData: TermsData = {
     heading12: {
       title: "Professional Integrity and Anti-Defamation Clause",
       paragraph1:
-        "Clients are encouraged to raise grievances directly with the EU Career Serwis support team for resolution.",
+        "Clients are encouraged to raise grievances directly with the EU Prime Serwis support team for resolution.",
       paragraph2:
-        "Any attempt to publicly defame, discredit, or damage the reputation of EU Career Serwis without seeking resolution first may result in:",
+        "Any attempt to publicly defame, discredit, or damage the reputation of EU Prime Serwis without seeking resolution first may result in:",
       paragraph3:
-        "EU Career Serwis is committed to addressing issues professionally and constructively.",
+        "EU Prime Serwis is committed to addressing issues professionally and constructively.",
       subParagraphs: {
         subParagraph1: "Termination of services.",
         subParagraph2: "Loss of refund eligibility."
@@ -207,7 +207,7 @@ const termsData: TermsData = {
       paragraph3:
         "Clients are encouraged to request clarification on any term before engaging services.",
       paragraph4:
-        "For assistance or inquiries, clients may contact EU Career Serwis at info@eucareerserwis.com.",
+        "For assistance or inquiries, clients may contact EU Prime Serwis at info@eucareerserwis.com.",
       subParagraphs: {
         subParagraph1: "Refund policies",
         subParagraph2: "Data protection commitments",

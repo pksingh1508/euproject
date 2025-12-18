@@ -153,10 +153,10 @@ const Footer: React.FC = () => {
                   />
                   <div>
                     <a
-                      href="+48222683497"
+                      href="+48888620222"
                       className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm block ${fontPoppins.className}`}
                     >
-                      +48 22 268 3497
+                      +48 888 620 222
                     </a>
                   </div>
                 </div>
@@ -168,10 +168,10 @@ const Footer: React.FC = () => {
                   />
                   <div>
                     <a
-                      href="tel:+48222683497"
+                      href="tel:+48886886816"
                       className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm block ${fontPoppins.className}`}
                     >
-                      +48 22 268 3497
+                      +48 886 886 816
                     </a>
                   </div>
                 </div>

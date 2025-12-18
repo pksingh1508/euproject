@@ -19,7 +19,7 @@ interface RefundPolicyData {
 
 const refundPolicyData: RefundPolicyData = {
   refundPolicy: {
-    mainHeading: "EU Career Serwis – Refund & Service Policy",
+    mainHeading: "EU Prime Serwis – Refund & Service Policy",
     heading1: {
       title: "Refund Eligibility",
       point1:
@@ -42,7 +42,7 @@ const refundPolicyData: RefundPolicyData = {
     heading3: {
       title: "Chargeback Policy",
       point1:
-        "Zero tolerance for chargebacks. Any customer disputing a valid payment will be permanently banned from EU Career Serwis services.",
+        "Zero tolerance for chargebacks. Any customer disputing a valid payment will be permanently banned from EU Prime Serwis services.",
       point2:
         "Outstanding balances will be forwarded to collections, and unpaid debts may be reported to credit bureaus."
     },
@@ -66,7 +66,7 @@ const refundPolicyData: RefundPolicyData = {
     heading6: {
       title: "Delays & Third-Party Services",
       point1:
-        "EU Career Serwis is not liable for delays caused by external parties (e.g., couriers, consulates).",
+        "EU Prime Serwis is not liable for delays caused by external parties (e.g., couriers, consulates).",
       point2: "Service charges are non-refundable for such delays."
     },
     heading7: {
@@ -74,12 +74,12 @@ const refundPolicyData: RefundPolicyData = {
       point1:
         "Fees paid to assessment bodies, immigration offices, embassies, or testing centers are non-refundable under any circumstances.",
       point2:
-        "Our service fee strictly covers EU Career Serwis advisory and consulting services."
+        "Our service fee strictly covers EU Prime Serwis advisory and consulting services."
     },
     heading8: {
       title: "Online Payments & Card Transactions",
       point1:
-        "Clients must notify EU Career Serwis immediately of any card-related issues.",
+        "Clients must notify EU Prime Serwis immediately of any card-related issues.",
       point2:
         "Payments made via credit card/net banking cannot be disputed or reversed once authorized.",
       point3:
@@ -88,7 +88,7 @@ const refundPolicyData: RefundPolicyData = {
     heading9: {
       title: "Service Charges & Pricing",
       point1:
-        "Service fees are based on EU Career Serwis standards, not market prices.",
+        "Service fees are based on EU Prime Serwis standards, not market prices.",
       point2:
         "Complaints regarding fees after registration will not be entertained."
     },
@@ -109,7 +109,7 @@ const refundPolicyData: RefundPolicyData = {
     heading12: {
       title: "Client Communication",
       point1:
-        "Clients must inform EU Career Serwis of any correspondence or updates received from immigration offices within 7 days.",
+        "Clients must inform EU Prime Serwis of any correspondence or updates received from immigration offices within 7 days.",
       point2: "Failure to report such updates voids refund eligibility."
     },
     heading13: {
@@ -143,7 +143,7 @@ const refundPolicyData: RefundPolicyData = {
     heading16: {
       title: "Service Withdrawal & Termination",
       point1:
-        "EU Career Serwis reserves the right to terminate services without refund if the client fails to provide accurate or truthful information.",
+        "EU Prime Serwis reserves the right to terminate services without refund if the client fails to provide accurate or truthful information.",
       point2:
         "Services may be terminated if there is evidence of misuse, fraud, or non-cooperation.",
       point3:
@@ -155,7 +155,7 @@ const refundPolicyData: RefundPolicyData = {
         "Immigration approvals are subject to government rules and cap systems.",
       point2:
         "Even if criteria are met, approvals may be denied once yearly limits are reached.",
-      point3: "EU Career Serwis provides no job or visa guarantees."
+      point3: "EU Prime Serwis provides no job or visa guarantees."
     },
     heading18: {
       title: "Refund Processing Time",
@@ -164,27 +164,27 @@ const refundPolicyData: RefundPolicyData = {
     heading19: {
       title: "Client Responsibilities",
       point1:
-        "Keep EU Career Serwis informed of any changes (address, marital status, legal cases, new family members, etc.).",
+        "Keep EU Prime Serwis informed of any changes (address, marital status, legal cases, new family members, etc.).",
       point2: "Provide accurate, updated information at all times.",
       point3: "Ensure full compliance with visa requirements and documentation."
     },
     heading20: {
       title: "Confidentiality & Data Protection",
       point1:
-        "EU Career Serwis protects all client data under applicable privacy laws.",
+        "EU Prime Serwis protects all client data under applicable privacy laws.",
       point2:
         "Information is used only for immigration and consulting purposes, never for unauthorized use."
     },
     heading21: {
       title: "Governing Law",
-      point1: "EU Career Serwis operates under the laws of Poland.",
+      point1: "EU Prime Serwis operates under the laws of Poland.",
       point2:
         "Jurisdiction for disputes lies exclusively with Warsaw, Masovian State Courts."
     },
     heading22: {
       title: "Force Majeure",
       point1:
-        "EU Career Serwis is not liable for delays caused by events beyond control (strikes, wars, natural disasters, epidemics, government restrictions, etc.)."
+        "EU Prime Serwis is not liable for delays caused by events beyond control (strikes, wars, natural disasters, epidemics, government restrictions, etc.)."
     },
     heading23: {
       title: "Final Agreement",

@@ -19,11 +19,11 @@ interface PrivacyPolicyData {
 
 const privacyPolicyData: PrivacyPolicyData = {
   "term&Conditions": {
-    mainHeading: "EU Career Serwis – Terms, Conditions & Policies",
+    mainHeading: "EU Prime Serwis – Terms, Conditions & Policies",
     heading1: {
       title: "Organisation Affiliation & Disclaimer",
       point1:
-        "EU Career Serwis charges a service fee and provides general information on immigration and job markets through its private publishing website www.atozserwisplus.pl.",
+        "EU Prime Serwis charges a service fee and provides general information on immigration and job markets through its private publishing website www.euprimeserwis.pl.",
       point2:
         "We are not affiliated with any government, embassy, or consulate.",
       point3: "We are not a law firm and do not offer legal representation.",
@@ -35,14 +35,14 @@ const privacyPolicyData: PrivacyPolicyData = {
     heading2: {
       title: "Certifications & Legitimacy",
       point1:
-        "EU Career Serwis has undergone verification checks to prove legitimacy.",
+        "EU Prime Serwis has undergone verification checks to prove legitimacy.",
       point2:
         "The company is registered in Poland and supported by legal professionals who ensure all services and documentation are compliant with regulations."
     },
     heading3: {
       title: "Intellectual Property Rights",
       point1:
-        "The website content, including design, text, graphics, logos, and data, belongs to EU Career Serwis unless otherwise stated.",
+        "The website content, including design, text, graphics, logos, and data, belongs to EU Prime Serwis unless otherwise stated.",
       point2: "It is protected under Polish and international copyright law.",
       point3:
         "Unauthorised use, copying, or distribution is strictly prohibited and may lead to legal enforcement."
@@ -50,7 +50,7 @@ const privacyPolicyData: PrivacyPolicyData = {
     heading4: {
       title: "Limitation of Liability",
       point1:
-        "EU Career Serwis shall not be held liable for any direct, indirect, or consequential damages resulting from the use of our services or website.",
+        "EU Prime Serwis shall not be held liable for any direct, indirect, or consequential damages resulting from the use of our services or website.",
       point2:
         "This limitation applies even if we have been informed of possible damages.",
       point3:
@@ -59,7 +59,7 @@ const privacyPolicyData: PrivacyPolicyData = {
     heading5: {
       title: "Legal Structure & Governing Law",
       point1:
-        "By using our website or services, you agree to enter into a legally binding agreement with EU Career Serwis.",
+        "By using our website or services, you agree to enter into a legally binding agreement with EU Prime Serwis.",
       point2:
         "In case of disputes, the prevailing party may recover legal fees.",
       point3:
@@ -77,7 +77,7 @@ const privacyPolicyData: PrivacyPolicyData = {
       point1:
         "While we aim for accuracy, errors in pricing or details may occur.",
       point2:
-        "EU Career Serwis reserves the right to refuse or cancel orders listed at incorrect prices.",
+        "EU Prime Serwis reserves the right to refuse or cancel orders listed at incorrect prices.",
       point3: "Refunds will be processed if payment has already been made."
     },
     heading8: {
@@ -87,7 +87,7 @@ const privacyPolicyData: PrivacyPolicyData = {
       point2: "You may unsubscribe at any time.",
       point3: "We do not sell subscriber data.",
       point4:
-        "External links in bulletins are for information only, and EU Career Serwis is not responsible for third-party content."
+        "External links in bulletins are for information only, and EU Prime Serwis is not responsible for third-party content."
     },
     heading9: {
       title: "Refund Policy",
@@ -136,7 +136,7 @@ const privacyPolicyData: PrivacyPolicyData = {
     },
     heading15: {
       title: "Data Protection & Privacy",
-      point1: "EU Career Serwis follows strict privacy protocols.",
+      point1: "EU Prime Serwis follows strict privacy protocols.",
       point2:
         "Data is used only for service delivery and is never sold to third parties.",
       point3: "We comply with GDPR and Polish data protection laws."
@@ -175,7 +175,7 @@ const privacyPolicyData: PrivacyPolicyData = {
     },
     heading20: {
       title: "Trademark & Legal Protection",
-      point1: "EU Career Serwis, its name, and logo are protected trademarks.",
+      point1: "EU Prime Serwis, its name, and logo are protected trademarks.",
       point2: "Any misuse, imitation, or misrepresentation is prohibited.",
       point3:
         "We actively enforce our rights under Polish, EU, and international law."
