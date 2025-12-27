@@ -77,7 +77,7 @@ export function Navbar() {
             <div className="flex flex-col md:flex-row items-center md:items-center gap-2 text-gray-50">
               <div className="flex items-center pr-2">
                 <a
-                  href="https://www.facebook.com/eucareerserwis/"
+                  href="https://www.facebook.com/euprimeserwis/"
                   aria-label="Facebook"
                   target="_blank"
                   className="hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 py-3"
@@ -86,7 +86,7 @@ export function Navbar() {
                   <Facebook className="h-4 w-4" />
                 </a>
                 <a
-                  href="https://www.instagram.com/eucareerserwis"
+                  href="https://www.instagram.com/euprimeserwis"
                   aria-label="Instagram"
                   target="_blank"
                   className="hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 py-3"
@@ -95,7 +95,7 @@ export function Navbar() {
                   <Instagram className="h-4 w-4" />
                 </a>
                 <a
-                  href="https://x.com/eucareerserwis"
+                  href="https://x.com/euprimeserwis"
                   aria-label="Twitter"
                   target="_blank"
                   className="hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 py-3"
@@ -104,7 +104,7 @@ export function Navbar() {
                   <Twitter className="h-4 w-4" />
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/eu-career-serwis"
+                  href="https://www.linkedin.com/company/euprimeserwis"
                   aria-label="Linkedin"
                   target="_blank"
                   className="hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 py-3"

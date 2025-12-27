@@ -84,31 +84,31 @@ export function ContactContainer() {
     {
       icon: Mail,
       title: "Email",
-      content: ["info@eucareerserwis.pl"],
+      content: ["info@euprimeserwis.pl"],
       color: "from-blue-400 to-blue-500",
-      link: `mailto:info@eucareerserwis.pl`
+      link: `mailto:info@euprimeserwis.pl`
     }
   ];
 
   const socialLinks = [
     {
       icon: Facebook,
-      href: "https://www.facebook.com/eucareerserwis/",
+      href: "https://www.facebook.com/euprimeserwis/",
       color: "hover:bg-blue-400 hover:text-white"
     },
     {
       icon: Twitter,
-      href: "https://x.com/eucareerserwis",
+      href: "https://x.com/euprimeserwis",
       color: "hover:bg-blue-400 hover:text-white"
     },
     {
       icon: Linkedin,
-      href: "https://www.linkedin.com/company/eu-career-serwis",
+      href: "https://www.linkedin.com/company/euprimeserwis/",
       color: "hover:bg-blue-400 hover:text-white"
     },
     {
       icon: Instagram,
-      href: "https://www.instagram.com/eucareerserwis/",
+      href: "https://www.instagram.com/euprimeserwis/",
       color: "hover:bg-blue-400 hover:text-white"
     }
   ];
