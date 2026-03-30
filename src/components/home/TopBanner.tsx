@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { fontPoppins } from "@/fonts";
@@ -29,46 +29,26 @@ const bannerData = [
 ];
 
 export function TopBanner() {
+  const totalSlides = bannerData.length;
   const [currentSlide, setCurrentSlide] = useState(1); // start from index 1 (first real slide)
   const [isHovered, setIsHovered] = useState(false);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
-  const slideRef = useRef<HTMLDivElement>(null);
 
   // Create duplicated slides at start & end
-  const extendedSlides = [
-    bannerData[bannerData.length - 1],
-    ...bannerData,
-    bannerData[0]
-  ];
+  const extendedSlides = [bannerData[totalSlides - 1], ...bannerData, bannerData[0]];
 
   // Auto-advance carousel every 4 seconds
   useEffect(() => {
-    if (!isHovered) {
-      const timer = setInterval(() => {
-        goToNext();
-      }, 4000);
-      return () => clearInterval(timer);
+    if (isHovered || !transitionEnabled) {
+      return;
     }
-  }, [isHovered, currentSlide]); // Added currentSlide dependency
 
-  // Handle transition end for seamless loop
-  useEffect(() => {
-    const handleTransitionEnd = () => {
-      if (currentSlide === 0) {
-        setTransitionEnabled(false);
-        setCurrentSlide(bannerData.length);
-      } else if (currentSlide === bannerData.length + 1) {
-        setTransitionEnabled(false);
-        setCurrentSlide(1);
-      }
-    };
+    const timer = window.setTimeout(() => {
+      setCurrentSlide((prev) => Math.min(prev + 1, totalSlides + 1));
+    }, 4000);
 
-    const track = slideRef.current;
-    track?.addEventListener("transitionend", handleTransitionEnd);
-    return () => {
-      track?.removeEventListener("transitionend", handleTransitionEnd);
-    };
-  }, [currentSlide]);
+    return () => window.clearTimeout(timer);
+  }, [isHovered, transitionEnabled, totalSlides, currentSlide]);
 
   // Re-enable transition after jump
   useEffect(() => {
@@ -83,15 +63,31 @@ export function TopBanner() {
   }, [transitionEnabled]);
 
   const goToPrevious = () => {
-    setCurrentSlide((prev) => prev - 1);
+    setCurrentSlide((prev) => Math.max(prev - 1, 0));
   };
 
   const goToNext = () => {
-    setCurrentSlide((prev) => prev + 1);
+    setCurrentSlide((prev) => Math.min(prev + 1, totalSlides + 1));
   };
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index + 1); // shift by 1 because of extra clone at start
+  };
+
+  const handleTrackTransitionEnd = (
+    event: React.TransitionEvent<HTMLDivElement>
+  ) => {
+    if (event.target !== event.currentTarget || event.propertyName !== "transform") {
+      return;
+    }
+
+    if (currentSlide === 0) {
+      setTransitionEnabled(false);
+      setCurrentSlide(totalSlides);
+    } else if (currentSlide === totalSlides + 1) {
+      setTransitionEnabled(false);
+      setCurrentSlide(1);
+    }
   };
 
   // Helper function to check if a slide should be visible/animated
@@ -104,14 +100,14 @@ export function TopBanner() {
 
     // Handle edge cases for cloned slides
     if (currentSlide === 0) {
-      currentActualIndex = bannerData.length;
-    } else if (currentSlide === bannerData.length + 1) {
+      currentActualIndex = totalSlides;
+    } else if (currentSlide === totalSlides + 1) {
       currentActualIndex = 1;
     }
 
     // For the cloned slides at edges
     if (index === 0) {
-      actualIndex = bannerData.length;
+      actualIndex = totalSlides;
     } else if (index === extendedSlides.length - 1) {
       actualIndex = 1;
     }
@@ -121,9 +117,7 @@ export function TopBanner() {
 
   // Helper to get the real slide index for indicators
   const getRealSlideIndex = () => {
-    if (currentSlide === 0) return bannerData.length - 1;
-    if (currentSlide === bannerData.length + 1) return 0;
-    return currentSlide - 1;
+    return ((currentSlide - 1) % totalSlides + totalSlides) % totalSlides;
   };
 
   return (
@@ -134,7 +128,7 @@ export function TopBanner() {
     >
       {/* Slide Track */}
       <div
-        ref={slideRef}
+        onTransitionEnd={handleTrackTransitionEnd}
         className={`flex w-full h-full ${
           transitionEnabled
             ? "transition-transform duration-1000 ease-in-out"

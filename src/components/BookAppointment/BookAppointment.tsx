@@ -1,32 +1,12 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { RippleButton } from "@/components/ui/ripple-button";
+import React, { useState } from "react";
 import { Calendar, Clock, CheckCircle } from "lucide-react";
 import { fontPoppins } from "@/fonts";
+import Link from "next/link";
 
 export function BookAppointment() {
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const meetings = [
     {
@@ -54,20 +34,12 @@ export function BookAppointment() {
 
   return (
     <div className="min-h-screen bg-white  py-16 px-4">
-      <motion.div
-        className="max-w-7xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      <div className="max-w-7xl mx-auto">
         {/* First Section - Two Information Boxes */}
-        <motion.section className="mb-20" variants={itemVariants}>
+        <section className="mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
             {/* Left Box (Top on mobile) */}
-            <motion.div
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-              whileHover={{ scale: 1.02, y: -5 }}
-            >
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center">
                   <Calendar className="w-6 h-6 text-white" />
@@ -87,13 +59,10 @@ export function BookAppointment() {
                 opportunities, recruitment procedures, and the best steps for
                 your career journey."
               </p>
-            </motion.div>
+            </div>
 
             {/* Right Box (Bottom on mobile) */}
-            <motion.div
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-              whileHover={{ scale: 1.02, y: -5 }}
-            >
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center">
                   <CheckCircle className="w-6 h-6 text-white" />
@@ -113,12 +82,12 @@ export function BookAppointment() {
                 labor market, compliance requirements, and effective hiring
                 strategies."
               </p>
-            </motion.div>
+            </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Second Section - Meeting Booking Cards */}
-        <motion.section variants={itemVariants}>
+        <section>
           {/* Two Column Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
             {/* Left Side - Job Seeker Advisory */}
@@ -134,14 +103,13 @@ export function BookAppointment() {
 
               <div className="space-y-6 max-w-2xl lg:max-w-full mx-auto">
                 {meetings.map((meeting, index) => (
-                  <motion.div
+                  <div
                     key={`job-seeker-${index}`}
-                    className={`relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 ${
+                    className={`relative bg-white rounded-2xl p-6 shadow-lg border-2 ${
                       meeting.popular
                         ? "border-blue-400 ring-4 ring-blue-100 py-10 my-9"
-                        : "border-gray-200 hover:border-blue-400"
+                        : "border-gray-200"
                     }`}
-                    whileHover={{ scale: 1.02, y: -5 }}
                   >
                     {meeting.popular && (
                       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
@@ -193,22 +161,22 @@ export function BookAppointment() {
                         </div>
 
                         {/* Book Button */}
-                        <RippleButton
-                          variant={meeting.popular ? "brand" : "brandOutline"}
-                          size="default"
+                        <button
+                          type="button"
+                          onClick={() => setIsModalOpen(true)}
                           className={`w-28 h-10 text-sm font-semibold rounded-lg transition-all duration-300 ${
                             fontPoppins.className
                           } ${
                             meeting.popular
                               ? "bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white shadow-lg"
-                              : "border-2 border-blue-500 hover:bg-blue-500 hover:text-white"
+                              : "border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
                           }`}
                         >
                           BOOK NOW
-                        </RippleButton>
+                        </button>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -226,14 +194,13 @@ export function BookAppointment() {
 
               <div className="space-y-6 max-w-2xl lg:max-w-full mx-auto">
                 {meetings.map((meeting, index) => (
-                  <motion.div
+                  <div
                     key={`recruitment-${index}`}
-                    className={`relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 ${
+                    className={`relative bg-white rounded-2xl p-6 shadow-lg border-2 ${
                       meeting.popular
                         ? "border-blue-400 ring-4 ring-blue-100 py-10 my-9"
-                        : "border-gray-200 hover:border-blue-400"
+                        : "border-gray-200"
                     }`}
-                    whileHover={{ scale: 1.02, y: -5 }}
                   >
                     {meeting.popular && (
                       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
@@ -285,28 +252,62 @@ export function BookAppointment() {
                         </div>
 
                         {/* Book Button */}
-                        <RippleButton
-                          variant={meeting.popular ? "brand" : "brandOutline"}
-                          size="default"
+                        <button
+                          type="button"
+                          onClick={() => setIsModalOpen(true)}
                           className={`w-28 h-10 text-sm font-semibold rounded-lg transition-all duration-300 ${
                             fontPoppins.className
                           } ${
                             meeting.popular
                               ? "bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white shadow-lg"
-                              : "border-2 border-blue-500 hover:bg-blue-500 hover:text-white"
+                              : "border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
                           }`}
                         >
                           BOOK NOW
-                        </RippleButton>
+                        </button>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
-        </motion.section>
-      </motion.div>
+        </section>
+      </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 px-4">
+          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
+            <h2
+              className={`text-2xl font-bold text-gray-800 ${fontPoppins.className}`}
+            >
+              Booking Update
+            </h2>
+            <p
+              className={`mt-4 text-base leading-7 text-gray-600 ${fontPoppins.className}`}
+            >
+              Hello sir, we are working on this feature, you can go to contact
+              us page and fill the form. Our team will contact you in 4 - 6
+              working days.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className={`rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 ${fontPoppins.className}`}
+              >
+                Close
+              </button>
+              <Link
+                href="/contact"
+                className={`rounded-lg bg-blue-500 px-5 py-2.5 text-center text-sm font-semibold text-white ${fontPoppins.className}`}
+              >
+                Go to Contact Us
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

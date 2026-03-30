@@ -7,7 +7,7 @@ import {
   MapPin,
   Phone,
   Mail,
-  MessageCircleMore
+  MessageCircleMore,
 } from "lucide-react";
 import { fontMontserrat, fontPoppins } from "@/fonts";
 
@@ -30,8 +30,8 @@ const Footer: React.FC = () => {
         { label: "Our Servis", href: "/our-serwis" },
         { label: "Become Partner", href: "/become-partner" },
         { label: "For Employer", href: "/employer" },
-        { label: "Contat Us", href: "/contact" }
-      ]
+        { label: "Contat Us", href: "/contact" },
+      ],
     },
     {
       title: "Testimonials",
@@ -40,23 +40,23 @@ const Footer: React.FC = () => {
         { label: "Immigration News", href: "/immigration-news" },
         { label: "Success Stories", href: "/success-story" },
         { label: "Book Appointment", href: "/book" },
-        { label: "About Us", href: "/about" }
-      ]
-    }
+        { label: "About Us", href: "/about" },
+      ],
+    },
   ];
 
   const socialLinks = [
     { icon: Facebook, href: "#", color: "bg-blue-600 hover:bg-blue-700" },
     { icon: Instagram, href: "#", color: "bg-pink-500 hover:bg-pink-600" },
     { icon: Twitter, href: "#", color: "bg-blue-400 hover:bg-blue-500" },
-    { icon: Linkedin, href: "#", color: "bg-blue-700 hover:bg-blue-800" }
+    { icon: Linkedin, href: "#", color: "bg-blue-700 hover:bg-blue-800" },
   ];
 
   const bottomLinks = [
     { label: "Refund Policy", href: "/refund" },
     { label: "Terms & Condition", href: "/terms" },
     { label: "Anti Fraud Policy", href: "/anti-fraud" },
-    { label: "Privacy Policy", href: "/privacy" }
+    { label: "Privacy Policy", href: "/privacy" },
   ];
 
   return (
@@ -228,7 +228,8 @@ const Footer: React.FC = () => {
             {/* Copyright */}
             <div className="text-center lg:text-right">
               <p className={`text-gray-400 text-sm ${fontPoppins.className}`}>
-                © 2025 www.euprimeserwis.pl - All Rights Reserved.
+                © {new Date().getFullYear()} www.euprimeserwis.pl - All Rights
+                Reserved.
               </p>
             </div>
           </div>
