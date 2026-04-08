@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { fontPoppins } from "@/fonts";
+import { motion, type Variants } from "framer-motion";
 
 const bannerData = [
   {
@@ -27,6 +28,30 @@ const bannerData = [
     description: "Connect with our Work Abroad Experts today."
   }
 ];
+
+const contentContainerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 90
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
+
+const contentItemVariants: Variants = {
+  hidden: {
+    opacity: 0
+  },
+  visible: {
+    opacity: 1
+  }
+};
 
 export function TopBanner() {
   const totalSlides = bannerData.length;
@@ -90,35 +115,13 @@ export function TopBanner() {
     }
   };
 
-  // Helper function to check if a slide should be visible/animated
-  const isSlideActive = (index: number) => {
-    // The actual slide index in the original data
-    let actualIndex = index;
-
-    // Map current position to actual data index
-    let currentActualIndex = currentSlide;
-
-    // Handle edge cases for cloned slides
-    if (currentSlide === 0) {
-      currentActualIndex = totalSlides;
-    } else if (currentSlide === totalSlides + 1) {
-      currentActualIndex = 1;
-    }
-
-    // For the cloned slides at edges
-    if (index === 0) {
-      actualIndex = totalSlides;
-    } else if (index === extendedSlides.length - 1) {
-      actualIndex = 1;
-    }
-
-    return actualIndex === currentActualIndex;
-  };
-
   // Helper to get the real slide index for indicators
   const getRealSlideIndex = () => {
     return ((currentSlide - 1) % totalSlides + totalSlides) % totalSlides;
   };
+
+  const activeBannerIndex = getRealSlideIndex();
+  const activeBanner = bannerData[activeBannerIndex];
 
   return (
     <div
@@ -155,45 +158,50 @@ export function TopBanner() {
                 priority={index <= 2} // Prioritize loading first few slides
               />
             </div>
-
-            {/* Content Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center text-center text-white z-20 px-4 sm:px-6 md:px-8">
-              <div className="w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl">
-                <div
-                  className={`transform transition-all duration-700 delay-200 ${
-                    isSlideActive(index)
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-8 opacity-0"
-                  }`}
-                >
-                  <h3
-                    className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl uppercase tracking-wider mb-2 sm:mb-3 font-medium text-gray-200 ${fontPoppins.className}`}
-                  >
-                    {banner.subtitle}
-                  </h3>
-                  <h1
-                    className={`text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-200 bg-clip-text text-transparent leading-tight ${fontPoppins.className}`}
-                  >
-                    {banner.title}
-                  </h1>
-                  <p
-                    className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 md:mb-8 text-gray-100 leading-relaxed max-w-[280px] sm:max-w-sm md:max-w-lg lg:max-w-2xl mx-auto ${fontPoppins.className}`}
-                  >
-                    {banner.description}
-                  </p>
-                  <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center items-center max-w-sm sm:max-w-md mx-auto">
-                    <button
-                      onClick={() => (window.location.href = "/contact")}
-                      className={`w-fit xs:w-auto bg-gradient-to-r from-blue-300 to-blue-400 hover:from-blue-500 hover:to-blue-600 text-gray-200 font-semibold px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-xs sm:text-sm lg:text-base shadow-lg ${fontPoppins.className}`}
-                    >
-                      Know More
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         ))}
+      </div>
+
+      {/* Content Overlay */}
+      <div className="absolute inset-0 flex items-center justify-center text-center text-white z-20 px-4 sm:px-6 md:px-8 pointer-events-none">
+        <div className="w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl">
+          <motion.div
+            key={`banner-content-${activeBannerIndex}`}
+            variants={contentContainerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.h3
+              variants={contentItemVariants}
+              className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl uppercase tracking-wider mb-2 sm:mb-3 font-medium text-gray-200 ${fontPoppins.className}`}
+            >
+              {activeBanner.subtitle}
+            </motion.h3>
+            <motion.h1
+              variants={contentItemVariants}
+              className={`text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-200 bg-clip-text text-transparent leading-tight ${fontPoppins.className}`}
+            >
+              {activeBanner.title}
+            </motion.h1>
+            <motion.p
+              variants={contentItemVariants}
+              className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 md:mb-8 text-gray-100 leading-relaxed max-w-[280px] sm:max-w-sm md:max-w-lg lg:max-w-2xl mx-auto ${fontPoppins.className}`}
+            >
+              {activeBanner.description}
+            </motion.p>
+            <motion.div
+              variants={contentItemVariants}
+              className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center items-center max-w-sm sm:max-w-md mx-auto pointer-events-auto"
+            >
+              <button
+                onClick={() => (window.location.href = "/contact")}
+                className={`w-fit xs:w-auto bg-gradient-to-r from-blue-300 to-blue-400 hover:from-blue-500 hover:to-blue-600 text-gray-200 font-semibold px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-xs sm:text-sm lg:text-base shadow-lg ${fontPoppins.className}`}
+              >
+                Know More
+              </button>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Navigation Buttons */}
