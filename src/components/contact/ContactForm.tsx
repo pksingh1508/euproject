@@ -2,7 +2,13 @@
 
 import * as React from "react";
 import { useState } from "react";
+import Link from "next/link";
+import Flag from "react-country-flag";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { FormField } from "@/components/ui/form-field";
 import {
   Select,
@@ -11,12 +17,8 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import Flag from "react-country-flag";
 import countryData from "@/constants/countrycode.json";
 import { Button } from "../ui/button";
-import axios from "axios";
-import toast from "react-hot-toast";
-import { fontPoppins } from "@/fonts";
 
 interface CountryCode {
   country: string;
@@ -25,6 +27,7 @@ interface CountryCode {
 }
 
 export function ContactForm() {
+  const termsId = React.useId();
   const [detectedCountry, setDetectedCountry] = useState<CountryCode>(
     countryData.find((c) => c.iso === "US") || countryData[0]
   );
@@ -44,6 +47,9 @@ export function ContactForm() {
           setDetectedCountry(userCountry);
           setSelectedCountry(userCountry);
         }
+      })
+      .catch(() => {
+        // Keep the default country if detection fails.
       });
   }, []);
 
@@ -98,9 +104,7 @@ export function ContactForm() {
     // Set loading to true when starting the API call
     setLoading(true);
 
-    // try to send data to ZOHO CRM
     try {
-      // const res = await axios.post("/api/zoho/submit", {
       const res = await axios.post("/api/contact", {
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -112,23 +116,11 @@ export function ContactForm() {
       });
       if (res.status === 200) {
         clearForm();
-        toast.success("Form submitted successfully", {
-          style: {
-            borderRadius: "10px",
-            background: "#fecc00",
-            color: "#111827"
-          }
-        });
+        toast.success("Form submitted successfully");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Error submitting form", {
-        style: {
-          borderRadius: "10px",
-          background: "#fecc00",
-          color: "#111827"
-        }
-      });
+      toast.error("Error submitting form");
     } finally {
       // Set loading to false when API call completes (success or error)
       setLoading(false);
@@ -136,192 +128,165 @@ export function ContactForm() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-          <FormField label="First Name" required>
-            <div className="font-inter">
-              <Input
-                placeholder="First Name"
-                value={formData.firstName}
-                onChange={(e) => handleInputChange("firstName", e.target.value)}
-                required
-              />
-            </div>
-          </FormField>
-
-          <FormField label="Last Name" required>
-            <div className="font-inter">
-              <Input
-                placeholder="Last Name"
-                value={formData.lastName}
-                onChange={(e) => handleInputChange("lastName", e.target.value)}
-                required
-              />
-            </div>
-          </FormField>
-        </div>
-
-        <FormField label="Email" required>
-          <div className="font-inter">
-            <Input
-              type="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={(e) => handleInputChange("email", e.target.value)}
-              required
-            />
-          </div>
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="grid grid-cols-1 gap-x-4 gap-y-5 sm:grid-cols-2">
+        <FormField label="First Name" required>
+          <Input
+            placeholder="First Name"
+            value={formData.firstName}
+            onChange={(e) => handleInputChange("firstName", e.target.value)}
+            required
+          />
         </FormField>
 
-        <FormField label="Phone Number" required>
-          <div className="font-inter">
-            <div className="flex gap-2 flex-col">
-              <Select
-                value={selectedCountry.iso}
-                onValueChange={(value) => {
-                  const country = countryData.find((c) => c.iso === value);
-                  if (country) setSelectedCountry(country);
-                }}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue>
-                    <div className="flex items-center gap-2">
-                      <Flag
-                        countryCode={selectedCountry.iso}
-                        svg
-                        style={{ width: "16px", height: "12px" }}
-                      />
-                      <span className={`text-sm ${fontPoppins.className}`}>
-                        {selectedCountry.code}
-                      </span>
-                    </div>
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent className="border-2 border-blue-400">
-                  {countryData.map((country) => (
-                    <SelectItem key={country.iso} value={country.iso}>
-                      <div className="flex items-center gap-2">
-                        <Flag
-                          countryCode={country.iso}
-                          svg
-                          style={{ width: "16px", height: "12px" }}
-                        />
-                        <span className={`text-sm ${fontPoppins.className}`}>
-                          {country.code}
-                        </span>
-                        <span
-                          className={`text-xs text-muted-foreground truncate ${fontPoppins.className}`}
-                        >
-                          {country.country.split("(")[0].trim()}
-                        </span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+        <FormField label="Last Name" required>
+          <Input
+            placeholder="Last Name"
+            value={formData.lastName}
+            onChange={(e) => handleInputChange("lastName", e.target.value)}
+            required
+          />
+        </FormField>
+      </div>
 
-              <Input
-                type="tel"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={(e) => handleInputChange("phone", e.target.value)}
-                required
-              />
-            </div>
-          </div>
+      <div className="grid grid-cols-1 gap-x-4 gap-y-5 sm:grid-cols-2">
+        <FormField label="Email" required>
+          <Input
+            type="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={(e) => handleInputChange("email", e.target.value)}
+            required
+          />
         </FormField>
 
         <FormField label="I am" required>
-          <div className="font-inter">
-            <Select
-              value={formData.userType}
-              onValueChange={(value) => handleInputChange("userType", value)}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select Your Role" />
-              </SelectTrigger>
-              <SelectContent className="border-2 border-blue-400">
-                <SelectItem
-                  className={`${fontPoppins.className}`}
-                  value="jobseeker"
-                >
-                  Job Seeker
-                </SelectItem>
-                <SelectItem
-                  className={`${fontPoppins.className}`}
-                  value="BecomePartner"
-                >
-                  Become Partner
-                </SelectItem>
-                <SelectItem
-                  className={`${fontPoppins.className}`}
-                  value="employer"
-                >
-                  Employer
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          <Select
+            value={formData.userType}
+            onValueChange={(value) => handleInputChange("userType", value)}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select Your Role" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="jobseeker">Job Seeker</SelectItem>
+              <SelectItem value="BecomePartner">Become Partner</SelectItem>
+              <SelectItem value="employer">Employer</SelectItem>
+            </SelectContent>
+          </Select>
         </FormField>
+      </div>
 
-        <FormField label="Subject" required>
-          <div className="font-inter">
-            <Input
-              placeholder="Subject"
-              value={formData.subject}
-              onChange={(e) => handleInputChange("subject", e.target.value)}
-              required
-            />
-          </div>
-        </FormField>
+      <FormField label="Phone Number" required>
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <Select
+            value={selectedCountry.iso}
+            onValueChange={(value) => {
+              const country = countryData.find((c) => c.iso === value);
+              if (country) setSelectedCountry(country);
+            }}
+          >
+            <SelectTrigger className="w-full sm:w-36" aria-label="Country code">
+              <SelectValue>
+                <div className="flex items-center gap-2">
+                  <Flag
+                    countryCode={selectedCountry.iso}
+                    svg
+                    style={{ width: "16px", height: "12px", borderRadius: 2 }}
+                  />
+                  <span className="text-sm">{selectedCountry.code}</span>
+                </div>
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              {countryData.map((country) => (
+                <SelectItem key={country.iso} value={country.iso}>
+                  <div className="flex items-center gap-2">
+                    <Flag
+                      countryCode={country.iso}
+                      svg
+                      style={{ width: "16px", height: "12px", borderRadius: 2 }}
+                    />
+                    <span className="text-sm">{country.code}</span>
+                    <span className="truncate text-xs text-muted-foreground">
+                      {country.country.split("(")[0].trim()}
+                    </span>
+                  </div>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
 
-        <FormField label="Message" required>
-          <div className="font-inter">
-            <textarea
-              placeholder="Message"
-              value={formData.message}
-              onChange={(e) => handleInputChange("message", e.target.value)}
-              className={`w-full min-h-[120px] px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 resize-vertical font-inter ${fontPoppins.className}`}
-              required
-            />
-          </div>
-        </FormField>
-
-        <div className="flex items-start gap-3 font-inter">
-          <input
-            type="checkbox"
-            id="acceptTerms"
-            checked={formData.acceptTerms}
-            onChange={(e) => handleInputChange("acceptTerms", e.target.checked)}
-            className="mt-1 h-4 w-4 rounded border-gray-300 text-yellow-400 focus:ring-yellow-400"
+          <Input
+            type="tel"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={(e) => handleInputChange("phone", e.target.value)}
+            className="flex-1"
             required
           />
-          <label
-            htmlFor="acceptTerms"
-            className={`text-sm text-gray-600 dark:text-gray-300 leading-relaxed ${fontPoppins.className}`}
-          >
-            I accept the{" "}
-            <a
-              href={`/terms-and-conditions`}
-              className={`text-yellow-600 hover:text-yellow-700 underline font-medium ${fontPoppins.className}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Terms and Conditions
-            </a>
-          </label>
         </div>
+      </FormField>
 
-        <Button
-          type="submit"
-          disabled={loading}
-          className={`w-full border-2 border-blue-400 text-blue-400 text-[17px] font-montserrat font-semibold cursor-pointer  hover:bg-blue-400 hover:text-white hover:border-blue-400 disabled:opacity-50 disabled:cursor-not-allowed ${fontPoppins.className}`}
-          variant="brandOutline"
-        >
-          {loading ? "Loading" : "Submit"}
-        </Button>
-      </form>
-    </div>
+      <FormField label="Subject" required>
+        <Input
+          placeholder="Subject"
+          value={formData.subject}
+          onChange={(e) => handleInputChange("subject", e.target.value)}
+          required
+        />
+      </FormField>
+
+      <FormField label="Message" required>
+        <Textarea
+          placeholder="Message"
+          value={formData.message}
+          onChange={(e) => handleInputChange("message", e.target.value)}
+          className="min-h-32"
+          required
+        />
+      </FormField>
+
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id={termsId}
+          checked={formData.acceptTerms}
+          onChange={(e) => handleInputChange("acceptTerms", e.target.checked)}
+          className="mt-0.5 size-4 shrink-0 cursor-pointer rounded border-input accent-primary"
+          required
+        />
+        <label htmlFor={termsId} className="text-sm leading-relaxed text-muted-foreground">
+          I accept the{" "}
+          <Link
+            href="/terms"
+            className="font-medium text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Terms and Conditions
+          </Link>
+        </label>
+      </div>
+
+      <Button
+        type="submit"
+        size="lg"
+        disabled={loading}
+        className="group w-full disabled:cursor-not-allowed"
+      >
+        {loading ? (
+          <>
+            <Loader2 className="animate-spin" />
+            Submitting…
+          </>
+        ) : (
+          <>
+            Submit
+            <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+          </>
+        )}
+      </Button>
+    </form>
   );
 }

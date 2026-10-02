@@ -1,11 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Eye, Calendar, ArrowRight } from "lucide-react";
+import { Newspaper } from "lucide-react";
 import { NewsItem } from "@/lib/dbTypes";
-import { fontPoppins } from "@/fonts";
+import { ArticleCard } from "@/components/common/ArticleCard";
 
 interface SingleImmigrationNewsProps {
   news: NewsItem;
@@ -50,97 +47,18 @@ export function SingleImmigrationNews({
     }
   };
 
-  // Animation variants
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0
-    }
-  };
-
-  const newsUrl = `/immigration-news/${data.slug}`;
-
   return (
-    <motion.article
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      className="w-full group"
-    >
-      <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-blue-200">
-        <div className="flex flex-col md:flex-row">
-          {/* Left side - Image */}
-          <div className="md:w-80 md:flex-shrink-0">
-            <div className="relative h-48 md:h-full md:min-h-[200px] overflow-hidden">
-              {data.news_image ? (
-                <Image
-                  src={`${URL}${data.news_image}`}
-                  alt={data.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              ) : (
-                <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <Calendar className="w-8 h-8 mx-auto mb-2" />
-                    <p className="text-sm font-medium">News Image</p>
-                  </div>
-                </div>
-              )}
-
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-            </div>
-          </div>
-
-          {/* Right side - Content */}
-          <div className="flex-1 p-6 md:p-8">
-            {/* Meta information */}
-            <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
-              <div className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4" />
-                <span className={`text-gray-800 ${fontPoppins.className}`}>
-                  {formatDate(data.updatedAt)}
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Eye className="w-4 h-4" />
-                <span className={`text-gray-800 ${fontPoppins.className}`}>
-                  {data.views.toLocaleString()} views
-                </span>
-              </div>
-            </div>
-
-            {/* Title */}
-            <Link href={newsUrl}>
-              <h3
-                className={`text-xl md:text-2xl font-bold text-gray-900 mb-4 line-clamp-2 group-hover:text-blue-500 transition-colors duration-200 cursor-pointer ${fontPoppins.className}`}
-              >
-                {data.title}
-              </h3>
-            </Link>
-
-            {/* Description */}
-            <p
-              className={`text-gray-600 text-base leading-relaxed mb-6 line-clamp-3 ${fontPoppins.className}`}
-            >
-              {data.short_desc}
-            </p>
-
-            {/* Read more link */}
-            <Link href={newsUrl}>
-              <div className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-600 font-semibold text-sm group-hover:gap-3 transition-all duration-200 cursor-pointer">
-                <span className={`${fontPoppins.className}`}>
-                  Read Full Article
-                </span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-              </div>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </motion.article>
+    <ArticleCard
+      href={`/immigration-news/${data.slug}`}
+      title={data.title}
+      excerpt={data.short_desc}
+      image={data.news_image ? `${URL}${data.news_image}` : null}
+      date={formatDate(data.updatedAt)}
+      views={data.views}
+      index={index}
+      ctaLabel="Read Full Article"
+      fallbackIcon={Newspaper}
+      fallbackLabel="News Image"
+    />
   );
 }

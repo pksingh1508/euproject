@@ -1,5 +1,5 @@
 "use client";
-import { fontMontserrat, fontPoppins } from "@/fonts";
+import { LegalList, LegalPage, LegalSection } from "./LegalLayout";
 import React from "react";
 
 interface SubParagraphs {
@@ -217,89 +217,49 @@ const termsData: TermsData = {
   }
 };
 
+const byNumericSuffix =
+  (prefix: string) =>
+  ([a]: [string, unknown], [b]: [string, unknown]) =>
+    parseInt(a.replace(prefix, "")) - parseInt(b.replace(prefix, ""));
+
 export const TermsAndConditions: React.FC = () => {
-  const renderSection = (section: Section, index: number) => {
-    const sectionNumber = index + 1;
-
-    return (
-      <section key={`section-${sectionNumber}`} className="mb-8">
-        <h2
-          className={`text-xl font-semibold text-gray-800 mb-4 ${fontMontserrat.className}`}
-        >
-          {sectionNumber}. {section.title}
-        </h2>
-
-        <div className="space-y-3">
-          {/* Render paragraphs */}
-          {Object.entries(section)
-            .filter(([key, value]) => key.startsWith("paragraph") && value)
-            .sort(([a], [b]) => {
-              const numA = parseInt(a.replace("paragraph", ""));
-              const numB = parseInt(b.replace("paragraph", ""));
-              return numA - numB;
-            })
-            .map(([key, value]) => (
-              <p
-                key={key}
-                className={`text-gray-700 leading-relaxed mb-2 ${fontPoppins.className}`}
-              >
-                {value}
-              </p>
-            ))}
-
-          {/* Render sub-paragraphs as bullet points */}
-          {Object.keys(section.subParagraphs).length > 0 && (
-            <ul className="ml-6 space-y-1 mt-3">
-              {Object.entries(section.subParagraphs)
-                .sort(([a], [b]) => {
-                  const numA = parseInt(a.replace("subParagraph", ""));
-                  const numB = parseInt(b.replace("subParagraph", ""));
-                  return numA - numB;
-                })
-                .map(([key, value]) => (
-                  <li
-                    key={key}
-                    className={`text-gray-700 list-disc ${fontPoppins.className}`}
-                  >
-                    {value}
-                  </li>
-                ))}
-            </ul>
-          )}
-        </div>
-      </section>
-    );
-  };
-
   const sections = Object.entries(termsData.termsAndConditions)
     .filter(
       ([key, value]) => key.startsWith("heading") && typeof value === "object"
     )
-    .sort(([a], [b]) => {
-      const numA = parseInt(a.replace("heading", ""));
-      const numB = parseInt(b.replace("heading", ""));
-      return numA - numB;
-    })
-    .map(([key, value]) => value as Section);
+    .sort(byNumericSuffix("heading"))
+    .map(([, value]) => value as Section);
 
   return (
-    <div className="min-h-screen bg-white py-12 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Main Heading */}
-        <div className="text-center mb-12">
-          <h1
-            className={`text-3xl font-bold text-gray-900 mb-2 ${fontPoppins.className}`}
-          >
-            {termsData.termsAndConditions.mainHeading}
-          </h1>
-          <div className="w-24 h-2 bg-blue-500 rounded-full mx-auto"></div>
-        </div>
+    <LegalPage
+      title={termsData.termsAndConditions.mainHeading}
+      crumb="Terms & Conditions"
+    >
+      {sections.map((section, index) => {
+        const paragraphs = Object.entries(section)
+          .filter(([key, value]) => key.startsWith("paragraph") && value)
+          .sort(byNumericSuffix("paragraph"))
+          .map(([key, value]) => <p key={key}>{value as string}</p>);
 
-        {/* Sections */}
-        <div className="prose prose-gray max-w-none">
-          {sections.map((section, index) => renderSection(section, index))}
-        </div>
-      </div>
-    </div>
+        const subParagraphs = Object.entries(section.subParagraphs)
+          .sort(byNumericSuffix("subParagraph"))
+          .map(([, value]) => value);
+
+        return (
+          <LegalSection
+            key={section.title}
+            number={index + 1}
+            title={section.title}
+          >
+            {paragraphs}
+            {subParagraphs.length > 0 && (
+              <div className="pt-1">
+                <LegalList items={subParagraphs} />
+              </div>
+            )}
+          </LegalSection>
+        );
+      })}
+    </LegalPage>
   );
 };

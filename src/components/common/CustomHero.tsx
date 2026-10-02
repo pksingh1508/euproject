@@ -1,10 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { fontInter, fontMontserrat } from "@/fonts";
-import { RippleButton } from "@/components/ui/ripple-button";
-import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { ArrowUpRight, ImageIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { SectionHeading } from "./SectionHeading";
+import { ParallaxImage } from "@/components/motion/ParallaxImage";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 interface ButtonData {
   text: string;
@@ -22,6 +24,7 @@ interface ButtonData {
 
 interface CustomHeroProps {
   heading: string;
+  eyebrow?: string;
   paragraph1: string;
   paragraph2: string;
   buttons: ButtonData[];
@@ -32,6 +35,7 @@ interface CustomHeroProps {
 
 export function CustomHero({
   heading,
+  eyebrow,
   paragraph1,
   paragraph2,
   buttons,
@@ -40,114 +44,83 @@ export function CustomHero({
   imageAlt = "Hero image"
 }: CustomHeroProps) {
   const router = useRouter();
+  const paragraphs = [paragraph1, paragraph2].filter(Boolean);
 
   const handleButtonClick = () => {
     router.push(`/contact`);
   };
 
   return (
-    <section className="py-16 xl:py-20 bg-white">
-      <div className="container mx-auto max-w-7xl px-4 md:px-8">
-        <div
-          className={cn(
-            "grid lg:grid-cols-2 gap-8 lg:gap-12 ",
-            isReversed ? "lg:grid-flow-col-dense" : ""
-          )}
-        >
-          {/* Content Section */}
-          <div
-            className={cn(
-              "space-y-6",
-              isReversed ? "lg:order-2" : "lg:order-1"
-            )}
-          >
-            {/* Heading */}
-            <h1
-              className={cn(
-                "text-2xl font-bold text-gray-800 leading-tight",
-                fontMontserrat.className
-              )}
-            >
-              {heading}
-            </h1>
+    <section className="relative overflow-x-clip py-16 lg:py-24">
+      <div className="page-container">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          {/* Content */}
+          <div className={cn(isReversed ? "lg:order-2" : "lg:order-1")}>
+            <SectionHeading eyebrow={eyebrow} title={heading} />
 
-            {/* Paragraphs */}
-            <div className="space-y-2">
-              <p
-                className={cn(
-                  "text-base text-gray-600 leading-relaxed",
-                  fontInter.className
-                )}
-              >
-                {paragraph1}
-              </p>
-
-              <p
-                className={cn(
-                  "text-base text-gray-600 leading-relaxed",
-                  fontInter.className
-                )}
-              >
-                {paragraph2}
-              </p>
-            </div>
-
-            {/* Buttons Grid */}
-            <div className="pt-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {buttons.slice(0, 20).map((button, index) => (
-                  <RippleButton
-                    key={index}
-                    variant={button.variant || "brandOutline"}
-                    onClick={button.onClick || handleButtonClick}
-                    className={cn(
-                      "h-10 text-sm sm:text-base font-medium transition-all duration-200",
-                      "border-blue-400 text-blue-500 hover:bg-blue-400 hover:text-white",
-                      "focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 cursor-pointer",
-                      fontInter.className
-                    )}
-                  >
-                    {button.text}
-                  </RippleButton>
+            {paragraphs.length > 0 && (
+              <Stagger className="mt-6 space-y-4" delay={0.1}>
+                {paragraphs.map((paragraph, i) => (
+                  <StaggerItem key={i}>
+                    <p className="max-w-[62ch] text-[15.5px] leading-[1.85] text-muted-foreground">
+                      {paragraph}
+                    </p>
+                  </StaggerItem>
                 ))}
-              </div>
-            </div>
+              </Stagger>
+            )}
+
+            {buttons.length > 0 && (
+              <Stagger
+                stagger={0.05}
+                delay={0.15}
+                className="mt-9 grid grid-cols-1 gap-3 sm:grid-cols-2"
+              >
+                {buttons.slice(0, 20).map((button, index) => (
+                  <StaggerItem key={index} blur={false} y={14}>
+                    <button
+                      type="button"
+                      onClick={button.onClick || handleButtonClick}
+                      className="group flex w-full items-center justify-between gap-3 rounded-2xl border border-border bg-card px-5 py-3.5 text-left text-[14.5px] font-medium text-foreground/85 shadow-soft transition-all duration-400 ease-premium hover:-translate-y-0.5 hover:border-primary/35 hover:text-foreground hover:shadow-elevated active:translate-y-0"
+                    >
+                      <span>{button.text}</span>
+                      <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors duration-400 group-hover:bg-primary group-hover:text-primary-foreground">
+                        <ArrowUpRight
+                          className="size-3.5 transition-transform duration-400 ease-premium group-hover:rotate-45"
+                          strokeWidth={2}
+                        />
+                      </span>
+                    </button>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            )}
           </div>
 
-          {/* Image Section */}
+          {/* Image */}
           <div
-            className={cn("relative", isReversed ? "lg:order-1" : "lg:order-2")}
+            className={cn(
+              "relative",
+              isReversed ? "lg:order-1" : "lg:order-2"
+            )}
           >
+            <div
+              aria-hidden
+              className={cn(
+                "absolute -bottom-10 -z-10 size-64 rounded-full bg-primary/10 blur-3xl",
+                isReversed ? "-right-10" : "-left-10"
+              )}
+            />
             {imageSrc ? (
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                <img
-                  src={imageSrc}
-                  alt={imageAlt}
-                  className="w-full h-[600px] object-cover"
-                />
-              </div>
+              <ParallaxImage
+                src={imageSrc}
+                alt={imageAlt}
+                className="aspect-[4/3] w-full lg:aspect-[5/6]"
+              />
             ) : (
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-gradient-to-br from-yellow-100 to-yellow-200 aspect-[4/3] flex items-center justify-center">
-                <div className="text-center space-y-4 p-8">
-                  <div className="w-16 h-16 bg-yellow-400 rounded-full mx-auto flex items-center justify-center">
-                    <svg
-                      className="w-8 h-8 text-black"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <p
-                    className={cn("text-gray-600 text-lg", fontInter.className)}
-                  >
-                    Image Placeholder
-                  </p>
-                </div>
+              <div className="flex aspect-[4/3] flex-col items-center justify-center gap-4 rounded-3xl border border-border bg-muted text-muted-foreground lg:aspect-[5/6]">
+                <ImageIcon className="size-10 opacity-60" strokeWidth={1.25} />
+                <p className="text-sm">Image Placeholder</p>
               </div>
             )}
           </div>

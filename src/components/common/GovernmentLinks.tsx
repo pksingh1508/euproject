@@ -2,13 +2,14 @@
 
 import * as React from "react";
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
   CarouselItem
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import { fontPoppins } from "@/fonts";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "@/components/motion/Reveal";
 
 interface GovernmentLink {
   name: string;
@@ -16,6 +17,51 @@ interface GovernmentLink {
   url: string;
   alt: string;
 }
+
+const governmentLinks: GovernmentLink[] = [
+  {
+    name: "Ministry of Foreign Affairs",
+    logo: "/960px-Ministerstwo_Spraw_Zagranicznych_logo_2022.png",
+    url: "https://www.gov.pl/web/dyplomacja",
+    alt: "Ministry of Foreign Affairs Republic of Poland"
+  },
+  {
+    name: "Council of Ministers",
+    logo: "/Logo-kprm.png",
+    url: "https://www.gov.pl/web/premier",
+    alt: "Council of Ministers Republic of Poland"
+  },
+  {
+    name: "National Bank of Poland",
+    logo: "/Narodowy_Bank_Polski_logo_and_wordmark.png",
+    url: "https://www.nbp.pl/",
+    alt: "National Bank of Poland"
+  },
+  {
+    name: "European Union",
+    logo: "/europeanUnion.png",
+    url: "https://european-union.europa.eu/index_en",
+    alt: "National Bank of Poland"
+  },
+  {
+    name: "Statistics Poland",
+    logo: "/static.png",
+    url: "https://stat.gov.pl/en/",
+    alt: "Statistics Poland"
+  },
+  {
+    name: "Statistics Poland",
+    logo: "/govlink.png",
+    url: "https://www.santander.pl/klient-indywidualny",
+    alt: "Statistics Poland"
+  },
+  {
+    name: "Statistics Poland",
+    logo: "/govlink2.png",
+    url: "https://nbp.pl/",
+    alt: "Statistics Poland"
+  }
+];
 
 export function GovernmentLinks() {
   const plugin = React.useRef(
@@ -26,112 +72,58 @@ export function GovernmentLinks() {
     })
   );
 
-  const governmentLinks: GovernmentLink[] = [
-    {
-      name: "Ministry of Foreign Affairs",
-      logo: "/960px-Ministerstwo_Spraw_Zagranicznych_logo_2022.png",
-      url: "https://www.gov.pl/web/dyplomacja",
-      alt: "Ministry of Foreign Affairs Republic of Poland"
-    },
-    {
-      name: "Council of Ministers",
-      logo: "/Logo-kprm.png",
-      url: "https://www.gov.pl/web/premier",
-      alt: "Council of Ministers Republic of Poland"
-    },
-    {
-      name: "National Bank of Poland",
-      logo: "/Narodowy_Bank_Polski_logo_and_wordmark.png",
-      url: "https://www.nbp.pl/",
-      alt: "National Bank of Poland"
-    },
-    {
-      name: "European Union",
-      logo: "/europeanUnion.png",
-      url: "https://european-union.europa.eu/index_en",
-      alt: "National Bank of Poland"
-    },
-    {
-      name: "Statistics Poland",
-      logo: "/static.png",
-      url: "https://stat.gov.pl/en/",
-      alt: "Statistics Poland"
-    },
-    {
-      name: "Statistics Poland",
-      logo: "/govlink.png",
-      url: "https://www.santander.pl/klient-indywidualny",
-      alt: "Statistics Poland"
-    },
-    {
-      name: "Statistics Poland",
-      logo: "/govlink2.png",
-      url: "https://nbp.pl/",
-      alt: "Statistics Poland"
-    }
-  ];
-
-  const handleLinkClick = (url: string) => {
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
-
   return (
-    <div className="w-full bg-white pt-16 pb-10">
-      <div className="container mx-auto max-w-7xl px-4">
-        {/* Title */}
-        <div className="text-center mb-12">
-          <h2
-            className={`text-3xl lg:text-4xl font-bold font-poppins text-gray-900 mb-4 ${fontPoppins.className}`}
-          >
-            Government of Poland: Useful Links
-          </h2>
-          <div className="w-16 h-1 bg-blue-500 mx-auto"></div>
-        </div>
+    <section className="relative py-16 lg:py-24">
+      <div className="page-container">
+        <SectionHeading
+          align="center"
+          eyebrow="Official resources"
+          title="Government of Poland: Useful Links"
+          highlight="Useful Links"
+        />
 
-        {/* Government Links Carousel */}
-        <Carousel
-          plugins={[plugin.current]}
-          className="w-full max-w-6xl mx-auto"
-          opts={{
-            align: "start",
-            loop: true
-          }}
-        >
-          <CarouselContent className="-ml-2 md:-ml-4">
-            {governmentLinks.map((link, index) => (
-              <CarouselItem
-                key={index}
-                className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3"
-              >
-                <div
-                  onClick={() => handleLinkClick(link.url)}
-                  className="flex justify-center items-center p-6 lg:p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200 h-32"
+        <Reveal blur={false} distance={28} className="mt-12">
+          <Carousel
+            plugins={[plugin.current]}
+            className="mask-fade-x mx-auto w-full max-w-6xl"
+            opts={{
+              align: "start",
+              loop: true
+            }}
+          >
+            <CarouselContent className="-ml-4 py-3">
+              {governmentLinks.map((link, index) => (
+                <CarouselItem
+                  key={index}
+                  className="basis-1/2 pl-4 sm:basis-1/3 lg:basis-1/4"
                 >
-                  <div className="relative w-full h-20 flex items-center justify-center">
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.alt}
+                    className="group flex h-32 items-center justify-center rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-500 ease-premium hover:-translate-y-1 hover:border-primary/25 hover:shadow-elevated dark:border-transparent dark:bg-[oklch(0.88_0.008_85)] lg:p-8"
+                  >
                     <Image
                       src={link.logo}
                       alt={link.alt}
                       width={200}
                       height={80}
-                      className="max-w-full max-h-full object-contain filter hover:brightness-110 transition-all duration-300"
-                      priority={index < 3}
+                      className="max-h-16 w-auto max-w-full object-contain opacity-75 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0"
                     />
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+                  </a>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </Reveal>
 
-        {/* Additional Info */}
-        <div className="text-center mt-8">
-          <p
-            className={`text-sm font-inter text-gray-600 ${fontPoppins.className}`}
-          >
+        <Reveal className="mt-8 text-center">
+          <p className="text-sm text-muted-foreground">
             Click on any logo to visit the official government website
           </p>
-        </div>
+        </Reveal>
       </div>
-    </div>
+    </section>
   );
 }

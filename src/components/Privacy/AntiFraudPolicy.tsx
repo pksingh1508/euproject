@@ -1,4 +1,4 @@
-import { fontMontserrat, fontPoppins } from "@/fonts";
+import { LegalList, LegalPage, LegalSection } from "./LegalLayout";
 import React from "react";
 
 interface SubSection {
@@ -148,106 +148,51 @@ const antiFraudData: AntiFraudData = {
   }
 };
 
+const byNumericSuffix =
+  (prefix: string) =>
+  ([a]: [string, unknown], [b]: [string, unknown]) =>
+    parseInt(a.replace(prefix, "")) - parseInt(b.replace(prefix, ""));
+
 const AntiFraudPolicy: React.FC = () => {
-  const renderSection = (section: Section, index: number) => {
-    const sectionNumber = index + 1;
-
-    return (
-      <section key={`section-${sectionNumber}`} className="mb-8">
-        <h2
-          className={`text-xl font-semibold text-gray-800 mb-4 ${fontMontserrat.className}`}
-        >
-          {sectionNumber}. {section.title}
-        </h2>
-
-        <div className="space-y-3">
-          {/* Render paragraph1 */}
-          {section.paragraph1 && (
-            <p
-              className={`text-gray-700 leading-relaxed mb-2 ${fontPoppins.className}`}
-            >
-              {section.paragraph1}
-            </p>
-          )}
-
-          {/* Render paragraph2 */}
-          {section.paragraph2 && (
-            <p
-              className={`text-gray-700 leading-relaxed mb-2 ${fontPoppins.className}`}
-            >
-              {section.paragraph2}
-            </p>
-          )}
-
-          {/* Render paragraph3 - can be either string or SubSection */}
-          {section.paragraph3 && (
-            <>
-              {typeof section.paragraph3 === "string" ? (
-                <p
-                  className={`text-gray-700 leading-relaxed mb-2 ${fontPoppins.className}`}
-                >
-                  {section.paragraph3}
-                </p>
-              ) : (
-                <div className="mt-4">
-                  <h3
-                    className={`text-lg font-medium text-gray-800 mb-2 ${fontPoppins.className}`}
-                  >
-                    {section.paragraph3.subTitle}
-                  </h3>
-                  <ul className="ml-6 space-y-1">
-                    <li
-                      className={`text-gray-700 list-disc ${fontPoppins.className}`}
-                    >
-                      {section.paragraph3.subPara1}
-                    </li>
-                    {section.paragraph3.subPara2 && (
-                      <li
-                        className={`text-gray-700 list-disc ${fontPoppins.className}`}
-                      >
-                        {section.paragraph3.subPara2}
-                      </li>
-                    )}
-                  </ul>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      </section>
-    );
-  };
-
   const sections = Object.entries(antiFraudData.antiFraudPolicy)
     .filter(
       ([key, value]) => key.startsWith("heading") && typeof value === "object"
     )
-    .sort(([a], [b]) => {
-      const numA = parseInt(a.replace("heading", ""));
-      const numB = parseInt(b.replace("heading", ""));
-      return numA - numB;
-    })
-    .map(([key, value]) => value as Section);
+    .sort(byNumericSuffix("heading"))
+    .map(([, value]) => value as Section);
 
   return (
-    <div className="min-h-screen bg-white py-12 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Main Heading */}
-        <div className="text-center mb-12">
-          <h1
-            className={`text-3xl font-bold text-gray-900 mb-2 ${fontPoppins.className}`}
-          >
-            {antiFraudData.antiFraudPolicy.mainHeading}
-          </h1>
-          <div className="w-24 h-2 bg-blue-500 rounded-full mx-auto"></div>
-        </div>
-
-        {/* Sections */}
-        <div className="prose prose-gray max-w-none">
-          {sections.map((section, index) => renderSection(section, index))}
-        </div>
-      </div>
-    </div>
+    <LegalPage
+      title={antiFraudData.antiFraudPolicy.mainHeading}
+      crumb="Anti Fraud Policy"
+    >
+      {sections.map((section, index) => (
+        <LegalSection
+          key={section.title}
+          number={index + 1}
+          title={section.title}
+        >
+          {section.paragraph1 && <p>{section.paragraph1}</p>}
+          {section.paragraph2 && <p>{section.paragraph2}</p>}
+          {section.paragraph3 &&
+            (typeof section.paragraph3 === "string" ? (
+              <p>{section.paragraph3}</p>
+            ) : (
+              <div className="pt-2">
+                <h3 className="mb-3 text-base font-semibold text-foreground">
+                  {section.paragraph3.subTitle}
+                </h3>
+                <LegalList
+                  items={[
+                    section.paragraph3.subPara1,
+                    section.paragraph3.subPara2
+                  ].filter(Boolean)}
+                />
+              </div>
+            ))}
+        </LegalSection>
+      ))}
+    </LegalPage>
   );
 };
 

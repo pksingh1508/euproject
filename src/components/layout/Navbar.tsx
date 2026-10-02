@@ -1,274 +1,290 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { NAVBAR_LINKS } from "@/constants/data";
-import {
-  Globe,
-  Phone,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin
-} from "lucide-react";
-import { colors } from "@/constants/color";
-import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { fontInter, fontMontserrat, fontRoboto } from "@/fonts";
+import { usePathname } from "next/navigation";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll
+} from "framer-motion";
+import { ArrowUpRight, BadgeCheck, Phone } from "lucide-react";
+import { NAVBAR_LINKS } from "@/constants/data";
+import { CONTACT, SOCIAL_LINKS } from "@/constants/site";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { EASE_OUT, SPRING_SOFT, staggerContainer } from "@/lib/motion";
+
+const drawerItem = {
+  hidden: { opacity: 0, x: -12 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: EASE_OUT } }
+};
 
 export function Navbar() {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [hovered, setHovered] = React.useState<string | null>(null);
+  const { scrollY } = useScroll();
 
-  // Helper function to check if a link is active
+  useMotionValueEvent(scrollY, "change", (y) => setIsScrolled(y > 48));
+
+  // Close the mobile drawer on navigation and on Escape.
+  React.useEffect(() => setIsOpen(false), [pathname]);
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen]);
+
   const isActive = (href: string) => {
-    if (href === "/") {
-      return pathname === "/" || pathname === "/home"; // in case Home is mapped differently
-    }
+    if (href === "/") return pathname === "/" || pathname === "/home";
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 10);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const activeHref =
+    NAVBAR_LINKS.map((l) => `/${l.href}`).find((href) => isActive(href)) ??
+    null;
+  const pillHref = hovered ?? activeHref;
 
   return (
-    <nav
-      className={`bg-white sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "shadow-lg backdrop-blur-sm bg-white/95" : ""
-      }`}
-    >
-      {/* Top bar - hide when scrolling */}
-      <div
-        className={`transition-all duration-300 overflow-hidden bg-[#1877f2] ${
-          isScrolled ? "max-h-0 opacity-0" : "max-h-[170px] opacity-100"
-        }`}
-      >
-        <div className="container mx-auto px-4 text-sm bg-[#1877f2] max-w-7xl">
-          <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between">
-            {/* Phone numbers - stack on small screens */}
-            <div className="flex flex-row md:items-center gap-1 pt-1 text-gray-50">
-              <a
-                href="tel:+48222095497"
-                className={`inline-flex text-[12px] md:text-base items-center gap-2 hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] ${fontRoboto.className}`}
-                style={{ ["--hover-bg" as any]: colors.yellow.dark }}
-              >
-                <Phone className="md:h-4 md:w-4 h-3 w-3" /> +48 888 620 222
-              </a>
-              <a
-                href="tel:+48726635666"
-                className={`inline-flex text-[12px] md:text-base items-center gap-2 hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 ${fontRoboto.className}`}
-                style={{ ["--hover-bg" as any]: colors.yellow.dark }}
-              >
-                <Phone className="md:h-4 md:w-4 h-3 w-3" /> +48 886 886 816
-              </a>
-            </div>
+    <>
+      {/* Utility bar — scrolls away with the page */}
+      <div className="relative z-40 bg-navy text-navy-foreground">
+        <div className="page-container flex items-center justify-center gap-4 py-2 text-[12.5px] sm:justify-between">
+          <div className="flex items-center gap-4 text-navy-muted">
+            {CONTACT.phones.map((phone, i) => (
+              <React.Fragment key={phone.href}>
+                {i > 0 && <span aria-hidden className="h-3 w-px bg-white/15" />}
+                <a
+                  href={phone.href}
+                  className="inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-navy-foreground"
+                >
+                  <Phone className="size-3.5" strokeWidth={1.75} />
+                  {phone.label}
+                </a>
+              </React.Fragment>
+            ))}
+          </div>
 
-            {/* Social icons and buttons - stack on small screens */}
-            <div className="flex flex-col md:flex-row items-center md:items-center gap-2 text-gray-50">
-              <div className="flex items-center pr-2">
+          <div className="hidden items-center gap-3 sm:flex">
+            <div className="flex items-center gap-0.5">
+              {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
                 <a
-                  href="https://www.facebook.com/euprimeserwis/"
-                  aria-label="Facebook"
+                  key={label}
+                  href={href}
                   target="_blank"
-                  className="hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 py-3"
-                  style={{ ["--hover-bg" as any]: colors.yellow.dark }}
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="inline-flex size-7 items-center justify-center rounded-full text-navy-muted transition-colors duration-300 hover:bg-white/10 hover:text-navy-foreground"
                 >
-                  <Facebook className="h-4 w-4" />
+                  <Icon className="size-3.5" strokeWidth={1.75} />
                 </a>
-                <a
-                  href="https://www.instagram.com/euprimeserwis"
-                  aria-label="Instagram"
-                  target="_blank"
-                  className="hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 py-3"
-                  style={{ ["--hover-bg" as any]: colors.yellow.dark }}
-                >
-                  <Instagram className="h-4 w-4" />
-                </a>
-                <a
-                  href="https://x.com/euprimeserwis"
-                  aria-label="Twitter"
-                  target="_blank"
-                  className="hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 py-3"
-                  style={{ ["--hover-bg" as any]: colors.yellow.dark }}
-                >
-                  <Twitter className="h-4 w-4" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/euprimeserwis"
-                  aria-label="Linkedin"
-                  target="_blank"
-                  className="hover:text-gray-300 transition-colors hover:bg-[var(--hover-bg)] px-2.5 py-3"
-                  style={{ ["--hover-bg" as any]: colors.yellow.dark }}
-                >
-                  <Linkedin className="h-4 w-4" />
-                </a>
-              </div>
-              <div className="flex gap-2 mt-[3px] md:mt-0">
-                <Button
-                  asChild
-                  variant="secondary"
-                  className={`bg-[#1877f2] text-gray-50 hover:border-1 hover:border-gray-300 inline-flex hover:bg-[var(--hover-bg)] hover:text-gray-50 border-[var(--hover-bg)] ${
-                    fontMontserrat.className
-                  } ${isActive("/book") ? "bg-white text-black" : ""}`}
-                  style={{
-                    ["--hover-bg" as any]: colors.yellow.DEFAULT
-                  }}
-                >
-                  <Link href={`/book`}>Book Appointment</Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="secondary"
-                  className={`bg-[#1877f2] text-gray-50 hover:border-1 hover:border-gray-300 inline-flex hover:bg-[var(--hover-bg)] hover:text-gray-50 border-[var(--hover-bg)] ${
-                    fontMontserrat.className
-                  } ${
-                    isActive("/company-certificate")
-                      ? "bg-white text-black"
-                      : ""
-                  }`}
-                  style={{
-                    ["--hover-bg" as any]: colors.yellow.DEFAULT
-                  }}
-                >
-                  <Link href={`/company-certificate`}>Certificate</Link>
-                </Button>
-              </div>
+              ))}
             </div>
+            <span aria-hidden className="h-4 w-px bg-white/15" />
+            <Link
+              href="/company-certificate"
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-[12px] font-medium transition-colors duration-300",
+                isActive("/company-certificate")
+                  ? "bg-navy-foreground text-navy"
+                  : "bg-white/[0.07] text-navy-foreground/90 hover:bg-white/[0.14]"
+              )}
+            >
+              <BadgeCheck className="size-3.5" strokeWidth={1.75} />
+              Certificate
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar - fixed when scrolling */}
-      <div
-        className={`border-b sticky top-0 transition-all duration-300 ${
-          isScrolled ? "shadow-lg backdrop-blur-sm bg-white/95" : "bg-white"
-        }`}
+      {/* Main bar — sticky, turns to frosted glass on scroll */}
+      <header
+        className={cn(
+          "sticky top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-500 ease-premium",
+          isScrolled || isOpen
+            ? "border-border/70 bg-background/80 shadow-soft backdrop-blur-xl backdrop-saturate-150"
+            : "border-transparent bg-background"
+        )}
       >
-        <div className="max-w-7xl w-full mx-auto">
-          <div className="container mx-auto px-4 flex items-center">
-            {/* Logo and nav links in one flex container */}
-            <div className="flex flex-1 items-center justify-between">
-              {/* Logo */}
-              <Link href={`/`} className="flex items-center gap-3">
-                <motion.div>
-                  <Image
-                    src="/mylogo.png"
-                    alt="EU Prime Serwis"
-                    width={150}
-                    height={50}
-                    className="h-20 w-44 p-1"
-                  />
-                </motion.div>
-              </Link>
+        <div className="page-container flex h-[72px] items-center justify-between gap-6 lg:h-20">
+          <Link
+            href="/"
+            aria-label="EU Prime Serwis — home"
+            className="shrink-0 transition-opacity duration-300 hover:opacity-90"
+          >
+            <Image
+              src="/mylogo.png"
+              alt="EU Prime Serwis"
+              width={207}
+              height={100}
+              priority
+              className="h-11 w-auto lg:h-12"
+            />
+          </Link>
 
-              {/* Links - show from xl and up, next to logo */}
-              <div className="hidden xl:flex items-center ml-8 gap-2">
+          <nav
+            aria-label="Main"
+            className="hidden items-center gap-0.5 xl:flex"
+            onMouseLeave={() => setHovered(null)}
+          >
+            {NAVBAR_LINKS.map((item) => {
+              const href = `/${item.href}`;
+              const active = isActive(href);
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  aria-current={active ? "page" : undefined}
+                  onMouseEnter={() => setHovered(href)}
+                  onFocus={() => setHovered(href)}
+                  onBlur={() => setHovered(null)}
+                  className={cn(
+                    "relative rounded-full px-3.5 py-2 text-[14px] font-medium transition-colors duration-300",
+                    active ? "text-primary" : "text-foreground/70 hover:text-foreground"
+                  )}
+                >
+                  {pillHref === href && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      transition={SPRING_SOFT}
+                      className={cn(
+                        "absolute inset-0 rounded-full",
+                        active && !hovered ? "bg-primary/10" : "bg-accent"
+                      )}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <Link
+              href="/book"
+              className={cn(
+                buttonVariants({ size: "sm" }),
+                "hidden sm:inline-flex",
+                isActive("/book") && "ring-4 ring-primary/15"
+              )}
+            >
+              Book Appointment
+            </Link>
+            <ThemeToggle />
+            <button
+              type="button"
+              className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/70 text-foreground/80 transition-colors duration-300 hover:text-foreground xl:hidden"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setIsOpen((prev) => !prev)}
+            >
+              <span className="relative block h-2.5 w-[18px]">
+                <motion.span
+                  className="absolute inset-x-0 top-0 h-[1.5px] rounded-full bg-current"
+                  animate={isOpen ? { y: 4.25, rotate: 45 } : { y: 0, rotate: 0 }}
+                  transition={{ duration: 0.35, ease: EASE_OUT }}
+                />
+                <motion.span
+                  className="absolute inset-x-0 bottom-0 h-[1.5px] rounded-full bg-current"
+                  animate={isOpen ? { y: -4.25, rotate: -45 } : { y: 0, rotate: 0 }}
+                  transition={{ duration: 0.35, ease: EASE_OUT }}
+                />
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile drawer */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              id="mobile-menu"
+              key="mobile-menu"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.45, ease: EASE_OUT }}
+              className="overflow-hidden border-t border-border/70 xl:hidden"
+            >
+              <motion.nav
+                aria-label="Mobile"
+                data-lenis-prevent
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={staggerContainer(0.04, 0.06)}
+                className="page-container flex max-h-[calc(100svh-7rem)] flex-col gap-1 overflow-y-auto py-5"
+              >
                 {NAVBAR_LINKS.map((item) => {
+                  const href = `/${item.href}`;
+                  const active = isActive(href);
                   return (
-                    <motion.div key={item.href} whileHover={{ y: -2 }}>
+                    <motion.div key={href} variants={drawerItem}>
                       <Link
-                        href={`/${item.href}`}
-                        className={`text-gray-700 transition-colors rounded-md px-2 py-2 hover:bg-[var(--hover-bg)] hover:text-gray-50 hover:shadow-lg ${
-                          fontInter.className
-                        } font-medium ${
-                          isActive(`/${item.href}`)
-                            ? "bg-[var(--active-bg)] text-white shadow-lg"
-                            : ""
-                        }`}
-                        style={{
-                          ["--hover-bg" as any]: colors.yellow.dark,
-                          ["--active-bg" as any]: colors.yellow.DEFAULT
-                        }}
+                        href={href}
+                        aria-current={active ? "page" : undefined}
+                        onClick={() => setIsOpen(false)}
+                        className={cn(
+                          "flex items-center justify-between rounded-xl px-4 py-3 text-[15px] font-medium transition-colors duration-300",
+                          active
+                            ? "bg-primary/10 text-primary"
+                            : "text-foreground/80 hover:bg-accent hover:text-foreground"
+                        )}
                       >
                         {item.label}
+                        <ArrowUpRight className="size-4 opacity-40" strokeWidth={1.75} />
                       </Link>
                     </motion.div>
                   );
                 })}
-              </div>
 
-              {/* Mobile toggle button */}
-              <div className="xl:hidden flex items-center">
-                <button
-                  type="button"
-                  className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-[#1877f2]"
-                  aria-label="Toggle navigation menu"
-                  aria-expanded={isOpen}
-                  onClick={() => setIsOpen((prev) => !prev)}
+                <motion.div
+                  variants={drawerItem}
+                  className="mt-3 grid grid-cols-1 gap-2 border-t border-border/70 pt-4 sm:grid-cols-2"
                 >
-                  <svg
-                    className="h-6 w-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
+                  <Link
+                    href="/book"
+                    onClick={() => setIsOpen(false)}
+                    className={cn(buttonVariants(), "sm:hidden")}
                   >
-                    {isOpen ? (
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    ) : (
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
-                      />
-                    )}
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                    Book Appointment
+                  </Link>
+                  <Link
+                    href="/company-certificate"
+                    onClick={() => setIsOpen(false)}
+                    className={buttonVariants({ variant: "outline" })}
+                  >
+                    <BadgeCheck strokeWidth={1.75} />
+                    Company Certificate
+                  </Link>
+                </motion.div>
 
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="xl:hidden border-t bg-white"
-          >
-            <div className="container mx-auto py-4 px-4 flex flex-col gap-3">
-              {NAVBAR_LINKS.map((item) => (
-                <Link
-                  key={item.href}
-                  href={`/${item.href}`}
-                  className={`text-gray-700 rounded-md px-3 py-2 hover:bg-[var(--hover-bg)] hover:text-gray-50 ${
-                    fontInter.className
-                  } font-medium ${
-                    isActive(`/${item.href}`)
-                      ? "bg-[var(--active-bg)] text-white"
-                      : ""
-                  }`}
-                  style={{
-                    ["--hover-bg" as any]: colors.yellow.DEFAULT,
-                    ["--active-bg" as any]: colors.yellow.DEFAULT
-                  }}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+                <motion.div variants={drawerItem} className="mt-3 flex items-center gap-2 px-1">
+                  {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="inline-flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors duration-300 hover:border-primary/30 hover:text-primary"
+                    >
+                      <Icon className="size-4" strokeWidth={1.75} />
+                    </a>
+                  ))}
+                </motion.div>
+              </motion.nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+    </>
   );
 }

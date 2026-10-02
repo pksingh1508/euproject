@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { fontPoppins } from "@/fonts";
+import { ArrowUpRight, BadgeCheck } from "lucide-react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { Reveal } from "@/components/motion/Reveal";
 
 export default function page() {
   const certificateData = [
@@ -13,33 +15,54 @@ export default function page() {
   ];
 
   return (
-    <div className=" bg-white py-8 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col items-center mb-10 gap-2">
-          <h1
-            className={`text-3xl font-bold text-center text-gray-800 ${fontPoppins.className}`}
-          >
-            Company Certificates
-          </h1>
-          <div className="w-34 h-2 bg-blue-500 rounded-2xl items-center" />
-        </div>
-        <div className="space-y-8">
+    <div className="pb-16">
+      <PageHeader
+        title="Company Certificates"
+        highlight="Certificates"
+        eyebrow="Trust & compliance"
+      />
+
+      <section className="py-16 lg:py-20">
+        <div className="page-container space-y-10">
           {certificateData.map((certificate) => (
-            <div key={certificate.id} className="w-full">
-              {/* Full-size certificate image container */}
-              <div className="relative w-full  bg-white overflow-hidden">
-                <Image
-                  src={certificate.image}
-                  alt="Company Certificate"
-                  width={600}
-                  height={600}
-                  className="w-fit h-fit object-contain border-4 border-blue-500 rounded-2xl mx-auto"
-                />
-              </div>
-            </div>
+            <Reveal
+              key={certificate.id}
+              blur={false}
+              distance={32}
+              className="mx-auto max-w-3xl"
+            >
+              <figure className="rounded-[1.75rem] border border-border bg-card p-3 shadow-floating sm:p-4">
+                {/* Certificates are scanned on white, keep a light plate in both themes */}
+                <div className="overflow-hidden rounded-2xl bg-white">
+                  <Image
+                    src={certificate.image}
+                    alt="Company Certificate"
+                    width={1200}
+                    height={1600}
+                    sizes="(min-width: 768px) 768px, 100vw"
+                    className="h-auto w-full dark:brightness-[0.9]"
+                  />
+                </div>
+                <figcaption className="flex flex-wrap items-center justify-between gap-3 px-2 pb-1 pt-4 text-sm">
+                  <span className="inline-flex items-center gap-2 font-medium text-foreground">
+                    <BadgeCheck className="size-4 text-primary" strokeWidth={1.75} />
+                    {certificate.name}
+                  </span>
+                  <a
+                    href={certificate.image}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1 font-medium text-primary"
+                  >
+                    View full size
+                    <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />
+                  </a>
+                </figcaption>
+              </figure>
+            </Reveal>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

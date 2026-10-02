@@ -99,11 +99,12 @@ export default function page() {
   ];
 
   return (
-    <div>
+    <div className="pb-10">
       {/* first step  */}
       <StepWork
         image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/our-services-bg.webp"
         imageAlt="Our serwis"
+        eyebrow="What we do"
         heading="Our Serwis"
         paragraph1="EU Prime Serwis Is A Registered Entity In Poland That Works In Partnership With Various Employers To Offer An Extensive Array Of Job Opportunities. We Focus On The Recruitment Of Skilled, Semi-Skilled, And Unskilled Labor Across Multiple Sectors, Such As Information Technology, Healthcare, Construction, Logistics, Manufacturing, And Others."
         paragraph2="Our Proficiency And Extensive Network Allow Us To Match Dependable Talent With Esteemed Organizations, Facilitating Effective Employment Solutions. Collaborate With EU Prime SerwisFor Reliable Recruitment And Outsourcing Services Customized To Fulfill Industry Requirements."
@@ -117,6 +118,7 @@ export default function page() {
       <CustomHero
         imageAlt="Our serwis Lists"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/our-serwis-abouts-bg.webp"
+        eyebrow="Overview"
         heading="Our Serwis Lists"
         paragraph1=""
         paragraph2=""
@@ -130,6 +132,7 @@ export default function page() {
       <CustomHero
         imageAlt="Our core serwis"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/main-career.webp"
+        eyebrow="Core services"
         heading="Our Core Serwis"
         paragraph1="We Provide Visa Assistance, Permit Support, And Job Placement To Simplify Your Journey. Our Services Also Include Document Preparation And Residency Guidance For Seamless Relocation."
         paragraph2=""
@@ -142,6 +145,7 @@ export default function page() {
       <CustomHero
         imageAlt="Additional Serwis"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/additiona-serwies-bg.webp"
+        eyebrow="Additional services"
         heading="Additional Serwis"
         paragraph1="We Offer Customized CounselingFor Personalized Guidance, Interview Preparation To Boost Performance, Legal Compliance Checks To Ensure Regulations Are Met, And Emergency Assistance For Urgent Support."
         paragraph2=""
@@ -155,6 +159,7 @@ export default function page() {
       <CustomHero
         imageAlt="Value Added Feature"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/valued-and-female-new.webp"
+        eyebrow="Value added"
         heading="Value Added Feature"
         paragraph1="Our Family And Education Support Service Ensures Seamless Relocation, From Dependent Visas To Family Integration. We Also Provide Guidance For Education Planning, Scholarships, And Skill Enhancement Programs."
         paragraph2=""
@@ -167,7 +172,8 @@ export default function page() {
       <CustomHero
         imageAlt="Family and Eduction Support"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/family-collection-bg.webp"
-        heading="Family and Eduction Support"
+        eyebrow="Family & education"
+        heading="Family and Education Support"
         paragraph1="Our Family And Education Support Service Ensures Seamless Relocation, From Dependent Visas To Family Integration. We Also Provide Guidance For Education Planning, Scholarships, And Skill Enhancement Programs."
         paragraph2=""
         buttons={OurFamilyAndEducationSupportButton}
@@ -180,6 +186,7 @@ export default function page() {
       <CustomHero
         imageAlt="Study Abroad Guidance"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/study-abroad-guidance-bg.webp"
+        eyebrow="Study abroad"
         heading="Study Abroad Guidance"
         paragraph1="Our Study Abroad Guidance Service Assists Students In Exploring Global Education Opportunities. From Admission To Visas, We Provide Complete Support For Overseas Studies."
         paragraph2=""
@@ -192,6 +199,7 @@ export default function page() {
       <CustomHero
         imageAlt="Resume Serwis"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/resume-serwis-bg.webp"
+        eyebrow="Career documents"
         heading="Resume Serwis"
         paragraph1="Our Resume Service Helps Craft Professional, ATS-Friendly Resumes Tailored To Your Desired Industry. We Also Offer Editing, Formatting, And Personalized Advice To Enhance Your Career Prospects."
         paragraph2=""
@@ -205,6 +213,7 @@ export default function page() {
       <CustomHero
         imageAlt="Coaching Serwis for Students"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/coaching-serwis-bg.webp"
+        eyebrow="Coaching"
         heading="Coaching Serwis for Students"
         paragraph1="Our Student Coaching Service Offers Personalized Guidance For Career Growth And Exam Readiness, Empowering Students To Achieve Their Academic And Professional Goals."
         paragraph2=""
@@ -217,6 +226,7 @@ export default function page() {
       <CustomHero
         imageAlt="Authentication Serwis"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/authentication-serwis-bg.webp"
+        eyebrow="Documents"
         heading="Authentication Serwis"
         paragraph1="Our Authentication Service Verifies And Validates Crucial Documents To Ensure Their Legal Acceptability. We Provide Swift And Reliable Support For All Your Document Authentication Needs."
         paragraph2=""
@@ -229,6 +239,7 @@ export default function page() {
       <CustomHero
         imageAlt="Student Visa"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/select-consult-bg.webp"
+        eyebrow="Visas"
         heading="Student Visa"
         paragraph1="Migrate To Europe and Unlock New Opportunities with Expert Immigration Guidance. Start Your Journey Today with Seamless Support and Professional Assistance."
         paragraph2=""
@@ -240,6 +251,7 @@ export default function page() {
       <CustomHero
         imageAlt="Expert Visa Application Assistance"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/expert-visa-allication.webp"
+        eyebrow="Visas"
         heading="Expert Visa Application Assistance"
         paragraph1="Simplify your visa process with our expert application preparation services for seamless and successful results."
         paragraph2=""
@@ -252,6 +264,7 @@ export default function page() {
       <CustomHero
         imageAlt="Work Permit Verification"
         imageSrc="https://ik.imagekit.io/eucareerserwis/euprimeserwis/serwis/verify-work.webp"
+        eyebrow="Permits"
         heading="Work Permit Verification"
         paragraph1="Our services offer reliable and efficient work permit verification, prioritizing professionalism to ensure a seamless and stress-free process. We strive to instill complete confidence in the authenticity of your documents."
         paragraph2=""

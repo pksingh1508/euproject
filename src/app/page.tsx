@@ -40,6 +40,7 @@ export default function Home() {
       <StepWork
         image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/home_about.webp"
         imageAlt="Home Section"
+        eyebrow="About EU Prime Serwis"
         heading="EU Immigration & Visa expert consultancy"
         paragraph1="EU Prime Serwis is a leading European consultancy specializing in employment visas, career services, and international recruitment. As a trusted B2B and B2C migration advisor, we provide expert guidance to individuals and businesses navigating immigration and workforce solutions. We recruit skilled, semi-skilled, and unskilled workers, ensuring smooth job placements across Europe. Our expertise helps businesses secure top talent while supporting individuals in advancing their careers. The District Court for the Capital City of Warsaw in Poland, 13th Commercial Division of the National Court Register (KRS: 0001133506, NIP: 7011228130), we are a legally recognized and reliable firm, dedicated to delivering efficient, professional, and expert recruitment and immigration services."
         paragraph2="EU Prime Serwis to wiodąca europejska firma konsultingowa specjalizująca się w wizach pracowniczych, usługach kariery i rekrutacji międzynarodowej. Jako zaufany doradca ds. migracji B2B i B2C zapewniamy fachowe doradztwo osobom i firmom poruszającym się po rozwiązaniach imigracyjnych i kadrowych. Rekrutujemy wykwalifikowanych, półwykwalifikowanych i niewykwalifikowanych pracowników, zapewniając płynne zatrudnienie w całej Europie. Nasza wiedza specjalistyczna pomaga firmom pozyskiwać najlepsze talenty, jednocześnie wspierając osoby w rozwoju ich kariery. Sąd Rejonowy dla m. st. Warszawy w Polsce, XIII Wydział Gospodarczy Krajowego Rejestru Sądowego(KRS: 0001133506) jesteśmy prawnie uznaną i niezawodną firmą, która poświęca się świadczeniu wydajnych, profesjonalnych i eksperckich usług rekrutacyjnych i imigracyjnych."
@@ -51,6 +52,7 @@ export default function Home() {
       <RotatingCircle />
       {/* Work Section */}
       <CustomHero
+        eyebrow="Careers in Europe"
         heading="Work"
         paragraph1="Choose your preferred country and take the first step towards your dream job. Start your career today with personalized guidance and opportunities tailored to you."
         paragraph2=""
@@ -62,6 +64,7 @@ export default function Home() {
       <RotatingCircle />
       {/* Migrate section */}
       <CustomHero
+        eyebrow="Relocation"
         heading="Migrate"
         paragraph1="Migrate to Europe and unlock new opportunities with expert immigration guidance. Start your journey today with seamless support and professional assistance."
         paragraph2=""
@@ -72,6 +75,7 @@ export default function Home() {
       <RotatingCircle />
       {/* Invest */}
       <CustomHero
+        eyebrow="Investment"
         heading="Invest"
         paragraph1="Invest in Europe and unlock profitable opportunities across diverse industries. Let our expert team guide you to successful investments and long-term growth."
         paragraph2=""
@@ -83,6 +87,7 @@ export default function Home() {
       <RotatingCircle />
       {/* Register Company */}
       <CustomHero
+        eyebrow="Business setup"
         heading="Register Company"
         paragraph1="Consult with EU PRIME SERWIS lawyers to register your company in Poland and ensure legal compliance every step of the way."
         paragraph2=""
@@ -93,6 +98,7 @@ export default function Home() {
       <RotatingCircle />
       {/* Our Serwis */}
       <CustomHero
+        eyebrow="Services"
         heading="Our Serwis"
         paragraph1="EU Prime Serwis offers a wide range of professional services to support your move and success in Europe. From work and business visas to investment, migration, and residency applications, we handle it all. Our team also provides expert help with permit renewals, document translation, health insurance, tax advisory, and accommodation support. With many services under one roof, Eu Prime Serwis is your trusted partner for a smooth experience."
         paragraph2=""
@@ -104,6 +110,7 @@ export default function Home() {
       <RotatingCircle />
       {/* become partner */}
       <CustomHero
+        eyebrow="Partnerships"
         heading="Become Partner"
         paragraph1="Partner with EU Prime Serwis and grow with us. We are always open to collaboration with agencies, consultants, and businesses who share our vision of delivering trusted and efficient services across Europe. Whether you're involved in recruitment, legal advisory, travel, or relocation support, partnering with Prime Serwis means expanding your reach and offering more value to your clients. Join us and be part of a reliable network committed to excellence and success."
         paragraph2=""
@@ -116,6 +123,7 @@ export default function Home() {
       <StepWorkBulletPoint
         image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/work-bg.webp"
         imageAlt="For Employer Section"
+        eyebrow="For businesses"
         heading="For Employer"
         paragraph="At Prime Serwis, we connect employers with qualified candidates from diverse backgrounds to meet your workforce needs efficiently. Our candidate pool includes:"
         bullet1="Individuals in Poland and the EU with valid work permits, TRC, or visas"
@@ -139,7 +147,6 @@ export default function Home() {
       {/* Government links */}
       <RotatingCircle />
       <GovernmentLinks />
-      <RotatingCircle />
     </div>
   );
 }

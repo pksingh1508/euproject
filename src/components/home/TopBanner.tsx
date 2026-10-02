@@ -1,10 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import * as React from "react";
 import Image from "next/image";
-import { fontPoppins } from "@/fonts";
-import { motion, type Variants } from "framer-motion";
+import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { TextReveal } from "@/components/motion/TextReveal";
+import { EASE_IN_OUT, EASE_OUT } from "@/lib/motion";
+
+const SLIDE_DURATION_MS = 6500;
 
 const bannerData = [
   {
@@ -29,221 +33,192 @@ const bannerData = [
   }
 ];
 
-const contentContainerVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    x: 90
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 1,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
-};
-
-const contentItemVariants: Variants = {
-  hidden: {
-    opacity: 0
-  },
-  visible: {
-    opacity: 1
-  }
-};
+const pad = (n: number) => String(n).padStart(2, "0");
 
 export function TopBanner() {
-  const totalSlides = bannerData.length;
-  const [currentSlide, setCurrentSlide] = useState(1); // start from index 1 (first real slide)
-  const [isHovered, setIsHovered] = useState(false);
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const total = bannerData.length;
+  const [index, setIndex] = React.useState(0);
+  const [paused, setPaused] = React.useState(false);
 
-  // Create duplicated slides at start & end
-  const extendedSlides = [bannerData[totalSlides - 1], ...bannerData, bannerData[0]];
+  const goTo = React.useCallback(
+    (next: number) => setIndex(((next % total) + total) % total),
+    [total]
+  );
 
-  // Auto-advance carousel every 4 seconds
-  useEffect(() => {
-    if (isHovered || !transitionEnabled) {
-      return;
-    }
-
-    const timer = window.setTimeout(() => {
-      setCurrentSlide((prev) => Math.min(prev + 1, totalSlides + 1));
-    }, 4000);
-
-    return () => window.clearTimeout(timer);
-  }, [isHovered, transitionEnabled, totalSlides, currentSlide]);
-
-  // Re-enable transition after jump
-  useEffect(() => {
-    if (!transitionEnabled) {
-      const id = requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setTransitionEnabled(true);
-        });
-      });
-      return () => cancelAnimationFrame(id);
-    }
-  }, [transitionEnabled]);
-
-  const goToPrevious = () => {
-    setCurrentSlide((prev) => Math.max(prev - 1, 0));
-  };
-
-  const goToNext = () => {
-    setCurrentSlide((prev) => Math.min(prev + 1, totalSlides + 1));
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index + 1); // shift by 1 because of extra clone at start
-  };
-
-  const handleTrackTransitionEnd = (
-    event: React.TransitionEvent<HTMLDivElement>
-  ) => {
-    if (event.target !== event.currentTarget || event.propertyName !== "transform") {
-      return;
-    }
-
-    if (currentSlide === 0) {
-      setTransitionEnabled(false);
-      setCurrentSlide(totalSlides);
-    } else if (currentSlide === totalSlides + 1) {
-      setTransitionEnabled(false);
-      setCurrentSlide(1);
-    }
-  };
-
-  // Helper to get the real slide index for indicators
-  const getRealSlideIndex = () => {
-    return ((currentSlide - 1) % totalSlides + totalSlides) % totalSlides;
-  };
-
-  const activeBannerIndex = getRealSlideIndex();
-  const activeBanner = bannerData[activeBannerIndex];
+  const active = bannerData[index];
 
   return (
-    <div
-      className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden group bg-gray-900"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <section
+      aria-roledescription="carousel"
+      aria-label="Highlights"
+      className="relative isolate h-[clamp(560px,calc(100svh-7.25rem),820px)] w-full overflow-hidden bg-[oklch(0.2_0.035_262)] text-white"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
     >
-      {/* Slide Track */}
-      <div
-        onTransitionEnd={handleTrackTransitionEnd}
-        className={`flex w-full h-full ${
-          transitionEnabled
-            ? "transition-transform duration-1000 ease-in-out"
-            : ""
-        }`}
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-      >
-        {extendedSlides.map((banner, index) => (
-          <div
-            key={`slide-${index}`}
-            className="w-full flex-shrink-0 relative h-full"
+      {/* Slides: all mounted so they preload; cross-fade + slow Ken Burns zoom */}
+      {bannerData.map((banner, i) => {
+        const isActive = i === index;
+        return (
+          <motion.div
+            key={banner.image}
+            aria-hidden={!isActive}
+            className="absolute inset-0"
+            initial={false}
+            animate={{ opacity: isActive ? 1 : 0 }}
+            transition={{ duration: 1.4, ease: EASE_IN_OUT }}
           >
-            {/* Background Image */}
-            <div className="absolute inset-0 w-full h-full">
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-700/80 opacity-70 z-10"></div>
-              <div className="absolute inset-0  z-10"></div>
-
+            <motion.div
+              className="absolute inset-0"
+              initial={false}
+              animate={isActive ? { scale: [1.12, 1] } : { scale: 1.12 }}
+              transition={
+                isActive
+                  ? { duration: 9, ease: "linear" }
+                  : { duration: 0, delay: 1.4 }
+              }
+            >
               <Image
                 src={banner.image}
-                alt={banner.title}
-                width={1920}
-                height={1080}
-                className="w-full h-full object-cover"
-                priority={index <= 2} // Prioritize loading first few slides
+                alt=""
+                fill
+                priority={i === 0}
+                sizes="100vw"
+                className="object-cover"
               />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Content Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center text-center text-white z-20 px-4 sm:px-6 md:px-8 pointer-events-none">
-        <div className="w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl">
-          <motion.div
-            key={`banner-content-${activeBannerIndex}`}
-            variants={contentContainerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.h3
-              variants={contentItemVariants}
-              className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl uppercase tracking-wider mb-2 sm:mb-3 font-medium text-gray-200 ${fontPoppins.className}`}
-            >
-              {activeBanner.subtitle}
-            </motion.h3>
-            <motion.h1
-              variants={contentItemVariants}
-              className={`text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-200 bg-clip-text text-transparent leading-tight ${fontPoppins.className}`}
-            >
-              {activeBanner.title}
-            </motion.h1>
-            <motion.p
-              variants={contentItemVariants}
-              className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 md:mb-8 text-gray-100 leading-relaxed max-w-[280px] sm:max-w-sm md:max-w-lg lg:max-w-2xl mx-auto ${fontPoppins.className}`}
-            >
-              {activeBanner.description}
-            </motion.p>
-            <motion.div
-              variants={contentItemVariants}
-              className="flex flex-col xs:flex-row gap-3 sm:gap-4 justify-center items-center max-w-sm sm:max-w-md mx-auto pointer-events-auto"
-            >
-              <button
-                onClick={() => (window.location.href = "/contact")}
-                className={`w-fit xs:w-auto bg-gradient-to-r from-blue-300 to-blue-400 hover:from-blue-500 hover:to-blue-600 text-gray-200 font-semibold px-8 py-2 sm:py-2.5 lg:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-xs sm:text-sm lg:text-base shadow-lg ${fontPoppins.className}`}
-              >
-                Know More
-              </button>
             </motion.div>
           </motion.div>
+        );
+      })}
+
+      {/* Legibility overlays (hero stays dark in both themes) */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.035_262/0.92)] via-[oklch(0.18_0.035_262/0.68)] to-[oklch(0.18_0.035_262/0.2)]"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-t from-[oklch(0.16_0.03_262/0.75)] via-transparent to-[oklch(0.16_0.03_262/0.25)]"
+      />
+
+      {/* Content */}
+      <div className="relative z-10 flex h-full items-center pb-16">
+        <div className="page-container">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              className="max-w-3xl"
+              exit={{
+                opacity: 0,
+                y: -16,
+                filter: "blur(6px)",
+                transition: { duration: 0.45, ease: EASE_IN_OUT }
+              }}
+            >
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.1 }}
+                className="mb-6 flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-gold sm:text-xs"
+              >
+                <span aria-hidden className="h-px w-10 bg-current opacity-70" />
+                {active.subtitle}
+              </motion.p>
+
+              <TextReveal
+                as="h1"
+                immediate
+                text={active.title}
+                delay={0.2}
+                stagger={0.08}
+                className="font-display text-[2.75rem] font-medium leading-[1.02] tracking-[-0.03em] text-white sm:text-6xl lg:text-[5.5rem]"
+              />
+
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.55 }}
+                className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg"
+              >
+                {active.description}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.7 }}
+                className="mt-10"
+              >
+                <Link
+                  href="/contact"
+                  className="group inline-flex h-12 items-center gap-2 rounded-full bg-white/95 px-7 text-[15px] font-medium text-[oklch(0.235_0.045_262)] shadow-elevated transition-all duration-300 ease-premium hover:-translate-y-0.5 hover:bg-white"
+                >
+                  Know More
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
-      {/* Navigation Buttons */}
-      <button
-        onClick={goToPrevious}
-        className={`absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-2.5 lg:p-3 rounded-full transition-all duration-300 shadow-lg ${
-          isHovered
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 -translate-x-2 sm:-translate-x-4"
-        }`}
-        aria-label="Previous slide"
-      >
-        <ChevronLeft size={18} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
-      </button>
+      {/* Controls */}
+      <div className="absolute inset-x-0 bottom-0 z-20">
+        <div className="page-container flex items-center justify-between gap-6 pb-8 sm:pb-10">
+          <div className="flex items-center gap-5">
+            <span className="font-display text-sm tabular-nums text-white/85">
+              {pad(index + 1)}
+              <span className="text-white/40"> / {pad(total)}</span>
+            </span>
+            <div className="flex items-center gap-2">
+              {bannerData.map((_, i) => (
+                <button
+                  key={`indicator-${i}`}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  aria-current={i === index}
+                  className="relative h-6 w-10 sm:w-14"
+                >
+                  <span className="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 overflow-hidden rounded-full bg-white/25">
+                    {i === index && (
+                      <span
+                        key={`progress-${index}`}
+                        className="absolute inset-0 origin-left rounded-full bg-white"
+                        style={{
+                          animation: `hero-progress ${SLIDE_DURATION_MS}ms linear forwards`,
+                          animationPlayState: paused ? "paused" : "running"
+                        }}
+                        onAnimationEnd={() => goTo(index + 1)}
+                      />
+                    )}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
 
-      <button
-        onClick={goToNext}
-        className={`absolute right-2 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-2.5 lg:p-3 rounded-full transition-all duration-300 shadow-lg ${
-          isHovered
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 translate-x-2 sm:translate-x-4"
-        }`}
-        aria-label="Next slide"
-      >
-        <ChevronRight size={18} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
-      </button>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 z-30 flex space-x-2 bg-black/20 backdrop-blur-sm rounded-full px-3 py-2">
-        {bannerData.map((_, index) => (
-          <button
-            key={`indicator-${index}`}
-            onClick={() => goToSlide(index)}
-            className={`w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
-              index === getRealSlideIndex()
-                ? "bg-white scale-125"
-                : "bg-white/50 hover:bg-white/75"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => goTo(index - 1)}
+              aria-label="Previous slide"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-md transition-colors duration-300 hover:border-white/40 hover:bg-white/15"
+            >
+              <ArrowLeft className="size-4" strokeWidth={1.75} />
+            </button>
+            <button
+              type="button"
+              onClick={() => goTo(index + 1)}
+              aria-label="Next slide"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-md transition-colors duration-300 hover:border-white/40 hover:bg-white/15"
+            >
+              <ArrowRight className="size-4" strokeWidth={1.75} />
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

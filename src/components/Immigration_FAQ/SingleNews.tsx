@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { fontPoppins } from "@/fonts";
+import { ArrowUpRight, Calendar, Eye } from "lucide-react";
 
 interface NewsItem {
   id: number;
@@ -11,85 +11,40 @@ interface NewsItem {
 }
 
 export function SingleNews({ news }: { news: NewsItem }) {
-  // Handle both nested attributes structure and flat structure
   const title = news.title || "Untitled";
   const publishedAt = news.postDate || "";
   const views = news.views || 0;
   const shortDesc = news.shortDesc || "";
 
-  // Truncate short description to 200 characters
-  const truncateText = (text: string, maxLength: number = 30) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength).trim() + " ";
-  };
-
   return (
-    <article className="border-b border-gray-200 pb-4 mb-4 last:border-b-0">
-      <div className="space-y-3">
-        {/* Title */}
-        <Link href={`/immigration-news`}>
-          <h3
-            className={`text-lg font-semibold text-gray-600 leading-tight hover:text-blue-500 cursor-pointer transition-colors ${fontPoppins.className}`}
-          >
-            {truncateText(title, 50)}
-          </h3>
-        </Link>
-
-        {/* Short Description */}
-        <div className="flex gap-3">
-          <div className="text-gray-700 leading-relaxed">
-            <p
-              className={`flex flex-wrap items-center text-gray-500 ${fontPoppins.className}`}
-            >
-              {/* Description */}
-              <span>{truncateText(shortDesc, 50)}</span>
-
-              {/* Read More */}
-              <Link href={`/immigration-news`}>
-                <span
-                  className={`text-blue-500 cursor-pointer hover:underline ml-1 ${fontPoppins.className}`}
-                >
-                  [Read More...]
-                </span>
-              </Link>
-
-              {/* Published Date */}
-              <span className="flex items-center space-x-1 text-sm text-gray-600 ml-4">
-                <span className="inline-block w-3 h-3 bg-blue-500 rounded-sm"></span>
-                <span className={`${fontPoppins.className}`}>
-                  {publishedAt}
-                </span>
-              </span>
-
-              {/* Views */}
-              <span className="flex items-center space-x-1 text-sm text-gray-600 ml-4">
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                <span className={`${fontPoppins.className}`}>
-                  {views} views
-                </span>
-              </span>
-            </p>
-          </div>
+    <article className="group">
+      <Link href={`/immigration-news`} className="block py-5">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          {publishedAt && (
+            <span className="inline-flex items-center gap-1.5">
+              <Calendar className="size-3.5" strokeWidth={1.75} />
+              {publishedAt}
+            </span>
+          )}
+          <span aria-hidden className="size-1 rounded-full bg-border" />
+          <span className="inline-flex items-center gap-1.5">
+            <Eye className="size-3.5" strokeWidth={1.75} />
+            {views} views
+          </span>
         </div>
-      </div>
+
+        <h3 className="mt-2.5 flex items-start justify-between gap-4 text-[1.05rem] font-semibold leading-snug text-foreground/90 transition-colors duration-300 group-hover:text-primary">
+          <span className="line-clamp-2">{title}</span>
+          <ArrowUpRight
+            className="mt-0.5 size-4 shrink-0 -translate-x-1 translate-y-1 opacity-0 transition-all duration-400 ease-premium group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100"
+            strokeWidth={1.75}
+          />
+        </h3>
+
+        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+          {shortDesc}
+        </p>
+      </Link>
     </article>
   );
 }

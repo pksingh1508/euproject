@@ -7,59 +7,59 @@ interface CompanyDataProps {
 
 const CompanyData: React.FC<CompanyDataProps> = ({ className = "" }) => {
   return (
-    <div className={`bg-gray-50 p-4 md:p-6 lg:p-8 font-sans ${className}`}>
+    <div className={`bg-surface p-4 md:p-6 lg:p-8 font-sans ${className}`}>
       <div className="max-w-7xl mx-auto">
         {/* Our Solutions Section */}
         <div className="mb-6">
-          <h2 className="text-blue-600 font-bold text-lg mb-3 tracking-wide">
+          <h2 className="text-primary font-bold text-lg mb-3 tracking-wide">
             Our Solutions -:
           </h2>
           <div className="flex flex-wrap gap-1 text-sm font-medium leading-relaxed">
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Job Seeker Registration
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Institutions
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Employer Questionnaire
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Overseas Employee Recruiters
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Job Seeker Registration for Driver
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Job Seeker Registration for Welder
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Job Seeker Registration for Health Care and Medical job
             </a>
@@ -68,41 +68,41 @@ const CompanyData: React.FC<CompanyDataProps> = ({ className = "" }) => {
 
         {/* The EU Prime Serwis Solution Section */}
         <div className="mb-6">
-          <h2 className="text-blue-600 font-bold text-lg mb-3 tracking-wide">
+          <h2 className="text-primary font-bold text-lg mb-3 tracking-wide">
             The EU Prime Serwis Solution -:
           </h2>
           <div className="flex flex-wrap gap-1 text-sm font-medium leading-relaxed">
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Poland – Employer of Record
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Poland Compensation & Benefits
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Poland Recruiting & Hiring
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Poland Payroll
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/our-serwis"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Poland Work Visas & Permits
             </a>
@@ -111,113 +111,113 @@ const CompanyData: React.FC<CompanyDataProps> = ({ className = "" }) => {
 
         {/* For Employer Section */}
         <div className="mb-8">
-          <h2 className="text-blue-600 font-bold text-lg mb-3 tracking-wide">
+          <h2 className="text-primary font-bold text-lg mb-3 tracking-wide">
             For Employer-:
           </h2>
           <div className="flex flex-wrap gap-1 text-sm font-medium leading-relaxed">
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Employer's questionnaire
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Employee leasing
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Recruitment of labour force from the East for the purposes of IT
               industry
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Recruitment employee from Ukraine, Belarus, Moldova, Georgia,
               India, Nepal and Bangladesh
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Delegating third-country nationals (non-EU) to work in the EU
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               How to hire an employee from Ukraine - step by step?
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Employee recruitment
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Employee leasing (temporary work)
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Outsourcing
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Work permit
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Declaration on entrusting work to a foreigner
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Posting of foreigners
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Employees from Ukraine
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Employees from India
             </a>
-            <span className="text-gray-400 mx-1">|</span>
+            <span className="text-muted-foreground/50 mx-1">|</span>
             <a
               href="/employer"
-              className="text-blue-500 hover:text-blue-700 hover:underline transition-colors duration-200"
+              className="text-primary hover:text-primary/80 hover:underline transition-colors duration-200"
             >
               Employees from Bangladesh
             </a>
@@ -225,9 +225,9 @@ const CompanyData: React.FC<CompanyDataProps> = ({ className = "" }) => {
         </div>
 
         {/* Disclaimer */}
-        <div className="border-l-4 border-blue-500 pl-4 mb-8">
-          <p className="text-gray-700 text-sm font-medium leading-relaxed">
-            <span className="font-bold text-blue-600">Disclaimer:</span> EU
+        <div className="border-l-4 border-gold pl-4 mb-8">
+          <p className="text-muted-foreground text-sm font-medium leading-relaxed">
+            <span className="font-bold text-primary">Disclaimer:</span> EU
             Prime Serwis is a complimentary visa information platform and
             marketplace connecting users with immigration professionals. The
             information provided on this page is not intended as legal advice.
@@ -241,10 +241,10 @@ const CompanyData: React.FC<CompanyDataProps> = ({ className = "" }) => {
         </div>
 
         {/* Bottom Section with Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-[#1877f2] text-white p-6 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-navy text-navy-foreground p-6 rounded-3xl">
           {/* Company Information */}
           <div className="flex items-start space-x-3">
-            <div className="bg-blue-500 p-3 rounded-lg flex-shrink-0">
+            <div className="bg-white/10 p-3 rounded-lg flex-shrink-0">
               <svg
                 className="w-7 h-7 text-white"
                 fill="none"
@@ -263,11 +263,11 @@ const CompanyData: React.FC<CompanyDataProps> = ({ className = "" }) => {
               <h3 className="font-bold text-lg mb-2 tracking-wide">
                 Company Information
               </h3>
-              <p className="text-sm text-blue-100 leading-relaxed font-medium mb-3">
+              <p className="text-sm text-navy-muted leading-relaxed font-medium mb-3">
                 Click the link to access detailed company information and
                 verification procedures.
               </p>
-              <button className="text-sm font-semibold underline hover:no-underline transition-all duration-200 text-blue-200 hover:text-white">
+              <button className="text-sm font-semibold underline hover:no-underline transition-all duration-200 text-gold hover:text-navy-foreground">
                 Learn More →
               </button>
             </div>
@@ -275,7 +275,7 @@ const CompanyData: React.FC<CompanyDataProps> = ({ className = "" }) => {
 
           {/* Government of Poland */}
           <div className="flex items-start space-x-3">
-            <div className="bg-blue-500 p-3 rounded-lg flex-shrink-0">
+            <div className="bg-white/10 p-3 rounded-lg flex-shrink-0">
               <svg
                 className="w-7 h-7 text-white"
                 fill="none"
@@ -294,11 +294,11 @@ const CompanyData: React.FC<CompanyDataProps> = ({ className = "" }) => {
               <h3 className="font-bold text-lg mb-2 tracking-wide">
                 Government of Poland
               </h3>
-              <p className="text-sm text-blue-100 leading-relaxed font-medium mb-3">
+              <p className="text-sm text-navy-muted leading-relaxed font-medium mb-3">
                 Click here to stay informed with the latest updates by regularly
                 accessing the official government portal.
               </p>
-              <button className="text-sm font-semibold underline hover:no-underline transition-all duration-200 text-blue-200 hover:text-white">
+              <button className="text-sm font-semibold underline hover:no-underline transition-all duration-200 text-gold hover:text-navy-foreground">
                 Visit Portal →
               </button>
             </div>
@@ -306,7 +306,7 @@ const CompanyData: React.FC<CompanyDataProps> = ({ className = "" }) => {
 
           {/* Work Information */}
           <div className="flex items-start space-x-3">
-            <div className="bg-blue-500 p-3 rounded-lg flex-shrink-0">
+            <div className="bg-white/10 p-3 rounded-lg flex-shrink-0">
               <svg
                 className="w-7 h-7 text-white"
                 fill="none"
@@ -325,10 +325,10 @@ const CompanyData: React.FC<CompanyDataProps> = ({ className = "" }) => {
               <h3 className="font-bold text-lg mb-2 tracking-wide">
                 Work Information
               </h3>
-              <p className="text-sm text-blue-100 leading-relaxed font-medium mb-3">
+              <p className="text-sm text-navy-muted leading-relaxed font-medium mb-3">
                 Click here to learn more about available work positions.
               </p>
-              <button className="text-sm font-semibold underline hover:no-underline transition-all duration-200 text-blue-200 hover:text-white">
+              <button className="text-sm font-semibold underline hover:no-underline transition-all duration-200 text-gold hover:text-navy-foreground">
                 View Jobs →
               </button>
             </div>

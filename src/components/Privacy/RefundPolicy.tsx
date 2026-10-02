@@ -1,4 +1,4 @@
-import { fontMontserrat, fontPoppins } from "@/fonts";
+import { LegalList, LegalPage, LegalSection } from "./LegalLayout";
 import React from "react";
 
 interface Section {
@@ -197,70 +197,37 @@ const refundPolicyData: RefundPolicyData = {
   }
 };
 
+const byNumericSuffix =
+  (prefix: string) =>
+  ([a]: [string, unknown], [b]: [string, unknown]) =>
+    parseInt(a.replace(prefix, "")) - parseInt(b.replace(prefix, ""));
+
 const RefundPolicy: React.FC = () => {
-  const renderSection = (section: Section, index: number) => {
-    const sectionNumber = index + 1;
-
-    return (
-      <section key={`section-${sectionNumber}`} className="mb-8">
-        <h2
-          className={`text-xl font-semibold text-gray-800 mb-4 ${fontMontserrat.className}`}
-        >
-          {sectionNumber}. {section.title}
-        </h2>
-
-        <div className="space-y-2">
-          {/* Render all points */}
-          {Object.entries(section)
-            .filter(([key, value]) => key.startsWith("point") && value)
-            .sort(([a], [b]) => {
-              const numA = parseInt(a.replace("point", ""));
-              const numB = parseInt(b.replace("point", ""));
-              return numA - numB;
-            })
-            .map(([key, value]) => (
-              <div
-                key={key}
-                className={`text-gray-700 leading-relaxed ${fontPoppins.className}`}
-              >
-                • {value}
-              </div>
-            ))}
-        </div>
-      </section>
-    );
-  };
-
   const sections = Object.entries(refundPolicyData.refundPolicy)
     .filter(
       ([key, value]) => key.startsWith("heading") && typeof value === "object"
     )
-    .sort(([a], [b]) => {
-      const numA = parseInt(a.replace("heading", ""));
-      const numB = parseInt(b.replace("heading", ""));
-      return numA - numB;
-    })
-    .map(([key, value]) => value as Section);
+    .sort(byNumericSuffix("heading"))
+    .map(([, value]) => value as Section);
+
+  const pointsOf = (section: Section) =>
+    Object.entries(section)
+      .filter(([key, value]) => key.startsWith("point") && value)
+      .sort(byNumericSuffix("point"))
+      .map(([, value]) => value as string);
 
   return (
-    <div className="min-h-screen bg-white py-12 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Main Heading */}
-        <div className="text-center mb-12">
-          <h1
-            className={`text-3xl font-bold text-gray-900 mb-2 ${fontPoppins.className}`}
-          >
-            {refundPolicyData.refundPolicy.mainHeading}
-          </h1>
-          <div className="w-24 h-2 bg-blue-500 rounded-full mx-auto"></div>
-        </div>
-
-        {/* Sections */}
-        <div className={`prose prose-gray max-w-none ${fontPoppins.className}`}>
-          {sections.map((section, index) => renderSection(section, index))}
-        </div>
-      </div>
-    </div>
+    <LegalPage title={refundPolicyData.refundPolicy.mainHeading} crumb="Refund Policy">
+      {sections.map((section, index) => (
+        <LegalSection
+          key={section.title}
+          number={index + 1}
+          title={section.title}
+        >
+          <LegalList items={pointsOf(section)} />
+        </LegalSection>
+      ))}
+    </LegalPage>
   );
 };
 

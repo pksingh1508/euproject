@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { fontPoppins } from "@/fonts";
+import { ArrowRight, Calendar, Heart, ImageIcon } from "lucide-react";
 
 interface BlogItem {
   imageUrl: string;
@@ -16,7 +16,6 @@ interface SingleBlogProps {
 }
 
 export function SingleBlog({ blog }: SingleBlogProps) {
-  // Handle both nested attributes structure and flat structure
   const title = blog.title || "Untitled";
   const updatedAt = blog.postDate || "";
   const likes_count = blog.likes_count || 0;
@@ -24,75 +23,60 @@ export function SingleBlog({ blog }: SingleBlogProps) {
   const short_desc = blog.shortDesc || "";
 
   return (
-    <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      {/* Blog Image */}
-      <div className="aspect-video w-full overflow-hidden">
+    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft transition-all duration-500 ease-premium hover:-translate-y-1 hover:border-primary/25 hover:shadow-elevated">
+      {/* Image */}
+      <Link
+        href={`/blog`}
+        className="relative block aspect-[16/10] overflow-hidden bg-muted"
+        tabIndex={-1}
+        aria-hidden
+      >
         {image_url ? (
           <Image
-            src={`${image_url}`}
+            src={image_url}
             alt={title}
-            width={500}
-            height={500}
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition-transform duration-[1200ms] ease-premium group-hover:scale-105"
           />
         ) : (
-          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-            <span className="text-gray-500">No Image</span>
+          <div className="flex h-full w-full items-center justify-center text-muted-foreground">
+            <ImageIcon className="size-8 opacity-60" strokeWidth={1.25} />
           </div>
         )}
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+        {updatedAt && (
+          <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-card/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur-md">
+            <Calendar className="size-3.5" strokeWidth={1.75} />
+            {updatedAt}
+          </span>
+        )}
+      </Link>
 
-      {/* Blog Content */}
-      <div className="p-2">
-        {/* Title */}
+      {/* Content */}
+      <div className="flex flex-1 flex-col p-6">
         <Link href={`/blog`}>
-          <h3
-            className={`text-lg font-semibold text-gray-800 leading-tight hover:text-blue-600 cursor-pointer transition-colors mb-3 line-clamp-2 ${fontPoppins.className}`}
-          >
+          <h3 className="line-clamp-2 font-display text-[1.3rem] font-medium leading-snug text-foreground transition-colors duration-300 group-hover:text-primary">
             {title}
           </h3>
         </Link>
-        <div className="p-2">
-          <p className={`text-gray-600 line-clamp-2 ${fontPoppins.className}`}>
-            {short_desc}
-          </p>
-          <Link href={`/blog`}>
-            <span
-              className={`text-blue-500 cursor-pointer hover:underline ml-1 ${fontPoppins.className}`}
+        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+          {short_desc}
+        </p>
+
+        <div className="mt-auto pt-6">
+          <div className="flex items-center justify-between border-t border-border/70 pt-5 text-sm">
+            <Link
+              href={`/blog`}
+              className="inline-flex items-center gap-1.5 font-medium text-primary"
             >
-              [Read More...]
+              Read More
+              <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+            <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+              <Heart className="size-4 fill-flag-red/80 text-flag-red" strokeWidth={1.5} />
+              {likes_count}
             </span>
-          </Link>
-        </div>
-
-        {/* Date and Likes */}
-        <div className="flex items-center justify-between text-sm text-gray-600">
-          <div className="flex items-center space-x-1">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-            <span className={`${fontPoppins.className}`}>{updatedAt}</span>
-          </div>
-
-          <div className="flex items-center space-x-1">
-            <svg
-              className="w-4 h-4 text-red-500"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </svg>
-            <span className={`${fontPoppins.className}`}>{likes_count}</span>
           </div>
         </div>
       </div>

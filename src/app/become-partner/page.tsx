@@ -1,8 +1,9 @@
 "use client";
 import EmployerSection from "@/components/common/EmployerSection";
+import { FormCard } from "@/components/common/FormCard";
 import { MyForm } from "@/components/common/MyForm";
 import RotatingCircle from "@/components/common/RotatingCircle";
-import { fontInter } from "@/fonts";
+import { Reveal } from "@/components/motion/Reveal";
 import React from "react";
 
 export default function page() {
@@ -17,21 +18,26 @@ export default function page() {
     }
   ];
   return (
-    <div className="bg-white">
-      <EmployerSection heading="Become a Partner" items={partnerItems} />
+    <div className="pb-10">
+      <EmployerSection
+        eyebrow="Partnerships"
+        heading="Become a Partner"
+        items={partnerItems}
+      />
       <RotatingCircle />
-      <div className="flex items-center justify-center py-7 my-10 px-2">
-        <div className="bg-white rounded-2xl shadow-2xl p-3 lg:p-6 order-1 lg:order-2 border-5 border-blue-500">
-          <div className="mb-8">
-            <p
-              className={`text-gray-600 font-inter text-center ${fontInter.className}`}
+      <section className="py-16 lg:py-20">
+        <div className="page-container">
+          <Reveal blur={false} distance={32} className="mx-auto max-w-2xl">
+            <FormCard
+              eyebrow="Free expert consultation"
+              title="Get in touch"
+              description="Please fill out the form below to become a Partner."
             >
-              Please fill out the form below to become a Partner.
-            </p>
-          </div>
-          <MyForm />
+              <MyForm />
+            </FormCard>
+          </Reveal>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

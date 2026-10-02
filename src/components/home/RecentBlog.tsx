@@ -1,91 +1,85 @@
 "use client";
-import { motion, easeOut } from "framer-motion";
+
 import React from "react";
-import { RippleButton } from "../ui/ripple-button";
 import { useRouter } from "next/navigation";
+import Autoplay from "embla-carousel-autoplay";
+import { ArrowRight } from "lucide-react";
+import { RippleButton } from "../ui/ripple-button";
 import { BLOGS_DATA } from "@/constants/data";
 import { SingleBlog } from "./SingleBlog";
-import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
-  CarouselItem
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
 } from "@/components/ui/carousel";
-import { fontPoppins } from "@/fonts";
+import { SectionHeading } from "@/components/common/SectionHeading";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function RecentBlog() {
   const router = useRouter();
   const plugin = React.useRef(
     Autoplay({
-      delay: 3000,
+      delay: 4000,
       stopOnInteraction: false,
       stopOnMouseEnter: true // only pause when hovering on desktop
     })
   );
 
   return (
-    <section className="py-10 md:pt-2 md:pb-10 lg:pb-16 bg-white mx-auto">
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12 mt-4">
-            <h2
-              className={`text-3xl font-bold text-gray-700 ${fontPoppins.className}`}
-            >
-              Recent Blogs
-            </h2>
-            <div className="h-2 bg-blue-500 rounded w-24 mx-auto"></div>
+    <section className="relative py-16 lg:py-24">
+      <div className="page-container">
+        {BLOGS_DATA.length > 0 ? (
+          <Carousel
+            plugins={[plugin.current]}
+            opts={{
+              align: "start",
+              loop: true
+            }}
+            className="w-full"
+          >
+            <div className="mb-12 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+              <SectionHeading eyebrow="Insights" title="Recent Blogs" highlight="Blogs" />
+              <Reveal blur={false} className="flex items-center gap-2">
+                <CarouselPrevious className="static translate-y-0" />
+                <CarouselNext className="static translate-y-0" />
+              </Reveal>
+            </div>
+
+            <Reveal blur={false} distance={32}>
+              <CarouselContent className="-ml-6 py-3">
+                {BLOGS_DATA.map((blog, index) => (
+                  <CarouselItem
+                    key={index}
+                    className="pl-6 sm:basis-1/2 lg:basis-1/3"
+                  >
+                    <SingleBlog blog={blog} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Reveal>
+          </Carousel>
+        ) : (
+          <div className="py-12 text-center">
+            <SectionHeading align="center" title="Recent Blogs" />
+            <p className="mt-6 text-muted-foreground">No recent blogs found.</p>
           </div>
+        )}
 
-          {/* Blog carousel */}
-          {BLOGS_DATA.length > 0 ? (
-            <div className="relative px-10">
-              <Carousel
-                plugins={[plugin.current]}
-                opts={{
-                  align: "start",
-                  loop: true
-                }}
-                className="w-full"
-              >
-                <CarouselContent>
-                  {BLOGS_DATA.map((blog, index) => (
-                    <CarouselItem
-                      key={index}
-                      className="md:basis-1/2 lg:basis-1/3"
-                    >
-                      <SingleBlog blog={blog} />
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-              </Carousel>
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-600">No recent blogs found.</p>
-            </div>
-          )}
-
-          {BLOGS_DATA.length > 0 && (
-            <motion.div
-              transition={{
-                duration: 0.6,
-                delay: 0.4,
-                ease: easeOut
-              }}
-              className="text-center mt-16"
+        {BLOGS_DATA.length > 0 && (
+          <Reveal className="mt-12 flex justify-center">
+            <RippleButton
+              variant="brandOutline"
+              size="lg"
+              onClick={() => router.push(`/blog`)}
+              className="group"
             >
-              <RippleButton
-                variant="brandOutline"
-                size="lg"
-                onClick={() => router.push(`/blog`)}
-                className={`h-12 text-base font-semibold  border-2 text-blue-500 border-[#1877f2] hover:bg-blue-400 hover:text-white hover:border-blue-400 cursor-pointer ${fontPoppins.className}`}
-              >
-                Read More Blogs
-              </RippleButton>
-            </motion.div>
-          )}
-        </div>
+              Read More Blogs
+              <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+            </RippleButton>
+          </Reveal>
+        )}
       </div>
     </section>
   );

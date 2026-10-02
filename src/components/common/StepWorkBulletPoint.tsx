@@ -1,13 +1,17 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
-import { fontPoppins } from "@/fonts";
+import { Check } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { SectionHeading } from "./SectionHeading";
+import { ParallaxImage } from "@/components/motion/ParallaxImage";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 interface StepWorkBulletPointProps {
   image: string;
   imageAlt?: string;
   heading: string;
+  eyebrow?: string;
   paragraph?: string;
   bullet1: string;
   bullet2: string;
@@ -19,10 +23,33 @@ interface StepWorkBulletPointProps {
   isReversed?: boolean;
 }
 
+function BulletList({ items }: { items: string[] }) {
+  if (!items.length) return null;
+  return (
+    <Stagger as="ul" className="grid gap-2" stagger={0.07}>
+      {items.map((item) => (
+        <StaggerItem
+          as="li"
+          key={item}
+          blur={false}
+          y={12}
+          className="flex items-start gap-4 rounded-2xl border border-transparent p-3 transition-colors duration-300 hover:border-border hover:bg-card"
+        >
+          <span className="mt-0.5 inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <Check className="size-3.5" strokeWidth={2.5} />
+          </span>
+          <p className="text-[15.5px] leading-relaxed text-foreground/80">{item}</p>
+        </StaggerItem>
+      ))}
+    </Stagger>
+  );
+}
+
 export function StepWorkBulletPoint({
   image,
   imageAlt = "Step illustration",
   heading,
+  eyebrow,
   paragraph,
   bullet1,
   bullet2,
@@ -33,129 +60,55 @@ export function StepWorkBulletPoint({
   bullet7,
   isReversed = false
 }: StepWorkBulletPointProps) {
+  // The first three bullets describe the candidate pool, the rest the service.
+  const primary = [bullet1, bullet2, bullet3].filter(Boolean);
+  const secondary = [bullet4, bullet5, bullet6, bullet7].filter(Boolean);
+
   return (
-    <div className="w-full bg-white">
-      <div className="container mx-auto max-w-7xl px-4 lg:py-16 py-8">
-        <div
-          className={`grid lg:grid-cols-2 gap-12 lg:gap-16  ${
-            isReversed ? "lg:flex-row-reverse" : ""
-          }`}
-        >
-          {/* Image Section */}
+    <section className="relative overflow-x-clip py-16 lg:py-24">
+      <div className="page-container">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Image */}
           <div
-            className={`flex justify-center ${
-              isReversed ? "lg:justify-end" : "lg:justify-start"
-            } ${isReversed ? "lg:order-2" : "lg:order-1"}`}
+            className={cn(
+              "relative mx-auto w-full max-w-lg lg:col-span-5 lg:max-w-none",
+              isReversed ? "lg:order-2" : "lg:order-1"
+            )}
           >
-            <div className="relative w-full h-auto max-w-lg">
-              <Image
-                src={image}
-                alt={imageAlt}
-                width={500}
-                height={400}
-                className="w-full h-[590px] object-cover rounded-md shadow-lg"
-                priority
-              />
-            </div>
+            <div
+              aria-hidden
+              className="absolute inset-0 -z-10 translate-x-4 translate-y-4 rounded-[1.75rem] border border-gold/50 sm:translate-x-5 sm:translate-y-5"
+            />
+            <ParallaxImage
+              src={image}
+              alt={imageAlt}
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="aspect-[4/5] w-full"
+            />
           </div>
 
-          {/* Text Content Section */}
+          {/* Text */}
           <div
-            className={`space-y-6 ${isReversed ? "lg:order-1" : "lg:order-2"}`}
-          >
-            <h2
-              className={`text-3xl font-bold font-poppins text-gray-900 ${fontPoppins.className}`}
-            >
-              {heading}
-            </h2>
-            {paragraph && (
-              <p
-                className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
-              >
-                {paragraph}
-              </p>
+            className={cn(
+              "lg:col-span-7",
+              isReversed ? "lg:order-1" : "lg:order-2"
             )}
-            <div className="space-y-3">
-              {bullet1 && (
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p
-                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
-                  >
-                    {bullet1}
-                  </p>
-                </div>
+          >
+            <SectionHeading
+              eyebrow={eyebrow}
+              title={heading}
+              description={paragraph}
+            />
+            <div className="mt-8 space-y-4">
+              <BulletList items={primary} />
+              {primary.length > 0 && secondary.length > 0 && (
+                <div aria-hidden className="hairline mx-3" />
               )}
-
-              {bullet2 && (
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p
-                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
-                  >
-                    {bullet2}
-                  </p>
-                </div>
-              )}
-
-              {bullet3 && (
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p
-                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
-                  >
-                    {bullet3}
-                  </p>
-                </div>
-              )}
-              <br />
-              {bullet4 && (
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p
-                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
-                  >
-                    {bullet4}
-                  </p>
-                </div>
-              )}
-
-              {bullet5 && (
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p
-                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
-                  >
-                    {bullet5}
-                  </p>
-                </div>
-              )}
-
-              {bullet6 && (
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p
-                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
-                  >
-                    {bullet6}
-                  </p>
-                </div>
-              )}
-
-              {bullet7 && (
-                <div className="flex items-start">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                  <p
-                    className={`font-inter text-gray-600 leading-relaxed ${fontPoppins.className}`}
-                  >
-                    {bullet7}
-                  </p>
-                </div>
-              )}
+              <BulletList items={secondary} />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

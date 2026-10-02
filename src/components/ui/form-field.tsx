@@ -21,12 +21,17 @@ export function FormField({
   ...props
 }: FormFieldProps) {
   const id = React.useId();
+  // The required marker sits right after the label text.
   return (
-    <div className={cn("space-y-0.5", className)} {...props}>
+    <div className={cn("space-y-2", className)} {...props}>
       {label && (
-        <Label htmlFor={id} className="justify-between">
+        <Label htmlFor={id} className="gap-1">
           <span>{label}</span>
-          {required && <span className="text-destructive text-xs">*</span>}
+          {required && (
+            <span aria-hidden className="text-gold-ink">
+              *
+            </span>
+          )}
         </Label>
       )}
       {React.isValidElement(children)
@@ -36,7 +41,7 @@ export function FormField({
             "aria-describedby": hint ? `${id}-hint` : undefined,
           })
         : children}
-      <div className="min-h-2">
+      <div className="min-h-1">
         {error ? (
           <p className="text-xs text-destructive">{error}</p>
         ) : hint ? (

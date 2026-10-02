@@ -1,91 +1,81 @@
 "use client";
 import FlagCard from "@/components/common/FlagCard";
-import { FlipCard } from "@/components/common/FlipCard";
+import { FormCard } from "@/components/common/FormCard";
 import { MyForm } from "@/components/common/MyForm";
+import { ProcessFigure } from "@/components/common/ProcessFigure";
 import RotatingCircle from "@/components/common/RotatingCircle";
+import { SectionHeading } from "@/components/common/SectionHeading";
 import { StepWork } from "@/components/common/StepWork";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { DESTINATION_DATA } from "@/constants/data";
-import { fontMontserrat, fontPoppins } from "@/fonts";
-import Image from "next/image";
 import React from "react";
 
 export default function page() {
   return (
-    <div>
+    <div className="pb-10">
       <StepWork
         image="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/study.webp"
         imageAlt="WorkStudy image"
+        eyebrow="Careers in Europe"
         heading="Work"
         paragraph1="Europe Provides Job Opportunities For Skilled, Semi-Skilled, And Non-Skilled Workers In IT, Engineering, Healthcare, Finance, Manufacturing, Logistics, Hospitality, Construction, Agriculture, Cleaning, And Warehouse Operations. Many Roles Offer Work Visa Sponsorship And Residency Pathways. Workers Benefit From Labor Rights, Social Security, And Competitive Salaries, Ensuring A Stable Career With Legal Registration, Job Contracts, And Work Permits."
         paragraph2=""
         paragraph3=""
         paragraph4=""
       />
+
       {/* work progress image */}
-      <div className="bg-white p-2 md:p-10">
-        <div className="max-w-7xl mx-auto">
-          <h1
-            className={`text-center text-2xl md:text-3xl font-bold font-poppins text-gray-900 ${fontPoppins.className}`}
-          >
-            Work{" "}
-            <span
-              className={`text-[#1877f2] font-bold ${fontMontserrat.className}`}
-            >
-              Process
-            </span>
-          </h1>
-          <Image
-            src="https://ik.imagekit.io/eucareerserwis/euprimeserwis/work/work-process.webp"
-            alt="Work Progress"
-            width={800}
-            height={450}
-            className="w-[90%] h-[90%] object-cover rounded-md p-1 md:p-5 mx-auto"
-            priority
-          />
-        </div>
-      </div>
+      <ProcessFigure
+        eyebrow="How it works"
+        title="Work Process"
+        highlight="Process"
+        src="https://ik.imagekit.io/eucareerserwis/euprimeserwis/work/work-process.webp"
+        alt="Work Progress"
+      />
 
       <RotatingCircle />
 
-      {/* flip card components */}
-      <div className="bg-white p-7 md:p-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center flex flex-col gap-3 p-2 md:p-4">
-            <h1
-              className={`text-2xl md:text-3xl font-bold font-poppins text-gray-900 ${fontPoppins.className}`}
-            >
-              Choose Destination
-            </h1>
-            <div className="w-24 h-2 bg-[#1877f2] mx-auto rounded-full"></div>
-            <p className={`text-center text-gray-600 ${fontPoppins.className}`}>
-              We help diverse industries to find and recruit the right talent
-              for different job roles. We are focused on providing the best
-              services dedicated to your business success.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8 py-4 px-2">
+      {/* destinations + enquiry form */}
+      <section className="relative py-16 lg:py-24">
+        <div className="page-container">
+          <SectionHeading
+            align="center"
+            eyebrow="Destinations"
+            title="Choose Destination"
+            highlight="Destination"
+            description="We help diverse industries to find and recruit the right talent for different job roles. We are focused on providing the best services dedicated to your business success."
+          />
+
+          <div className="mt-14 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
             {/* Left side - flags */}
-            <div className="flex flex-wrap gap-4">
+            <Stagger
+              className="grid content-start grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4"
+              stagger={0.03}
+            >
               {DESTINATION_DATA.map((item, index) => (
-                <FlagCard
-                  key={index}
-                  flagImageUrl={item.url}
-                  countryName={item.name}
-                />
+                <StaggerItem key={index} blur={false} y={16}>
+                  <FlagCard flagImageUrl={item.url} countryName={item.name} />
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
 
             {/* Right side - sticky form */}
-            <div className="flex items-start justify-center px-2">
-              <div className="sticky top-24 w-full">
-                <div className="bg-white rounded-2xl shadow-2xl p-3 lg:p-6 border-5 border-blue-500">
-                  <MyForm />
-                </div>
+            <div>
+              <div className="lg:sticky lg:top-28">
+                <Reveal blur={false} distance={32}>
+                  <FormCard
+                    eyebrow="Free expert consultation"
+                    title="Sign up for a free expert consultation"
+                  >
+                    <MyForm />
+                  </FormCard>
+                </Reveal>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

@@ -1,15 +1,17 @@
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import {
-  Facebook,
-  Instagram,
-  Twitter,
-  Linkedin,
-  MapPin,
-  Phone,
+  ArrowRight,
   Mail,
+  MapPin,
   MessageCircleMore,
+  Phone
 } from "lucide-react";
-import { fontMontserrat, fontPoppins } from "@/fonts";
+import { CONTACT, SOCIAL_LINKS } from "@/constants/site";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
+import { cn } from "@/lib/utils";
 
 interface FooterLink {
   label: string;
@@ -21,219 +23,187 @@ interface FooterSection {
   links: FooterLink[];
 }
 
+const footerSections: FooterSection[] = [
+  {
+    title: "Information",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "Our Serwis", href: "/our-serwis" },
+      { label: "Become Partner", href: "/become-partner" },
+      { label: "For Employer", href: "/employer" },
+      { label: "Contact Us", href: "/contact" }
+    ]
+  },
+  {
+    title: "Testimonials",
+    links: [
+      { label: "Blog", href: "/blog" },
+      { label: "Immigration News", href: "/immigration-news" },
+      { label: "Success Stories", href: "/success-story" },
+      { label: "Book Appointment", href: "/book" },
+      { label: "About Us", href: "/about" }
+    ]
+  }
+];
+
+const bottomLinks: FooterLink[] = [
+  { label: "Refund Policy", href: "/refund" },
+  { label: "Terms & Condition", href: "/terms" },
+  { label: "Anti Fraud Policy", href: "/anti-fraud" },
+  { label: "Privacy Policy", href: "/privacy" }
+];
+
+const contactItems = [
+  { icon: Phone, label: CONTACT.phones[0].label, href: CONTACT.phones[0].href },
+  { icon: MessageCircleMore, label: CONTACT.whatsapp.label, href: CONTACT.whatsapp.href },
+  { icon: Mail, label: CONTACT.email.label, href: CONTACT.email.href },
+  { icon: MapPin, label: CONTACT.address.full }
+];
+
+/** Link with an underline that draws in from the left on hover. */
+const linkClass =
+  "bg-gradient-to-r from-current to-current bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 text-navy-muted transition-[color,background-size] duration-500 ease-premium hover:bg-[length:100%_1px] hover:text-navy-foreground";
+
 const Footer: React.FC = () => {
-  const footerSections: FooterSection[] = [
-    {
-      title: "Information",
-      links: [
-        { label: "Home", href: "/" },
-        { label: "Our Servis", href: "/our-serwis" },
-        { label: "Become Partner", href: "/become-partner" },
-        { label: "For Employer", href: "/employer" },
-        { label: "Contat Us", href: "/contact" },
-      ],
-    },
-    {
-      title: "Testimonials",
-      links: [
-        { label: "Blog", href: "/blog" },
-        { label: "Immigration News", href: "/immigration-news" },
-        { label: "Success Stories", href: "/success-story" },
-        { label: "Book Appointment", href: "/book" },
-        { label: "About Us", href: "/about" },
-      ],
-    },
-  ];
-
-  const socialLinks = [
-    { icon: Facebook, href: "#", color: "bg-blue-600 hover:bg-blue-700" },
-    { icon: Instagram, href: "#", color: "bg-pink-500 hover:bg-pink-600" },
-    { icon: Twitter, href: "#", color: "bg-blue-400 hover:bg-blue-500" },
-    { icon: Linkedin, href: "#", color: "bg-blue-700 hover:bg-blue-800" },
-  ];
-
-  const bottomLinks = [
-    { label: "Refund Policy", href: "/refund" },
-    { label: "Terms & Condition", href: "/terms" },
-    { label: "Anti Fraud Policy", href: "/anti-fraud" },
-    { label: "Privacy Policy", href: "/privacy" },
-  ];
-
   return (
-    <footer className="bg-[#1877f2] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
-        <div className="py-12 lg:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {/* Company Description */}
-            <div className="lg:col-span-1">
-              <div className="mb-6">
-                <p
-                  className={`text-sm leading-relaxed text-gray-200 ${fontPoppins.className}`}
-                >
-                  EU Prime Serwis Overseas Career Consultant is a trusted global
-                  leader in immigration services, delivering personalized,
-                  premium solutions for B2B and B2C worldwide. Registered in
-                  Poland under KRS Number: 0001133506, NIP Number: 7011228130,
-                  REGON Number: 529955956
-                </p>
-              </div>
+    <footer className="relative isolate overflow-hidden bg-navy text-navy-foreground">
+      {/* Ambient glow */}
+      <div
+        aria-hidden
+        className="absolute -top-48 left-1/2 -z-10 h-96 w-[min(64rem,100%)] -translate-x-1/2 rounded-full bg-primary/25 blur-[140px] dark:bg-primary/10"
+      />
+      <div
+        aria-hidden
+        className="absolute bottom-0 right-0 -z-10 h-72 w-72 rounded-full bg-gold/10 blur-[120px]"
+      />
 
-              {/* Social Media Icons */}
-              <div className="flex space-x-3">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.href}
-                    className={`w-10 h-10 rounded ${social.color} flex items-center justify-center transition-colors duration-200`}
-                    aria-label={`Social media link ${index + 1}`}
-                  >
-                    <social.icon size={18} />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Information Links */}
-            <div>
-              <h3
-                className={`text-lg font-semibold mb-6 ${fontMontserrat.className}`}
-              >
-                {footerSections[0].title}
-              </h3>
-              <ul className="space-y-3">
-                {footerSections[0].links.map((link, index) => (
-                  <li key={index}>
-                    <a
-                      href={link.href}
-                      className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center ${fontPoppins.className}`}
-                    >
-                      <span className="mr-2">›</span>
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Testimonials Links */}
-            <div>
-              <h3
-                className={`text-lg font-semibold mb-6 ${fontMontserrat.className}`}
-              >
-                {footerSections[1].title}
-              </h3>
-              <ul className="space-y-3">
-                {footerSections[1].links.map((link, index) => (
-                  <li key={index}>
-                    <a
-                      href={link.href}
-                      className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center ${fontPoppins.className}`}
-                    >
-                      <span className="mr-2">›</span>
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Get in Touch */}
-            <div>
-              <h3
-                className={`text-lg font-semibold mb-6 ${fontMontserrat.className}`}
-              >
-                Get in touch
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <Phone
-                    size={16}
-                    className="text-gray-400 mt-1 mr-3 flex-shrink-0"
-                  />
-                  <div>
-                    <a
-                      href="+48888620222"
-                      className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm block ${fontPoppins.className}`}
-                    >
-                      +48 888 620 222
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <MessageCircleMore
-                    size={16}
-                    className="text-gray-400 mt-1 mr-3 flex-shrink-0"
-                  />
-                  <div>
-                    <a
-                      href="tel:+48886886816"
-                      className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm block ${fontPoppins.className}`}
-                    >
-                      +48 886 886 816
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <Mail
-                    size={16}
-                    className="text-gray-400 mt-1 mr-3 flex-shrink-0"
-                  />
-                  <div>
-                    <a
-                      href="mailto:info@euprimeserwis.pl"
-                      className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm block ${fontPoppins.className}`}
-                    >
-                      info@euprimeserwis.pl
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <MapPin
-                    size={16}
-                    className="text-gray-400 mt-1 mr-3 flex-shrink-0"
-                  />
-                  <div>
-                    <p
-                      className={`text-gray-300 text-sm ${fontPoppins.className}`}
-                    >
-                      ul. Bolesława Prusa 2, 00-493, Warsaw Poland
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div className="page-container">
+        {/* Call to action */}
+        <Reveal className="flex flex-col gap-8 border-b border-white/10 py-14 lg:flex-row lg:items-end lg:justify-between lg:py-20">
+          <div className="max-w-2xl">
+            <p className="mb-4 flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-gold">
+              <span aria-hidden className="h-px w-8 bg-current opacity-60" />
+              Get in touch
+            </p>
+            <h2 className="font-display text-3xl font-medium leading-[1.1] tracking-[-0.02em] sm:text-4xl lg:text-5xl">
+              Connect with our{" "}
+              <em className="text-gold">Work Abroad Experts</em> today.
+            </h2>
           </div>
-        </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/contact"
+              className="group inline-flex h-12 items-center gap-2 rounded-full bg-navy-foreground px-7 text-[15px] font-medium text-navy shadow-elevated transition-transform duration-300 ease-premium hover:-translate-y-0.5"
+            >
+              Contact Us
+              <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/book"
+              className="inline-flex h-12 items-center rounded-full border border-white/15 px-7 text-[15px] font-medium text-navy-foreground transition-colors duration-300 hover:border-white/30 hover:bg-white/5"
+            >
+              Book Appointment
+            </Link>
+          </div>
+        </Reveal>
 
-        {/* Bottom Footer */}
-        <div className="border-t border-blue-700 py-6">
-          <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-            {/* Bottom Links */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-6">
-              {bottomLinks.map((link, index) => (
+        {/* Main footer content */}
+        <Stagger className="grid grid-cols-1 gap-12 py-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8 lg:py-16">
+          <StaggerItem className="lg:col-span-4">
+            <Image
+              src="/mylogo.png"
+              alt="EU Prime Serwis"
+              width={207}
+              height={100}
+              className="mb-6 h-12 w-auto"
+            />
+            <p className="max-w-sm text-sm leading-relaxed text-navy-muted">
+              EU Prime Serwis Overseas Career Consultant is a trusted global
+              leader in immigration services, delivering personalized, premium
+              solutions for B2B and B2C worldwide. Registered in Poland under
+              KRS Number: 0001133506, NIP Number: 7011228130, REGON Number:
+              529955956
+            </p>
+
+            <div className="mt-7 flex gap-2.5">
+              {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
                 <a
-                  key={index}
-                  href={link.href}
-                  className={`text-gray-300 hover:text-white transition-colors duration-200 text-sm ${fontPoppins.className}`}
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-white/10 text-navy-muted transition-all duration-300 ease-premium hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/5 hover:text-navy-foreground"
                 >
-                  {link.label}
+                  <Icon className="size-4" strokeWidth={1.75} />
                 </a>
               ))}
             </div>
+          </StaggerItem>
 
-            {/* Copyright */}
-            <div className="text-center lg:text-right">
-              <p className={`text-gray-400 text-sm ${fontPoppins.className}`}>
-                © {new Date().getFullYear()} www.euprimeserwis.pl - All Rights
-                Reserved.
-              </p>
-            </div>
-          </div>
+          {footerSections.map((section) => (
+            <StaggerItem key={section.title} className="lg:col-span-2">
+              <h3 className="mb-6 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-navy-foreground/90">
+                {section.title}
+              </h3>
+              <ul className="space-y-3.5">
+                {section.links.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className={cn("text-sm", linkClass)}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </StaggerItem>
+          ))}
+
+          <StaggerItem className="sm:col-span-2 lg:col-span-4">
+            <h3 className="mb-6 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-navy-foreground/90">
+              Get in touch
+            </h3>
+            <ul className="space-y-4">
+              {contactItems.map(({ icon: Icon, label, href }) => (
+                <li key={label} className="flex items-start gap-3.5">
+                  <span className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 text-gold">
+                    <Icon className="size-3.5" strokeWidth={1.75} />
+                  </span>
+                  {href ? (
+                    <a href={href} className={cn("mt-1.5 text-sm", linkClass)}>
+                      {label}
+                    </a>
+                  ) : (
+                    <p className="mt-1.5 text-sm leading-relaxed text-navy-muted">
+                      {label}
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </StaggerItem>
+        </Stagger>
+
+        {/* Bottom bar */}
+        <div className="flex flex-col items-center justify-between gap-5 border-t border-white/10 py-7 lg:flex-row">
+          <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-6 gap-y-2 lg:justify-start">
+            {bottomLinks.map((link) => (
+              <Link key={link.href} href={link.href} className={cn("text-[13px]", linkClass)}>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <p className="text-center text-[13px] text-navy-muted/80 lg:text-right">
+            © {new Date().getFullYear()} www.euprimeserwis.pl - All Rights
+            Reserved.
+          </p>
         </div>
+      </div>
+
+      {/* Oversized faded wordmark */}
+      <div aria-hidden className="pointer-events-none select-none overflow-hidden">
+        <p className="-mb-[0.22em] whitespace-nowrap text-center font-display text-[15.5vw] font-medium leading-none tracking-[-0.04em] text-white/[0.035]">
+          EU Prime Serwis
+        </p>
       </div>
     </footer>
   );

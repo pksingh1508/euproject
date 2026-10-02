@@ -5,13 +5,10 @@ import React from "react";
 
 export default function page() {
   return (
-    <div className="w-full bg-white pb-10">
+    <div className="w-full pb-10">
       <ContactContainer />
       <RotatingCircle />
-      <div className="my-10">
-        <LocationMap />
-      </div>
-      <RotatingCircle />
+      <LocationMap />
     </div>
   );
 }

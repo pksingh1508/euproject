@@ -1,5 +1,9 @@
-import { fontMontserrat, fontPoppins } from "@/fonts";
+"use client";
+
 import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowUpRight, RotateCw } from "lucide-react";
 
 interface FlipCardProps {
   flagImageUrl: string;
@@ -16,71 +20,77 @@ export const FlipCard: React.FC<FlipCardProps> = ({
   btnName,
   btnUrl
 }) => {
-  const handleButtonClick = () => {
+  const [flipped, setFlipped] = React.useState(false);
+  const pointerType = React.useRef("mouse");
+
+  const handleButtonClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     window.open(btnUrl);
   };
 
   return (
-    <div className="flip-card  h-64 perspective-1000">
-      <div className="flip-card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d hover:rotate-y-180">
-        {/* Front Side */}
-        <div className="flip-card-front absolute w-full h-full backface-hidden bg-gradient-to-br from-gray-50 to-gray-200 rounded-xl shadow-xl flex flex-col items-center justify-center p-6 border-2 border-blue-300">
-          <div className="bg-white rounded-lg p-1 shadow-lg mb-6">
-            <img
+    <div
+      className="h-72 perspective-[1200px]"
+      // Hover flips on desktop, tap flips on touch, focus flips for keyboard.
+      onPointerDown={(e) => (pointerType.current = e.pointerType)}
+      onPointerEnter={(e) => e.pointerType === "mouse" && setFlipped(true)}
+      onPointerLeave={(e) => e.pointerType === "mouse" && setFlipped(false)}
+      onClick={() => pointerType.current !== "mouse" && setFlipped((f) => !f)}
+      onFocusCapture={() => setFlipped(true)}
+      onBlurCapture={() => setFlipped(false)}
+    >
+      <motion.div
+        className="relative h-full w-full transform-3d"
+        initial={false}
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        transition={{ type: "spring", stiffness: 120, damping: 18, mass: 0.9 }}
+      >
+        {/* Front */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-soft backface-hidden">
+          <div
+            aria-hidden
+            className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-primary/[0.06] to-transparent"
+          />
+          <div className="relative h-16 w-24 overflow-hidden rounded-lg shadow-elevated ring-1 ring-black/5 dark:ring-white/10">
+            <Image
               src={flagImageUrl}
               alt={`${countryName} flag`}
-              className="w-24 h-16 object-cover rounded"
+              fill
+              sizes="96px"
+              className="object-cover"
             />
           </div>
-          <h2
-            className={`text-2xl font-bold text-gray-500 text-center tracking-wide ${fontMontserrat.className}`}
-          >
+          <h2 className="relative text-center font-display text-2xl font-medium tracking-[-0.015em] text-foreground">
             {countryName}
           </h2>
+          <span className="relative inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+            <RotateCw className="size-3.5" strokeWidth={1.75} />
+            Learn more
+          </span>
         </div>
 
-        {/* Back Side */}
-        <div className="flip-card-back absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl shadow-xl flex flex-col justify-center p-8 border border-slate-200">
-          <h2
-            className={`text-2xl font-bold text-slate-800 mb-4 text-center ${fontMontserrat.className}`}
-          >
+        {/* Back */}
+        <div className="absolute inset-0 flex rotate-y-180 flex-col items-center justify-center overflow-hidden rounded-3xl bg-navy p-8 text-center text-navy-foreground shadow-elevated backface-hidden">
+          <div
+            aria-hidden
+            className="absolute -right-16 -top-16 size-48 rounded-full bg-primary/25 blur-3xl"
+          />
+          <h2 className="relative font-display text-2xl font-medium tracking-[-0.015em]">
             {countryName}
           </h2>
-          <p
-            className={`text-slate-600 text-center mb-8 leading-relaxed ${fontPoppins.className}`}
-          >
+          <p className="relative mt-3 max-w-xs text-sm leading-relaxed text-navy-muted">
             {title}
           </p>
           <button
+            type="button"
             onClick={handleButtonClick}
-            className={`bg-[#1877f2] hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 cursor-pointer ${fontPoppins.className}`}
+            className="group relative mt-7 inline-flex h-11 items-center gap-2 rounded-full bg-navy-foreground px-6 text-sm font-medium text-navy shadow-elevated transition-transform duration-300 ease-premium hover:-translate-y-0.5"
           >
             {btnName}
+            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />
           </button>
         </div>
-      </div>
-
-      <style jsx>{`
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-
-        .transform-style-preserve-3d {
-          transform-style: preserve-3d;
-        }
-
-        .backface-hidden {
-          backface-visibility: hidden;
-        }
-
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-
-        .hover\\:rotate-y-180:hover {
-          transform: rotateY(180deg);
-        }
-      `}</style>
+      </motion.div>
     </div>
   );
 };

@@ -1,13 +1,16 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
-import { fontMontserrat, fontOpenSans, fontPoppins } from "@/fonts";
+import { cn } from "@/lib/utils";
+import { SectionHeading } from "./SectionHeading";
+import { ParallaxImage } from "@/components/motion/ParallaxImage";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 interface StepWorkProps {
   image: string;
   imageAlt?: string;
   heading: string;
+  eyebrow?: string;
   paragraph1: string;
   paragraph2: string;
   paragraph3: string;
@@ -19,76 +22,66 @@ export function StepWork({
   image,
   imageAlt = "Step illustration",
   heading,
+  eyebrow,
   paragraph1,
   paragraph2,
   paragraph3,
   paragraph4,
   isReversed = false
 }: StepWorkProps) {
+  const paragraphs = [paragraph1, paragraph2, paragraph3, paragraph4].filter(
+    Boolean
+  );
+
   return (
-    <div className="w-full bg-white">
-      <div className="container mx-auto max-w-7xl px-4 md:px-8 lg:py-16 py-8">
-        <div
-          className={`grid lg:grid-cols-2 gap-12 lg:gap-16 ${
-            isReversed ? "lg:flex-row-reverse" : ""
-          }`}
-        >
-          {/* Image Section */}
+    <section className="relative overflow-x-clip py-16 lg:py-24">
+      <div className="page-container">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Image */}
           <div
-            className={`flex justify-center ${
-              isReversed ? "lg:justify-end" : "lg:justify-start"
-            } ${isReversed ? "lg:order-2" : "lg:order-1"}`}
+            className={cn(
+              "relative mx-auto w-full max-w-lg lg:col-span-5 lg:max-w-none",
+              isReversed ? "lg:order-2" : "lg:order-1"
+            )}
           >
-            <div className="relative w-full h-auto max-w-lg">
-              <Image
-                src={image}
-                alt={imageAlt}
-                width={500}
-                height={400}
-                className="w-full h-[580px] object-cover rounded-md shadow-lg"
-                priority
-              />
-            </div>
+            <div
+              aria-hidden
+              className={cn(
+                "absolute inset-0 -z-10 rounded-[1.75rem] border border-gold/50",
+                isReversed
+                  ? "-translate-x-4 translate-y-4 sm:-translate-x-5 sm:translate-y-5"
+                  : "translate-x-4 translate-y-4 sm:translate-x-5 sm:translate-y-5"
+              )}
+            />
+            <ParallaxImage
+              src={image}
+              alt={imageAlt}
+              priority
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="aspect-[4/5] w-full"
+            />
           </div>
 
-          {/* Text Content Section */}
+          {/* Text */}
           <div
-            className={`space-y-6 ${isReversed ? "lg:order-1" : "lg:order-2"}`}
+            className={cn(
+              "lg:col-span-7",
+              isReversed ? "lg:order-1" : "lg:order-2"
+            )}
           >
-            <h2
-              className={`text-3xl font-bold font-poppins text-gray-900 ${fontOpenSans.className}`}
-            >
-              {heading}
-            </h2>
-
-            <div className="space-y-2">
-              <p
-                className={`font-inter text-gray-600 ${fontPoppins.className}`}
-              >
-                {paragraph1}
-              </p>
-
-              <p
-                className={`font-inter text-gray-600 ${fontPoppins.className}`}
-              >
-                {paragraph2}
-              </p>
-
-              <p
-                className={`font-inter text-gray-600 ${fontPoppins.className}`}
-              >
-                {paragraph3}
-              </p>
-
-              <p
-                className={`font-inter text-gray-600 ${fontPoppins.className}`}
-              >
-                {paragraph4}
-              </p>
-            </div>
+            <SectionHeading eyebrow={eyebrow} title={heading} />
+            <Stagger className="mt-8 space-y-5" stagger={0.12} delay={0.1}>
+              {paragraphs.map((paragraph, i) => (
+                <StaggerItem key={i}>
+                  <p className="max-w-[68ch] text-[15.5px] leading-[1.85] text-muted-foreground">
+                    {paragraph}
+                  </p>
+                </StaggerItem>
+              ))}
+            </Stagger>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

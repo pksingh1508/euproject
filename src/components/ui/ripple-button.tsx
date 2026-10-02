@@ -1,12 +1,10 @@
 "use client";
 
-// A button with a tasteful ripple effect that respects reduced motion.
-//  new component: RippleButton
+// A button with a soft ink ripple that respects reduced motion.
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./button";
-import { colors } from "@/constants/color";
 
 type Ripple = { id: number; x: number; y: number; size: number };
 
@@ -28,9 +26,10 @@ export const RippleButton = React.forwardRef<
       variant,
       size,
       ripple = true,
-      rippleDurationMs = 600,
+      rippleDurationMs = 750,
       rippleClassName,
       onClick,
+      children,
       ...props
     },
     ref
@@ -41,12 +40,9 @@ export const RippleButton = React.forwardRef<
 
     React.useEffect(() => {
       if (!ripples.length) return;
-      const t = setTimeout(
-        () => {
-          setRipples((prev) => prev.slice(1));
-        },
-        Math.max(200, rippleDurationMs / 2)
-      );
+      const t = setTimeout(() => {
+        setRipples((prev) => prev.slice(1));
+      }, rippleDurationMs);
       return () => clearTimeout(t);
     }, [ripples, rippleDurationMs]);
 
@@ -62,19 +58,6 @@ export const RippleButton = React.forwardRef<
       onClick?.(e);
     }
 
-    // inject CSS vars for brand variants to match base Button behavior
-    const brandVars =
-      variant === "brand" || variant === "brandOutline"
-        ? `[--brand-bg:${colors?.yellow?.DEFAULT}] [--brand-fg:${colors?.black?.light}]`
-        : undefined;
-
-    const brandClasses =
-      variant === "brand"
-        ? "bg-[var(--brand-bg)] hover:brightness-95"
-        : variant === "brandOutline"
-          ? "border-[var(--brand-bg)] hover:bg-[var(--brand-bg)] hover:text-[var(--brand-fg)]/90"
-          : undefined;
-
     return (
       <button
         ref={(node) => {
@@ -87,35 +70,30 @@ export const RippleButton = React.forwardRef<
         data-slot="button"
         onClick={handleClick}
         className={cn(
-          brandVars,
-          brandClasses,
           buttonVariants({ variant, size }),
-          // extra interaction affordances
-          "relative overflow-hidden transition-transform hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transform-none",
+          "relative isolate overflow-hidden",
           className
         )}
         {...props}
       >
-        {props.children}
+        {children}
         <span
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 -z-10"
           aria-hidden="true"
         >
           {ripples.map((r) => (
             <span
               key={r.id}
               className={cn(
-                "absolute rounded-full bg-current/25 opacity-70",
-                "animate-ping motion-reduce:animate-none",
+                "absolute rounded-full bg-current/20 animate-ripple motion-reduce:hidden",
                 rippleClassName
               )}
               style={{
                 left: r.x,
                 top: r.y,
                 width: r.size,
-                height: r.size,
+                height: r.size
               }}
-              role="presentation"
             />
           ))}
         </span>

@@ -3,14 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Users, UserCheck, Star, Building2 } from "lucide-react";
-import {
-  fontOpenSans,
-  fontPoppins,
-  fontPlayfair,
-  fontRoboto,
-  fontMontserrat
-} from "@/fonts";
+import { ArrowUpRight } from "lucide-react";
+import { SectionHeading } from "@/components/common/SectionHeading";
+import { ParallaxImage } from "@/components/motion/ParallaxImage";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 const features = [
   { iconUrl: "/home-icon.png", title: "Expert Recruitment Process" },
@@ -23,52 +19,75 @@ const WhyUs: React.FC = () => {
   const router = useRouter();
 
   return (
-    <section className="w-full py-16 px-6 md:px-10">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left Side */}
+    <section className="relative isolate overflow-hidden py-16 lg:py-24">
+      <div
+        aria-hidden
+        className="absolute -left-32 top-1/4 -z-10 size-[28rem] rounded-full bg-primary/[0.07] blur-[120px]"
+      />
+      <div className="page-container">
+        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+          {/* Left side */}
           <div>
-            <h2
-              className={`text-3xl md:text-4xl font-bold mb-10 ${fontMontserrat.className}`}
-            >
-              Why EU Prime Serwis
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <SectionHeading
+              eyebrow="Why choose us"
+              title="Why EU Prime Serwis"
+              highlight="EU Prime Serwis"
+            />
+
+            <Stagger className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2" stagger={0.1}>
               {features.map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => router.push("/register-company")}
-                  className="flex flex-col items-center justify-center border-2 border-[#1877f2] rounded-xl p-8 shadow-sm cursor-pointer transition-all duration-300 transform hover:shadow-lg hover:scale-105 hover:border-blue-600"
-                >
-                  <div className="mb-4 text-blue-600 transition-transform duration-300 group-hover:rotate-6">
-                    <Image
-                      src={item.iconUrl}
-                      alt={item.title}
-                      width={40}
-                      height={40}
-                      unoptimized
-                      className="w-full h-full"
-                    />
-                  </div>
-                  <p
-                    className={`text-center font-medium ${fontPoppins.className}`}
+                <StaggerItem key={item.title} className="h-full">
+                  <button
+                    type="button"
+                    onClick={() => router.push("/register-company")}
+                    className="group relative flex h-full w-full flex-col items-start gap-8 overflow-hidden rounded-3xl border border-border bg-card p-7 text-left shadow-soft transition-all duration-500 ease-premium hover:-translate-y-1 hover:border-primary/30 hover:shadow-elevated"
                   >
-                    {item.title}
-                  </p>
-                </div>
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute -right-16 -top-16 size-44 rounded-full bg-primary/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+                    />
+                    <div className="flex w-full items-start justify-between">
+                      <span className="flex size-16 items-center justify-center rounded-2xl bg-secondary transition-colors duration-500 group-hover:bg-primary/10">
+                        {/* The icon art sits on an opaque white square: crop to it and
+                            blend it into the chip (multiply in light, screen in dark). */}
+                        <Image
+                          src={item.iconUrl}
+                          alt=""
+                          width={230}
+                          height={78}
+                          unoptimized
+                          className="size-12 object-cover mix-blend-multiply transition-transform duration-500 ease-premium group-hover:scale-110 dark:mix-blend-screen dark:hue-rotate-180 dark:invert"
+                        />
+                      </span>
+                      <span className="font-display text-sm tabular-nums text-muted-foreground/60">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div className="flex w-full items-end justify-between gap-4">
+                      <p className="text-[17px] font-semibold leading-snug text-foreground">
+                        {item.title}
+                      </p>
+                      <ArrowUpRight
+                        className="size-5 shrink-0 text-muted-foreground transition-all duration-500 ease-premium group-hover:rotate-45 group-hover:text-primary"
+                        strokeWidth={1.75}
+                      />
+                    </div>
+                  </button>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
 
-          {/* Right Side */}
-          <div className="flex justify-center">
-            <Image
+          {/* Right side */}
+          <div className="relative">
+            <div
+              aria-hidden
+              className="absolute -right-4 -top-4 -z-10 h-2/3 w-2/3 rounded-[2rem] bg-[radial-gradient(circle,var(--gold)_1px,transparent_1.5px)] bg-[length:18px_18px] opacity-40"
+            />
+            <ParallaxImage
               src="https://ik.imagekit.io/eucareerserwis/euprimeserwis/home/why-choose-bg.webp"
               alt="Why Us"
-              width={500}
-              height={400}
-              priority
-              className="w-full h-[650px] rounded-2xl object-cover shadow-md hover:shadow-xl transition duration-500"
+              className="aspect-[4/5] w-full lg:aspect-auto lg:h-[640px]"
             />
           </div>
         </div>

@@ -1,7 +1,8 @@
 "use client";
 
-import { fontMontserrat, fontPoppins } from "@/fonts";
 import React from "react";
+import { PageHeader } from "./PageHeader";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 interface ListItem {
   id: string;
@@ -10,43 +11,40 @@ interface ListItem {
 
 interface EmployerSectionProps {
   heading: string;
+  eyebrow?: string;
   items: ListItem[];
 }
 
 const EmployerSection: React.FC<EmployerSectionProps> = ({
   heading,
+  eyebrow,
   items
 }) => {
   return (
-    <section className="w-full bg-white text-gray-800 py-12 px-6 md:px-12 lg:px-16">
-      <div className="max-w-5xl mx-auto">
-        {/* Heading */}
-        <h2
-          className={`text-2xl md:text-3xl font-bold text-blue-500 ${fontMontserrat.className}`}
-        >
-          {heading}
-        </h2>
+    <>
+      <PageHeader title={heading} eyebrow={eyebrow} />
 
-        <div className="w-20 h-1 bg-blue-500 rounded-2xl mb-8" />
-
-        {/* Custom List */}
-        <ul className="space-y-4">
-          {items.map((item) => (
-            <li key={item.id} className="flex">
-              {/* Bullet */}
-              <span className="text-blue-400 text-3xl leading-7 mr-3">•</span>
-
-              {/* Text with hanging indent */}
-              <p
-                className={`text-lg leading-relaxed text-gray-700 ${fontPoppins.className}`}
+      <section className="relative py-16 lg:py-20">
+        <div className="page-container">
+          <Stagger as="ol" className="mx-auto max-w-4xl space-y-4" stagger={0.12}>
+            {items.map((item, index) => (
+              <StaggerItem
+                as="li"
+                key={item.id}
+                className="group flex gap-5 rounded-3xl border border-border bg-card p-6 shadow-soft transition-all duration-500 ease-premium hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-elevated sm:gap-8 sm:p-8"
               >
-                {item.text}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+                <span className="w-10 shrink-0 font-display text-3xl font-medium leading-none tabular-nums text-primary/80 sm:w-12 sm:text-4xl">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p className="text-[15.5px] leading-[1.85] text-foreground/80 sm:text-base">
+                  {item.text}
+                </p>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+    </>
   );
 };
 

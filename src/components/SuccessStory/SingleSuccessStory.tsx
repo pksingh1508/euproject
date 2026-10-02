@@ -1,9 +1,10 @@
 "use client";
 
-import { fontPoppins } from "@/fonts";
-import { SuccessItem } from "@/lib/dbTypes";
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { Quote } from "lucide-react";
+import { SuccessItem } from "@/lib/dbTypes";
+import { EASE_OUT, VIEWPORT } from "@/lib/motion";
 
 interface SingleSuccessStoryProps {
   successStory: SuccessItem;
@@ -44,90 +45,49 @@ export function SingleSuccessStory({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+    <motion.figure
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={VIEWPORT}
+      transition={{ duration: 0.7, ease: EASE_OUT, delay: Math.min(index, 4) * 0.06 }}
+      className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-soft transition-[border-color,box-shadow] duration-500 hover:border-primary/25 hover:shadow-elevated sm:p-8"
     >
-      {/* Mobile Layout (Small devices) - Vertical */}
-      <div className="block lg:hidden">
-        {/* Image at top */}
+      <Quote
+        aria-hidden
+        className="absolute right-6 top-6 size-12 text-primary/10 transition-colors duration-500 group-hover:text-primary/20"
+        strokeWidth={1.25}
+      />
+
+      <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-start sm:text-left">
         {imageUrl && (
-          <div className="mb-4">
-            <div className="relative w-full aspect-square max-w-[200px] mx-auto">
-              <Image
-                src={fullImageUrl}
-                alt={name}
-                fill
-                className="object-cover rounded-xl"
-                sizes="200px"
-              />
-            </div>
+          <div className="relative size-24 shrink-0 overflow-hidden rounded-2xl shadow-soft ring-1 ring-border">
+            <Image
+              src={fullImageUrl}
+              alt={name}
+              fill
+              className="object-cover"
+              sizes="96px"
+            />
           </div>
         )}
 
-        {/* Name below image */}
-        <h3
-          className={`text-xl font-bold text-gray-900 mb-2 text-center ${fontPoppins.className}`}
-        >
-          {name}
-        </h3>
-
-        {/* What they say below name */}
-        <div className="text-gray-600 leading-relaxed mb-3">
-          <p className={`italic ${fontPoppins.className}`}>"{story}"</p>
-        </div>
-
-        {/* Date */}
-        {updatedAt && (
-          <div
-            className={`text-sm text-gray-500 text-center ${fontPoppins.className}`}
-          >
-            {formatDate(updatedAt)}
-          </div>
-        )}
-      </div>
-
-      {/* Desktop Layout (Large devices) - Horizontal */}
-      <div className="hidden lg:flex lg:items-start lg:gap-6">
-        {/* Image on the left */}
-        {imageUrl && (
-          <div className="flex-shrink-0">
-            <div className="relative w-24 h-24">
-              <Image
-                src={fullImageUrl}
-                alt={name}
-                fill
-                className="object-cover rounded-xl"
-                sizes="96px"
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Content on the right */}
-        <div className="flex-1 min-w-0">
-          {/* Name */}
-          <h3
-            className={`text-xl font-bold text-gray-900 mb-2 ${fontPoppins.className}`}
-          >
-            {name}
-          </h3>
-
-          {/* What they say */}
-          <div className="text-gray-600 leading-relaxed mb-3">
-            <p className={`italic ${fontPoppins.className}`}>"{story}"</p>
-          </div>
-
-          {/* Date */}
-          {updatedAt && (
-            <div className={`text-sm text-gray-500 ${fontPoppins.className}`}>
-              {formatDate(updatedAt)}
-            </div>
-          )}
+        <div className="min-w-0 flex-1">
+          <blockquote className="font-display text-lg leading-relaxed text-foreground/85 sm:text-xl">
+            “{story}”
+          </blockquote>
+          <figcaption className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:justify-start">
+            <span className="font-semibold text-foreground">{name}</span>
+            {updatedAt && (
+              <>
+                <span aria-hidden className="size-1 rounded-full bg-border" />
+                <span className="text-sm text-muted-foreground">
+                  {formatDate(updatedAt)}
+                </span>
+              </>
+            )}
+          </figcaption>
         </div>
       </div>
-    </motion.div>
+    </motion.figure>
   );
 }
