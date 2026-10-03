@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Autoplay from "embla-carousel-autoplay";
 import { ArrowRight } from "lucide-react";
 import { RippleButton } from "../ui/ripple-button";
-import { BLOGS_DATA } from "@/constants/data";
 import { SingleBlog } from "./SingleBlog";
 import {
   Carousel,
@@ -16,8 +15,9 @@ import {
 } from "@/components/ui/carousel";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
+import type { BlogSummary } from "@/lib/content";
 
-export function RecentBlog() {
+export function RecentBlog({ posts }: { posts: BlogSummary[] }) {
   const router = useRouter();
   const plugin = React.useRef(
     Autoplay({
@@ -30,7 +30,7 @@ export function RecentBlog() {
   return (
     <section className="relative py-16 lg:py-24">
       <div className="page-container">
-        {BLOGS_DATA.length > 0 ? (
+        {posts.length > 0 ? (
           <Carousel
             plugins={[plugin.current]}
             opts={{
@@ -49,12 +49,12 @@ export function RecentBlog() {
 
             <Reveal blur={false} distance={32}>
               <CarouselContent className="-ml-6 py-3">
-                {BLOGS_DATA.map((blog, index) => (
+                {posts.map((post) => (
                   <CarouselItem
-                    key={index}
+                    key={post.slug}
                     className="pl-6 sm:basis-1/2 lg:basis-1/3"
                   >
-                    <SingleBlog blog={blog} />
+                    <SingleBlog post={post} />
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -67,7 +67,7 @@ export function RecentBlog() {
           </div>
         )}
 
-        {BLOGS_DATA.length > 0 && (
+        {posts.length > 0 && (
           <Reveal className="mt-12 flex justify-center">
             <RippleButton
               variant="brandOutline"

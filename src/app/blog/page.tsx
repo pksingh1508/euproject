@@ -1,6 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { BlogsSection } from "@/components/Blogs/BlogsSection";
+import { getBlogSummaries } from "@/lib/articles";
 
 export const metadata: Metadata = {
   title: "Blog | EU Prime Serwis",
@@ -17,5 +18,5 @@ export const metadata: Metadata = {
 };
 
 export default function page() {
-  return <BlogsSection />;
+  return <BlogsSection posts={getBlogSummaries()} />;
 }

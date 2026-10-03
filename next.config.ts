@@ -27,24 +27,6 @@ const nextConfig: NextConfig = {
         hostname: "ik.imagekit.io",
         port: "",
         pathname: "/**"
-      },
-      {
-        protocol: "https",
-        hostname: "determined-unity-de531adc95.media.strapiapp.com",
-        port: "",
-        pathname: "/**"
-      },
-      {
-        protocol: "https",
-        hostname: "determined-unity-de531adc95.strapiapp.com",
-        port: "",
-        pathname: "/**"
-      },
-      {
-        protocol: "https",
-        hostname: "api.eucareerserwis.pl",
-        port: "",
-        pathname: "/**"
       }
     ]
   }

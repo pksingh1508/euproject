@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+import { useLenis } from "lenis/react";
 import {
   ChevronLeft,
   ChevronRight,
-  RefreshCw,
   Search,
   type LucideIcon
 } from "lucide-react";
@@ -13,6 +13,48 @@ import { Button } from "@/components/ui/button";
 import { CountUp } from "@/components/motion/CountUp";
 import { cn } from "@/lib/utils";
 import { SPRING_SOFT } from "@/lib/motion";
+
+/* -------------------------------------------------------------------------- */
+/*  Search + pagination state                                                 */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Client-side search and pagination over a static list. `matches` receives
+ * the trimmed, lower-cased query and should be defined outside the component
+ * so it keeps a stable identity.
+ */
+export function useListing<T>(
+  items: T[],
+  matches: (item: T, query: string) => boolean,
+  pageSize = 10
+) {
+  const [query, setQueryState] = React.useState("");
+  const [page, setPage] = React.useState(1);
+  const lenis = useLenis();
+
+  const filtered = React.useMemo(() => {
+    const normalized = query.trim().toLowerCase();
+    return normalized ? items.filter((item) => matches(item, normalized)) : items;
+  }, [items, matches, query]);
+
+  const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const pageItems = filtered.slice((page - 1) * pageSize, page * pageSize);
+
+  const setQuery = (value: string) => {
+    setQueryState(value);
+    setPage(1);
+  };
+
+  const goToPage = (next: number) => {
+    if (next < 1 || next > pageCount || next === page) return;
+    setPage(next);
+    // Glide back to the top when the page changes
+    if (lenis) lenis.scrollTo(0, { duration: 1.2 });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return { query, setQuery, page, pageCount, pageItems, goToPage };
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Stats row                                                                 */
@@ -37,27 +79,19 @@ export function ListingStats({ stats }: { stats: { label: string; value: number 
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Search + refresh                                                          */
+/*  Search                                                                    */
 /* -------------------------------------------------------------------------- */
 
 interface ListingToolbarProps {
   value: string;
   onChange: (value: string) => void;
   placeholder: string;
-  onRefresh: () => void;
-  refreshing?: boolean;
 }
 
-export function ListingToolbar({
-  value,
-  onChange,
-  placeholder,
-  onRefresh,
-  refreshing
-}: ListingToolbarProps) {
+export function ListingToolbar({ value, onChange, placeholder }: ListingToolbarProps) {
   return (
-    <div className="mx-auto mt-8 flex w-full max-w-xl flex-col items-stretch gap-3 sm:flex-row">
-      <label className="relative flex-1">
+    <div className="mx-auto mt-8 w-full max-w-xl">
+      <label className="relative block">
         <span className="sr-only">{placeholder}</span>
         <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
         <input
@@ -68,16 +102,6 @@ export function ListingToolbar({
           className="h-12 w-full rounded-full border border-input bg-card pl-11 pr-4 text-[15px] text-foreground shadow-soft outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-muted-foreground/70 hover:border-foreground/20 focus-visible:border-primary/50 focus-visible:ring-4 focus-visible:ring-primary/10"
         />
       </label>
-      <Button
-        type="button"
-        variant="outline"
-        size="lg"
-        onClick={onRefresh}
-        disabled={refreshing}
-      >
-        <RefreshCw className={cn(refreshing && "animate-spin")} strokeWidth={1.75} />
-        {refreshing ? "Refreshing..." : "Refresh"}
-      </Button>
     </div>
   );
 }
@@ -186,33 +210,8 @@ export function Pagination({ page, pageCount, onChange }: PaginationProps) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  States                                                                    */
+/*  Empty state                                                               */
 /* -------------------------------------------------------------------------- */
-
-export function ListSkeleton({ count = 3, compact = false }: { count?: number; compact?: boolean }) {
-  return (
-    <div className="space-y-6" aria-busy="true" aria-label="Loading">
-      {Array.from({ length: count }).map((_, i) => (
-        <div
-          key={i}
-          className="flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft md:flex-row"
-        >
-          {compact ? (
-            <div className="skeleton m-6 size-20 shrink-0 rounded-2xl md:m-8 md:mr-0" />
-          ) : (
-            <div className="skeleton h-48 md:h-auto md:w-80 md:shrink-0" />
-          )}
-          <div className="flex-1 space-y-4 p-6 md:p-8">
-            <div className="skeleton h-3 w-40 rounded-full" />
-            <div className="skeleton h-6 w-3/4 rounded-full" />
-            <div className="skeleton h-3 w-full rounded-full" />
-            <div className="skeleton h-3 w-5/6 rounded-full" />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 interface ListingMessageProps {
   icon: LucideIcon;

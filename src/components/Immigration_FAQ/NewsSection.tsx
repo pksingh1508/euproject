@@ -3,8 +3,9 @@
 import React from "react";
 import { ImmigrationNews } from "./ImmigrationNews";
 import { SomeFAQ } from "./SomeFAQ";
+import type { NewsSummary } from "@/lib/content";
 
-export function NewsSection() {
+export function NewsSection({ news }: { news: NewsSummary[] }) {
   return (
     <section className="relative py-16 lg:py-24">
       <div className="page-container">
@@ -14,7 +15,7 @@ export function NewsSection() {
             <SomeFAQ />
           </div>
           <div className="order-2 lg:order-1">
-            <ImmigrationNews />
+            <ImmigrationNews news={news} />
           </div>
         </div>
       </div>

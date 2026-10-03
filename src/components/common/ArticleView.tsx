@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,17 +5,18 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
+import "highlight.js/styles/github-dark-dimmed.css";
 import {
   AlertCircle,
   ArrowLeft,
   FolderOpen,
-  Share2,
   Tag,
   type LucideIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/Reveal";
 import { TextReveal } from "@/components/motion/TextReveal";
+import { ShareButton } from "./ShareButton";
 import { cn } from "@/lib/utils";
 
 export interface ArticleMeta {
@@ -36,7 +35,8 @@ interface ArticleViewProps {
   backHref: string;
   backLabel: string;
   shareLabel: string;
-  onShare: () => void;
+  /** Message passed to the native share sheet. */
+  shareText: string;
 }
 
 function ArticleBackdrop() {
@@ -51,7 +51,10 @@ function ArticleBackdrop() {
   );
 }
 
-/** Long-form article layout shared by blog posts and news articles. */
+/**
+ * Long-form article layout shared by blog posts and news articles. Rendered on
+ * the server, so the Markdown pipeline never ships to the browser.
+ */
 export function ArticleView({
   title,
   contents,
@@ -62,7 +65,7 @@ export function ArticleView({
   backHref,
   backLabel,
   shareLabel,
-  onShare
+  shareText
 }: ArticleViewProps) {
   return (
     <article className="pb-20">
@@ -125,7 +128,14 @@ export function ArticleView({
         {image && (
           <Reveal blur={false} distance={32} className="mx-auto mt-12 max-w-5xl">
             <div className="relative aspect-[16/9] overflow-hidden rounded-[1.75rem] border border-border bg-muted shadow-floating sm:aspect-[2/1]">
-              <Image src={image} alt={title} fill priority className="object-cover" />
+              <Image
+                src={image}
+                alt={title}
+                fill
+                priority
+                sizes="(min-width: 1024px) 1024px, 100vw"
+                className="object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
           </Reveal>
@@ -164,17 +174,23 @@ export function ArticleView({
                     />
                   );
                 },
-                // Custom link component
-                a: ({ node, ...props }) => {
-                  const href = typeof props.href === "string" ? props.href : "";
+                // Custom link component: client-side navigation for internal
+                // links, new tab for external ones
+                a: ({ node, href = "", ...props }) => {
+                  const className =
+                    "font-medium text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary";
+
+                  if (href.startsWith("/")) {
+                    return <Link {...props} href={href} className={className} />;
+                  }
 
                   return (
                     <a
                       {...props}
                       href={href}
-                      className="font-medium text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary"
-                      target={href?.startsWith("http") ? "_blank" : undefined}
-                      rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className={className}
+                      target={href.startsWith("http") ? "_blank" : undefined}
+                      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                     />
                   );
                 }
@@ -188,10 +204,7 @@ export function ArticleView({
           <footer className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-border/70 pt-8 sm:flex-row">
             <div className="flex items-center gap-4">
               <span className="text-sm text-muted-foreground">{shareLabel}</span>
-              <Button onClick={onShare} variant="outline" size="sm">
-                <Share2 strokeWidth={1.75} />
-                Share
-              </Button>
+              <ShareButton title={title} text={shareText} />
             </div>
             <Button asChild variant="ghost" className="group">
               <Link href={backHref}>
@@ -206,37 +219,7 @@ export function ArticleView({
   );
 }
 
-/** Placeholder shown while an article is loading. */
-export function ArticleSkeleton() {
-  return (
-    <div className="pb-20" aria-busy="true" aria-label="Loading article">
-      <div className="relative isolate overflow-hidden border-b border-border/60">
-        <ArticleBackdrop />
-        <div className="page-container py-14 lg:py-20">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5">
-            <div className="skeleton h-7 w-32 rounded-full" />
-            <div className="skeleton h-10 w-full rounded-2xl" />
-            <div className="skeleton h-10 w-3/4 rounded-2xl" />
-            <div className="skeleton mt-3 h-4 w-72 rounded-full" />
-          </div>
-        </div>
-      </div>
-      <div className="page-container">
-        <div className="skeleton mx-auto mt-12 aspect-[2/1] max-w-5xl rounded-[1.75rem]" />
-        <div className="mx-auto mt-14 max-w-3xl space-y-4">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className={cn("skeleton h-4 rounded-full", i % 3 === 2 ? "w-2/3" : "w-full")}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** Shown when an article can't be loaded. */
+/** Shown when an article doesn't exist. */
 export function ArticleError({
   title,
   message,

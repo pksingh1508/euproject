@@ -4,13 +4,13 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { RippleButton } from "../ui/ripple-button";
-import { NEWS_DATA } from "@/constants/data";
 import { SingleNews } from "./SingleNews";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
+import type { NewsSummary } from "@/lib/content";
 
-export function ImmigrationNews() {
+export function ImmigrationNews({ news }: { news: NewsSummary[] }) {
   const router = useRouter();
 
   return (
@@ -22,14 +22,14 @@ export function ImmigrationNews() {
         size="md"
       />
 
-      {NEWS_DATA.length > 0 ? (
+      {news.length > 0 ? (
         <Stagger
           className="mt-10 divide-y divide-border/70 border-y border-border/70"
           stagger={0.06}
         >
-          {NEWS_DATA.map((newsItem) => (
-            <StaggerItem key={newsItem.id} blur={false} y={14}>
-              <SingleNews news={newsItem} />
+          {news.map((article) => (
+            <StaggerItem key={article.slug} blur={false} y={14}>
+              <SingleNews news={article} />
             </StaggerItem>
           ))}
         </Stagger>
@@ -37,7 +37,7 @@ export function ImmigrationNews() {
         <p className="mt-10 text-muted-foreground">No news articles found.</p>
       )}
 
-      {NEWS_DATA.length > 0 && (
+      {news.length > 0 && (
         <Reveal className="mt-8">
           <RippleButton
             variant="brandOutline"

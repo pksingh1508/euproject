@@ -99,7 +99,7 @@ export function ArticleCard({
             {typeof views === "number" && (
               <span className="inline-flex items-center gap-1.5">
                 <Eye className="size-3.5" strokeWidth={1.75} />
-                {views.toLocaleString()} views
+                {views.toLocaleString("en-US")} views
               </span>
             )}
           </div>

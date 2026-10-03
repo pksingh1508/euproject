@@ -8,6 +8,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { TopBanner } from "@/components/home/TopBanner";
 import WhyUs from "@/components/home/WhyUs";
 import { NewsSection } from "@/components/Immigration_FAQ/NewsSection";
+import { getBlogSummaries, getNewsSummaries } from "@/lib/articles";
 
 export default function Home() {
   const workButtons = [
@@ -136,14 +137,14 @@ export default function Home() {
       />
 
       <RotatingCircle />
-      {/* TODO: Recent Blogs */}
-      <RecentBlog />
+      {/* Recent Blogs */}
+      <RecentBlog posts={getBlogSummaries()} />
       {/* TODO: Testimonial */}
       <RotatingCircle />
       <Testimonials />
-      {/* TODO: News and FAQ section */}
+      {/* News and FAQ section — latest news only; the rest live at /immigration-news */}
       <RotatingCircle />
-      <NewsSection />
+      <NewsSection news={getNewsSummaries().slice(0, 6)} />
       {/* Government links */}
       <RotatingCircle />
       <GovernmentLinks />
