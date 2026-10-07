@@ -175,16 +175,6 @@
   }
 }
 
-/* Hero slide timer – the bar filling up also drives the auto-advance. */
-@keyframes hero-progress {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
 /* -------------------------------------------------------------------------- */
 /*  Base                                                                      */
 /* -------------------------------------------------------------------------- */

@@ -72,9 +72,11 @@ export function TextReveal({
     >
       {words.map((word, i) => (
         <React.Fragment key={`${word}-${i}`}>
+          {/* The side padding (cancelled by negative margins) keeps italic
+              overhangs from being clipped by the mask. */}
           <span
             aria-hidden
-            className="inline-block overflow-hidden pb-[0.14em] -mb-[0.14em] align-bottom"
+            className="-mx-[0.1em] -mb-[0.14em] inline-block overflow-hidden px-[0.1em] pb-[0.14em] align-bottom"
           >
             <motion.span
               className={cn(
